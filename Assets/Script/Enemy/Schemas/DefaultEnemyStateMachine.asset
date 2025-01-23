@@ -14,8 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StateMachine:
     DefaultState: 0
-    States: []
-    Transitions: []
+    States:
+    - rid: 3759364937401237570
+    - rid: 3759364937401237571
+    Transitions:
+    - rid: 3759364937401237574
+    - rid: 3759364937401237575
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3759364937401237570
+      type: {class: ReachTargetState, ns: , asm: Assembly-CSharp}
+      data:
+        GraphPosition:
+          x: 391.19998
+          y: 171.76001
+        target: {fileID: 0}
+    - rid: 3759364937401237571
+      type: {class: AttackTargetState, ns: , asm: Assembly-CSharp}
+      data:
+        GraphPosition:
+          x: 391.19998
+          y: 392.83203
+    - rid: 3759364937401237574
+      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
+      data:
+        Start: 0
+        End: 1
+        Priority: 0
+        distance: 0
+    - rid: 3759364937401237575
+      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
+      data:
+        Start: 1
+        End: 0
+        Priority: 0
+        distance: 0

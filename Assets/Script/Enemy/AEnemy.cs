@@ -8,6 +8,9 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
     [SerializeField] private float _baseDamage = 10f;
     [field: SerializeField] public float damage { get; set; }
 
+    [SerializeField] private float _speed = 5f;
+    public float speed => _speed;
+
     [SerializeField] private GameObject _expDropPrefab;
 
     void Awake()
