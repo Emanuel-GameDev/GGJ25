@@ -57,8 +57,10 @@ public class PlayerController : MonoBehaviour
     private void Rotate(InputAction.CallbackContext context)
     {
         _rotateValue = context.ReadValue<Vector2>();
-        
-        _rotateValue.Normalize();
+
+        //var _rotateValueSafeNormalized = math.normalizesafe(_rotateValue);
+        //Debug.Log("Direction " + _rotateValueSafeNormalized);
+        Debug.Log("Direction: " + _rotateValue);
 
         switch ((_rotateValue.x, _rotateValue.y))
         {
