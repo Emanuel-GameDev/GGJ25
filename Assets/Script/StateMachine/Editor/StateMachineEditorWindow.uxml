@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:st="StateMachineSpace.Editor" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/StateMachine/Editor/EditorStyle.uss?fileID=7433441132597879392&amp;guid=cfcde1d638ca8f94bb145d40b6481b9e&amp;type=3#EditorStyle" />
+    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="state-machine-name" binding-path="m_Name" />
+    <ui:VisualElement name="TwoPanelSplitView" style="flex-grow: 1;">
+        <ui:TwoPaneSplitView >
+            <uie:PropertyField name="inspector" />
+            <StateMachineSpace.Editor.StateMachineGraphView name="graph-view" />
+        </ui:TwoPaneSplitView>
+    </ui:VisualElement>
+</ui:UXML>

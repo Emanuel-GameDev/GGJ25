@@ -1,0 +1,18 @@
+.grid {
+    --grid-backround-color: #f0f0f0;
+    --line-color: #404040;
+    --spacing: 10;
+    --thick-lines: 5;
+    --thick-line-color: #a0a0a0;
+}
+
+.graph-view
+{
+    width: 100%;
+    height: 100%;
+}
+
+.is-running
+{
+    background-color: green;
+}

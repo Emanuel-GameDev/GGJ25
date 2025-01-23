@@ -1,16 +1,26 @@
 using UnityEngine;
 
-public class AEnemy : MonoBehaviour
+public abstract class AEnemy : MonoBehaviour, IDamageable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private int _health = 100;
+    public int Health => _health;
+
+    public void EnemyAttackBehavior() 
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        _health -= damage;
+        if (_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
     }
 }

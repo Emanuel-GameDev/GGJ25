@@ -37,7 +37,6 @@ public class ControllerAssignmentManager : DeviceManager
         {
             Debug.Log("Scene already loaded");
             return;
-
         }
 
         Debug.Log("SendPlayersData");
