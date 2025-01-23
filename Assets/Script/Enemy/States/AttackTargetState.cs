@@ -6,8 +6,15 @@ using UnityEngine;
 [Serializable]
 public class AttackTargetState : State
 {
+    Collider2D _collider;
+    
     public override UniTask OnEnter(GameObject agent)
     {
+        if(agent.GetComponentInChildren<Collider2D>())
+        {
+            _collider.enabled = true;
+        }
+
         return base.OnEnter(agent);
     }
 
