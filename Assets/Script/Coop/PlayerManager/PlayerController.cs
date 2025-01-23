@@ -32,12 +32,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(_moveValue.x * _speed, 0, _moveValue.y * _speed);
+        transform.Translate(new Vector2(_moveValue.x, _moveValue.y) * _speed * Time.deltaTime);
     }
 
-    private void Movement(InputAction.CallbackContext context)
-    {
-        _moveValue = context.ReadValue<Vector2>();
-        Debug.Log($"Movement: {_moveValue}");
-    }
+    private void Movement(InputAction.CallbackContext context) => _moveValue = context.ReadValue<Vector2>();
 }
