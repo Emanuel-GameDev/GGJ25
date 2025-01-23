@@ -12,7 +12,7 @@ public class DeviceManager : MonoBehaviour
     [Header("Players")]
     protected PlayerInputManager _playerInputManager;
     [SerializeField] protected List<PlayerInput> _players;
-    [SerializeField] public List<PlayerInput> Players => _players;
+    public List<PlayerInput> Players => _players;
     [SerializeField] protected List<PlayerInputData> _playersData = new List<PlayerInputData>();
 
     [Header("Prefab References")]
@@ -34,17 +34,17 @@ public class DeviceManager : MonoBehaviour
     {
         _playerInputManager.onPlayerJoined += AddPlayer;
 
-        _playerInputManager.onPlayerLeft += RemovePlayerOnPlayerLeft;
+        //_playerInputManager.onPlayerLeft += RemovePlayerOnPlayerLeft;
 
-        InputSystem.onDeviceChange += RemovePlayerOnDeviceRemoved;
+        //InputSystem.onDeviceChange += RemovePlayerOnDeviceRemoved;
     }
 
     protected virtual void OnDisable()
     {
         _playerInputManager.onPlayerJoined -= AddPlayer;
-        _playerInputManager.onPlayerLeft -= RemovePlayer;
+        //_playerInputManager.onPlayerLeft -= RemovePlayer;
 
-        InputSystem.onDeviceChange -= RemovePlayerOnDeviceRemoved;
+        //InputSystem.onDeviceChange -= RemovePlayerOnDeviceRemoved;
     }
 
     protected virtual void AddPlayer(PlayerInput playerToAdd)
@@ -54,9 +54,10 @@ public class DeviceManager : MonoBehaviour
 
     protected virtual void RemovePlayer(PlayerInput playerToRemove)
     {
+        Debug.Log("RemovePLayer");
         if (_players.Contains(playerToRemove))
         {
-            _players.Remove(playerToRemove);
+            //_players.Remove(playerToRemove);
 
             onPlayerRemoved?.Invoke(playerToRemove);
         }
@@ -64,7 +65,9 @@ public class DeviceManager : MonoBehaviour
 
     protected virtual void RemovePlayerOnPlayerLeft(PlayerInput playerToRemove)
     {
-        if(_players.Contains(playerToRemove))
+        Debug.Log("RemovePlayerOnPlayerLeft");
+
+        if (_players.Contains(playerToRemove))
         {
             _players.Remove(playerToRemove);
 
@@ -106,11 +109,10 @@ public class DeviceManager : MonoBehaviour
     {
         players.ForEach(player =>
         {
-            _playerInputManager.JoinPlayer( player.playerIndex,
+            _players.Add(_playerInputManager.JoinPlayer(player.playerIndex,
                                             -1,
                                             player.currentControlScheme,
-                                            player.device);
-            
+                                            player.device));
         });
     }
 }
