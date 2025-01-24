@@ -20,7 +20,8 @@ namespace Boids
         public sealed override SteeringOutput GetSteering(Agent agent)
         {
             _target = BubbleController.Instance.transform;
-
+            if (_target == null) return new SteeringOutput{Linear = 0, Angular = 0};
+            
             // Debug.Log("distance: " + math.distance(agent.transform.position, _target.position));
             if(math.distance(agent.transform.position, _target.position) > _arriveDistance)
             {

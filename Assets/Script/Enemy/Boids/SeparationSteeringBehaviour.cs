@@ -32,11 +32,11 @@ namespace Boids
                 var forceFactor = distance / NeighbourRange;
                 var force = _forceDropCurve.Evaluate(forceFactor) * math.normalizesafe(agent.Position - neighbour.Position);
                 targetVelocity += force;
-                Debug.DrawRay(agent.Position, force, Color.yellow);
+                // Debug.DrawRay(agent.Position, force, Color.yellow);
             }
 
             targetVelocity /= math.max(neighbours.Length, 1);
-            Debug.DrawRay(agent.Position, targetVelocity, Color.green);
+            // Debug.DrawRay(agent.Position, targetVelocity, Color.green);
             targetVelocity *= _maxAcceleration;
 
             return new SteeringOutput { Linear = targetVelocity, Angular = 0 };

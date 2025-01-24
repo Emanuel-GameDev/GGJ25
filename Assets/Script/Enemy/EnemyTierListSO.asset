@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTierList:
   - tier: 0
-    enemyPrefab: {fileID: 6692031475928474871, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
   - tier: 1
-    enemyPrefab: {fileID: 6692031475928474871, guid: 52cb9c7262a9d784da0b9efd5dedbcbc, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 52cb9c7262a9d784da0b9efd5dedbcbc, type: 3}
   - tier: 2
-    enemyPrefab: {fileID: 6692031475928474871, guid: 4120e738e8296db46b25c01018080814, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 4120e738e8296db46b25c01018080814, type: 3}
   - tier: 3
-    enemyPrefab: {fileID: 6692031475928474871, guid: 86a545050be828b4e8e9b57c34bc48fa, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 86a545050be828b4e8e9b57c34bc48fa, type: 3}
   - tier: 4
-    enemyPrefab: {fileID: 6692031475928474871, guid: 44610eaa7ec259a4d8718a750c3f9516, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 44610eaa7ec259a4d8718a750c3f9516, type: 3}
   - tier: 5
-    enemyPrefab: {fileID: 6692031475928474871, guid: 8d35794c97d9c3240abd83bcc7b3186e, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: 8d35794c97d9c3240abd83bcc7b3186e, type: 3}
   - tier: 6
-    enemyPrefab: {fileID: 6692031475928474871, guid: ade0d69c214fcf742a6053a7c6422692, type: 3}
+    enemyObject: {fileID: 6692031475928474871, guid: ade0d69c214fcf742a6053a7c6422692, type: 3}

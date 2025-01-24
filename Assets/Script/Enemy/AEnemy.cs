@@ -32,6 +32,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
     {
         //DROP ExP
         Instantiate(_expDropPrefab, transform.position, Quaternion.identity);
+        EventManager.OnEnemyDeath?.Invoke(gameObject);
         Destroy(gameObject);
     }
 }

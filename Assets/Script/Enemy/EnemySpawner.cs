@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Unity.Burst;
@@ -30,7 +31,19 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private EnemyTierListSO _enemyTierListSO;
 
+    [SerializeField] private List<EnemyTierList> pool = new List<EnemyTierList>();
+    [SerializeField] private int _maxPoolSize = 40;
+
+    [SerializeField] private bool _isSpawning = false;
+
+    [SerializeField] private float _timeLeft = 0;
+
     private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+    
+    void Awake()
+    {
+        EventManager.OnEnemyDeath += RemoveEnemyFromPool;
+    }
     
     void Start()
     {
@@ -38,11 +51,36 @@ public class EnemySpawner : MonoBehaviour
         SpawnEnemies().Forget();
     }
 
+    void Update()
+    {
+        if(pool.Count >= _maxPoolSize)
+        {
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = new CancellationTokenSource();
+            _isSpawning = false;
+        }
+        else
+        {
+            if(_isSpawning == false)
+            {
+                SpawnEnemies().Forget();
+
+                _isSpawning = true;
+            }
+        }
+    }
+
     [BurstCompile]
     private async UniTask SpawnEnemies()
     {
-        while(true)
+        while(_isSpawning)
         {
+            if(_cancellationTokenSource.IsCancellationRequested)
+            {
+                break;
+            }
+
             _actualPlayerNumber = ControllerPlayersManager.Instance.Players.Count;
 
             var spawnTimer = Random.Range(_minSpawnTimer, _maxSpawnTimer);
@@ -58,7 +96,7 @@ public class EnemySpawner : MonoBehaviour
                 var spawnPosition = new Vector3(ControllerPlayersManager.Instance.Players[ind].transform.position.x + x, 
                                                 ControllerPlayersManager.Instance.Players[ind].transform.position.y + y, 
                                                 0);
-                Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTier].enemyPrefab, spawnPosition, Quaternion.identity); 
+                pool.Add(new EnemyTierList {enemyObject = Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTier].enemyObject, spawnPosition, Quaternion.identity), tier = _actualTier}); 
             }
             else
             {
@@ -66,13 +104,13 @@ public class EnemySpawner : MonoBehaviour
                 var spawnPosition = new Vector3(ControllerPlayersManager.Instance.Players[ind].transform.position.x + x, 
                                             ControllerPlayersManager.Instance.Players[ind].transform.position.y + y, 
                                             0);
-                Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTiersAfterFirstCycle[0]].enemyPrefab, spawnPosition, Quaternion.identity); 
+                pool.Add(new EnemyTierList {enemyObject = Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTiersAfterFirstCycle[0]].enemyObject, spawnPosition, Quaternion.identity), tier = _actualTiersAfterFirstCycle[0]}); 
                 
                 ind = Random.Range(0, _actualPlayerNumber);
                 spawnPosition = new Vector3(ControllerPlayersManager.Instance.Players[ind].transform.position.x + x, 
                                             ControllerPlayersManager.Instance.Players[ind].transform.position.y + y, 
                                             0);
-                Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTiersAfterFirstCycle[1]].enemyPrefab, spawnPosition, Quaternion.identity); 
+                pool.Add(new EnemyTierList {enemyObject = Instantiate(_enemyTierListSO.enemyTierList[(int)_actualTiersAfterFirstCycle[1]].enemyObject, spawnPosition, Quaternion.identity), tier = _actualTiersAfterFirstCycle[1]}); 
             }
         }
     }
@@ -80,41 +118,70 @@ public class EnemySpawner : MonoBehaviour
     [BurstCompile]
     private async UniTask TierUpdate()
     {
-        await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
+        var startTime = Time.time;
+        await UniTask.WaitForSeconds(_timeLeft == 0 ? _timeToNextTier : _timeLeft, cancellationToken: _cancellationTokenSource.Token);
         
-        if(_actualTier == Tier.T7)
+        if(!_cancellationTokenSource.IsCancellationRequested)
         {
-            if(firstCycle)
+            if(_actualTier == Tier.T7)
             {
-                firstCycle = false;
-                _actualTiersAfterFirstCycle[0] = Tier.T7;
-                _actualTiersAfterFirstCycle[1] = Tier.T1;
-                TierUpdateAfterFirstCycle().Forget();
+                if(firstCycle)
+                {
+                    firstCycle = false;
+                    _actualTiersAfterFirstCycle[0] = Tier.T7;
+                    _actualTiersAfterFirstCycle[1] = Tier.T1;
+                    _timeLeft = 0;
+                    TierUpdateAfterFirstCycle().Forget();
+                }
+            }
+            else
+            {
+                _actualTier++;
+                _timeLeft = 0;
+                TierUpdate().Forget();
             }
         }
         else
         {
-            _actualTier++;
-            TierUpdate().Forget();
+            var endTime = Time.time;
+            _timeLeft = _timeToNextTier - (endTime - startTime);
         }
     }
 
     [BurstCompile]
     private async UniTask TierUpdateAfterFirstCycle()
     {
+        var startTime = Time.time;
         await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
 
-        if(_actualTiersAfterFirstCycle[0] == Tier.T7)
+        if(!_cancellationTokenSource.IsCancellationRequested)
         {
-            _actualTiersAfterFirstCycle[0] = Tier.T1;
-            _actualTiersAfterFirstCycle[1] = Tier.T7;
+            if(_actualTiersAfterFirstCycle[0] == Tier.T7)
+            {
+                _actualTiersAfterFirstCycle[0] = Tier.T1;
+                _actualTiersAfterFirstCycle[1] = Tier.T7;
+            }
+            else
+            {
+                _actualTiersAfterFirstCycle[0]++;
+                _actualTiersAfterFirstCycle[1]++;
+            }
+            
+            TierUpdateAfterFirstCycle().Forget();
+            _timeLeft = 0;
+            startTime = Time.time;
         }
         else
         {
-            _actualTiersAfterFirstCycle[0]++;
-            _actualTiersAfterFirstCycle[1]++;
+            var endTime = Time.time;
+            _timeLeft = _timeToNextTier - (endTime - startTime);
         }
 
-        TierUpdateAfterFirstCycle().Forget();
+
+    }
+
+    private void RemoveEnemyFromPool(GameObject enemy)
+    {
+        pool.Remove(pool.Find(x => x.enemyObject == enemy));
     }
 }

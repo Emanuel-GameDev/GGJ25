@@ -9,6 +9,8 @@ public class IsNearEnoughTransition : Transition
 
     public override bool ShouldTransition(StateMachine stateMachine, GameObject agent)
     {
+        if(BubbleController.Instance == null) return false;
+        
         return Vector2.Distance(agent.transform.position, BubbleController.Instance.transform.position) < distance;
     }
 

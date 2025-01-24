@@ -34,6 +34,9 @@ namespace Boids
         [BurstCompile]
         public override SteeringOutput GetSteering(Agent agent)
         {
+            if(BubbleController.Instance == null) 
+                return new SteeringOutput{Linear = 0, Angular = 0};
+
             if(math.distance(agent.transform.position, BubbleController.Instance.transform.position) > _arriveDistance)
             {
                 return new SteeringOutput{Linear = 0, Angular = 0};

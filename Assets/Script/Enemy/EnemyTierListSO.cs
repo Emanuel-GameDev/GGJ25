@@ -12,5 +12,5 @@ public class EnemyTierListSO : ScriptableObject
 public struct EnemyTierList
 {
     public Tier tier;
-    public GameObject enemyPrefab;
+    public GameObject enemyObject;
 }
