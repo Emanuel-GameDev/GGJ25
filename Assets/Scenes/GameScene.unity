@@ -550,13 +550,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 501443796010263373, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2572267636403565757, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.86
+      value: -15.36
       objectReference: {fileID: 0}
     - target: {fileID: 2572267636403565757, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.42
+      value: -13.19
       objectReference: {fileID: 0}
     - target: {fileID: 2572267636403565757, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -609,7 +613,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6692031475928474871, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694101012}
   m_SourcePrefab: {fileID: 100100000, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
 --- !u!1 &971803330
 GameObject:
@@ -800,6 +807,76 @@ MonoBehaviour:
   UpdateMethod: 2
   Targets: []
   m_LegacyTargets: []
+--- !u!1 &1694101011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6692031475928474871, guid: 1499ad12bc8c8734cbf4fc8325eea1f9, type: 3}
+  m_PrefabInstance: {fileID: 786800666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1694101012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694101011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e63607c1f04ee4da409c32ca7c6d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLinearSpeed: 5
+  _maxAngularSpeed: 360
+  _radius: 0.5
+  _steering:
+  - rid: 3759364951881810179
+  - rid: 3759364951881810180
+  - rid: 3759364951881810181
+  references:
+    version: 2
+    RefIds:
+    - rid: 3759364951881810179
+      type: {class: AvoidAgentSteeringBehaviour, ns: Boids, asm: Assembly-CSharp}
+      data:
+        _neighbourRange: 3
+        _maxAcceleration: 50
+        _arriveDistance: 0.5
+    - rid: 3759364951881810180
+      type: {class: SeekSteeringBehaviour, ns: Boids, asm: Assembly-CSharp}
+      data:
+        _maxAcceleration: 50
+        _arriveDistance: 0.5
+        _target: {fileID: 0}
+    - rid: 3759364951881810181
+      type: {class: SeparationSteeringBehaviour, ns: Boids, asm: Assembly-CSharp}
+      data:
+        NeighbourRange: 5
+        _visionConeSize: 180
+        _maxAcceleration: 25
+        _forceDropCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _arriveDistance: 0.5
 --- !u!1 &1753324915
 GameObject:
   m_ObjectHideFlags: 0

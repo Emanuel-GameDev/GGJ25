@@ -34,13 +34,18 @@ public class AttackTargetState : State
     {
         // Debug.Log("attack rate " + _damager.attackRate);
         _collider.enabled = true;
+
         await UniTask.Delay((int)(_damager.attackRate * 1000));
+        Debug.Log("AttackTargetState update");
+
         _collider.enabled = false;
         await base.OnUpdate(agent);
     }
 
     public override UniTask OnExit(GameObject agent)
     {
+        Debug.Log("AttackTargetState exit");
+        _collider.enabled = false;
         return base.OnExit(agent);
     }
 

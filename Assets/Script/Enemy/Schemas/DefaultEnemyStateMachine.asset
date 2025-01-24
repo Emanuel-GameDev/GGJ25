@@ -15,38 +15,39 @@ MonoBehaviour:
   StateMachine:
     DefaultState: 0
     States:
-    - rid: 3759364937401237570
-    - rid: 3759364937401237571
+    - rid: 3759364951881810182
+    - rid: 3759364951881810183
     Transitions:
-    - rid: 3759364937401237574
-    - rid: 3759364947529957442
+    - rid: 3759364951881810186
+    - rid: 3759364951881810187
   references:
     version: 2
     RefIds:
-    - rid: 3759364937401237570
-      type: {class: ReachTargetState, ns: , asm: Assembly-CSharp}
-      data:
-        GraphPosition:
-          x: 391.19998
-          y: 171.76001
-        target: {fileID: 0}
-    - rid: 3759364937401237571
+    - rid: 3759364951881810182
       type: {class: AttackTargetState, ns: , asm: Assembly-CSharp}
       data:
         GraphPosition:
-          x: 391.19998
-          y: 392.83203
-    - rid: 3759364937401237574
-      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
+          x: 161.6
+          y: 204.80002
+    - rid: 3759364951881810183
+      type: {class: ReachTargetState, ns: , asm: Assembly-CSharp}
       data:
-        Start: 0
-        End: 1
-        Priority: 0
-        distance: 1
-    - rid: 3759364947529957442
-      type: {class: IsInRangeTransition, ns: , asm: Assembly-CSharp}
+        GraphPosition:
+          x: 161.6
+          y: 14.399994
+        _enemyAgent: {fileID: 0}
+        _enemyAgentRb: {fileID: 0}
+    - rid: 3759364951881810186
+      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
       data:
         Start: 1
         End: 0
         Priority: 0
-        distance: 2
+        distance: 0.5
+    - rid: 3759364951881810187
+      type: {class: IsInRangeTransition, ns: , asm: Assembly-CSharp}
+      data:
+        Start: 0
+        End: 1
+        Priority: 0
+        distance: 1.5
