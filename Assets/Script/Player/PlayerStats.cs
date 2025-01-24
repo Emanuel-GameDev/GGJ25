@@ -58,7 +58,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private async UniTask InvincibilityTimer()
     {
-        await UniTask.WaitForSeconds(_invincibilityTime);
+        await UniTask.WaitForSeconds(_invincibilityTime, true);
         _invincible = false;
     }
 

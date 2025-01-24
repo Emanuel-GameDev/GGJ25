@@ -218,7 +218,7 @@ MonoBehaviour:
   _health: 100
   _baseDamage: 10
   <damage>k__BackingField: 10
-  <attackRate>k__BackingField: 1
+  <attackRate>k__BackingField: 2
   _speed: 5
   _expDropPrefab: {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
 --- !u!114 &2682125687259287122
