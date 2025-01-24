@@ -59,13 +59,13 @@ public class EnemySpawner : MonoBehaviour
             _cancellationTokenSource.Dispose();
             _cancellationTokenSource = new CancellationTokenSource();
             _isSpawning = false;
-            Debug.Log("Pool full");
+            // Debug.Log("Pool full");
         }
         else if(pool.Count < _maxPoolSize)
         {
             if(_isSpawning == false)
             {
-                Debug.Log("Spawning");
+                // Debug.Log("Spawning");
                 _isSpawning = true;
                 SpawnEnemies().Forget();
 
