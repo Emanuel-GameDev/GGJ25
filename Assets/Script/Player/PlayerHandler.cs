@@ -15,8 +15,6 @@ public class PlayerHandler : Player
     [SerializeField]
     private GameObject weaponContainerObj;
 
-    private bool canShoot = true;
-
     #endregion
 
     #region Passives
