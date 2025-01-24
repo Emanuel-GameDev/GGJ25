@@ -23,13 +23,13 @@ public class BubbleController : MonoBehaviour
         _instance = this;
     }
 
-    void Update()
-    {
-        if(isGrabbed && transform.parent != null)
-        {
-            transform.position = transform.parent.position;
-        }
-    }
+    // void Update()
+    // {
+    //     // if(isGrabbed && transform.parent != null)
+    //     // {
+    //     //     // transform.position = transform.parent.position;
+    //     // }
+    // }
 
     public async UniTask ThrowTask(Vector2 direction, GameObject player)
     {

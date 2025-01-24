@@ -26,9 +26,9 @@ public class BubbleGrabber : MonoBehaviour
             _bubbleGrabbed.isGrabbed = true;
             _bubbleGrabbed.isGrabbable = false;
 
-            _bubbleGrabbed.gameObject.transform.SetParent(transform.parent);
+            _bubbleGrabbed.gameObject.transform.SetParent(transform.parent, false);
 
-            // _bubbleGrabbed.gameObject.transform.localPosition = Vector3.zero;
+            _bubbleGrabbed.gameObject.transform.localPosition = Vector3.zero;
 
             EventManager.OnBubbleGrabbed?.Invoke(transform.parent.gameObject);
         }
