@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _players: []
+  _playersData: []
   _promptPrefab: {fileID: 1743028898238628981, guid: 5957db5ef3d3e9d4a937633646d78127, type: 3}
   _startingPoints: []
   _playerLayerMasks: []
