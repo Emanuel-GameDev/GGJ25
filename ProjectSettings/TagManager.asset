@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Terrain
+  - Projectile
   - 
   - 
   - 
@@ -41,3 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Terrain
+    uniqueID: 881709831
+    locked: 0
+  - name: Player
+    uniqueID: 2601199061
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3196418401
+    locked: 0
+  m_RenderingLayers:
+  - Default

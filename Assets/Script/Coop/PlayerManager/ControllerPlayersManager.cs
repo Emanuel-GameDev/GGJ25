@@ -22,6 +22,7 @@ public class ControllerPlayersManager : DeviceManager
         {
             player.transform.position = _startingPoints[i].position;
             i++;
+            Debug.Log((player.name));
         });
     }
 

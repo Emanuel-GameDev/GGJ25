@@ -83,7 +83,7 @@ public class ControllerAssignmentManager : DeviceManager
     {
         // Debug.Log($"Removing player: {player.playerIndex}");
 
-        base.RemovePlayer(player);
+        //base.RemovePlayer(player);
 
         // Debug.Log("Removing player: " + player.playerIndex);
 
