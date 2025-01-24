@@ -19,7 +19,7 @@ namespace Boids
         {
             _target = BubbleController.Instance.transform;
 
-            Debug.Log("distance: " + math.distance(agent.transform.position, _target.position));
+            //Debug.Log("distance: " + math.distance(agent.transform.position, _target.position));
             if(math.distance(agent.transform.position, _target.position) > _arriveDistance)
             {
                 return GetSteeringForTargetPosition(agent, _target.position);
