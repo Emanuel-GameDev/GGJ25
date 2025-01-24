@@ -9,7 +9,7 @@ public class WeaponDatabase : ScriptableObject
 
 public class WeaponManager : MonoBehaviour
 {
-    WeaponDatabase database;
+    public WeaponDatabase database;
 
     public static WeaponManager instance;
 
@@ -37,14 +37,27 @@ public class WeaponManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, database.weaponDatabase.Count);
             GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
+            BaseWeapon weaponPrefab = randomWeaponPrefab.GetComponent<BaseWeapon>();
 
-            // Istanzia l'arma
-            GameObject instantiatedWeapon = Instantiate(randomWeaponPrefab);
+            List<BaseWeapon> playerWeapons = levelManager._playerHandler.GetEquippedWeapons();
+            BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == weaponPrefab.GetType());
 
-            // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
-            levelManager._playerHandler.EquipWeapon(instantiatedWeapon);
+            if (existingWeapon != null)
+            {
+                // Se l'arma è già equipaggiata, potenziala
+                existingWeapon.UpgradeTier();
+                Debug.Log($"{existingWeapon.name} è stata potenziata!");
+            }
+            else
+            {
+                // Altrimenti, equipaggia la nuova arma
+                GameObject instantiatedWeapon = Instantiate(randomWeaponPrefab);
 
-            Debug.Log("Equipped weapon: " + randomWeaponPrefab.name);
+                // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
+                levelManager._playerHandler.EquipWeapon(instantiatedWeapon);
+
+                Debug.Log($"{instantiatedWeapon.name} è stata equipaggiata!");
+            }
         }
         else
         {

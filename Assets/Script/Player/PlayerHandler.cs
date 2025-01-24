@@ -10,9 +10,6 @@ public class PlayerHandler : Player
     [SerializeField] List<BaseWeapon> weaponsEquipped;
 
     [SerializeField]
-    protected float _fireRate = .3f;
-
-    [SerializeField]
     private GameObject weaponContainerObj;
 
     #endregion
@@ -29,7 +26,6 @@ public class PlayerHandler : Player
     {
         if (isShooting)
         {
-            Debug.Log("shooting in update handler pt2");
             ShootAll();
         }
     }
@@ -47,29 +43,15 @@ public class PlayerHandler : Player
         }
     }
 
+    public List<BaseWeapon> GetEquippedWeapons()
+    {
+        return weaponsEquipped;
+    }
+
     public void EquipWeapon(GameObject weaponToEquipObj)
     {
         weaponToEquipObj.transform.parent = weaponContainerObj.transform;
         weaponToEquipObj.transform.localPosition = Vector3.zero;    
-
-        BaseWeapon weaponToEquip = weaponToEquipObj.GetComponent<BaseWeapon>();
-        weaponToEquip.playerHandler = this;
-
-        // questo potrebbe dare errore nel caso BaseWeapon andasse a cercare il primo base weapon uguale
-        BaseWeapon existingWeapon = weaponsEquipped.Find(w => w.GetType() == weaponToEquip.GetType());
-
-        if (existingWeapon != null)
-        {
-            // Se l'arma è già equipaggiata, potenziala
-            existingWeapon.UpgradeTier();
-            Debug.Log($"{weaponToEquip.name} è stata potenziata!");
-        }
-        else
-        {
-            // Altrimenti, equipaggia la nuova arma
-            weaponsEquipped.Add(weaponToEquip);
-            Debug.Log($"{weaponToEquip.name} è stata equipaggiata!");
-        }
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)

@@ -12,7 +12,7 @@ public class Pistol : BaseWeapon
     private int _projectileDmg = 5;
 
     [SerializeField]
-    protected float _fireRate = .3f;
+    protected float _fireRate = 1f;
 
     [SerializeField]
     private GameObject projectilePrefab;
@@ -22,11 +22,17 @@ public class Pistol : BaseWeapon
 
     [Header("TIER 1")]
 
+    public bool tier1Unlocked = false;
+
     [SerializeField]
     private int tier1UpgradeDmg = 5;
 
     [SerializeField, Range(0, 100)]
     private int tier1UpgradeFireRate = 50;
+
+    [Header("TIER 2")]
+
+    public bool tier2Unlocked = false;
 
 
     private GameObject pistolProjectilePool;
@@ -47,6 +53,8 @@ public class Pistol : BaseWeapon
         {
             _projectileDmg += tier1UpgradeDmg;
             _fireRate += _fireRate * (tier1UpgradeFireRate / 100);
+
+            tier1Unlocked = true;
         }
     }
 
@@ -59,9 +67,6 @@ public class Pistol : BaseWeapon
         for (int i = 0; i < poolSize; i++)
         {
             InstantiateProjectile();
-
-            if (tierCounter == 2)
-                InstantiateProjectile();
         }
     }
 
@@ -79,6 +84,21 @@ public class Pistol : BaseWeapon
         if (!canShoot) return;
 
         GameObject projectile = GetPooledProjectile();
+        Fire(projectile);
+
+        if (tierCounter == 2)
+        {
+            if (tier2Unlocked == false)
+                tier2Unlocked = true;
+
+            GameObject projectile2 = GetPooledProjectile();
+            Fire(projectile2);
+        }
+
+    }
+
+    private void Fire(GameObject projectile)
+    {
         if (projectile != null)
         {
             projectile.GetComponent<RayPistolProjectile>()._baseDmg = _projectileDmg;
@@ -95,7 +115,7 @@ public class Pistol : BaseWeapon
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                Debug.Log("SHOOT " + projectile.transform.forward);
+                //Debug.Log("SHOOT " + projectile.transform.forward);
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
                 rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
 

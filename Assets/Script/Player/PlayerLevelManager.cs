@@ -10,7 +10,7 @@ public class PlayerLevelManager : MonoBehaviour
 
     [SerializeField] private float _levelUpThreshold = 300f;
     [SerializeField] private float _trueLevelUpThreshold = 300f;
-    [SerializeField] private float _thresholdMultiplayer = 1.5f;
+    [SerializeField] private float _thresholdMultiplayer = 1f;
 
     public PlayerHandler _playerHandler;
 
@@ -27,6 +27,11 @@ public class PlayerLevelManager : MonoBehaviour
         {
             _level++;
             _exp = 0f;
+
+            //if (EventManager.OnPlayerLevelUp != null)
+            //{
+            //    Debug.Log($"Registered methods: {EventManager.OnPlayerLevelUp.GetInvocationList().Length}");
+            //}
 
             EventManager.OnPlayerLevelUp?.Invoke(_level, this);
         }
