@@ -26,7 +26,7 @@ public class PlayerLevelManager : MonoBehaviour
             _level++;
             _exp = 0f;
 
-            EventManager.OnPlayerLevelUp?.Invoke(_level);
+            EventManager.OnPlayerLevelUp?.Invoke(_level, this);
         }
     }
 

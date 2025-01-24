@@ -48,7 +48,10 @@ public class PlayerController : Player
 
     void Update()
     {
-        transform.Translate(new Vector2(_moveValue.x, _moveValue.y) * _speed * Time.deltaTime);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        Vector2 newPosition = new Vector2(_moveValue.x, _moveValue.y) * _speed * Time.deltaTime;
+        rb.MovePosition(rb.position + newPosition);
     }
 
     private void Movement(InputAction.CallbackContext context) => _moveValue = context.ReadValue<Vector2>();
