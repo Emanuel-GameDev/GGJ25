@@ -19,7 +19,7 @@ MonoBehaviour:
     - rid: 3759364937401237571
     Transitions:
     - rid: 3759364937401237574
-    - rid: 3759364937401237575
+    - rid: 3759364947529957442
   references:
     version: 2
     RefIds:
@@ -42,9 +42,9 @@ MonoBehaviour:
         Start: 0
         End: 1
         Priority: 0
-        distance: 0
-    - rid: 3759364937401237575
-      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
+        distance: 2
+    - rid: 3759364947529957442
+      type: {class: IsInRangeTransition, ns: , asm: Assembly-CSharp}
       data:
         Start: 1
         End: 0

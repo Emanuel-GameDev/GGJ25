@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
 {
-    [SerializeField] private int _health = 100;
-    public int Health => _health;
+    [SerializeField] private float _health = 100;
+    public float Health => _health;
 
     [SerializeField] private float _baseDamage = 10f;
     [field: SerializeField] public float damage { get; set; }
@@ -19,7 +19,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
         damage = _baseDamage;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _health -= damage;
         if (_health <= 0)
@@ -31,6 +31,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
     protected virtual void Die()
     {
         //DROP ExP
+        Instantiate(_expDropPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
