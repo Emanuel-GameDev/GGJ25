@@ -49,5 +49,12 @@ namespace StateMachineSpace
 
             await UniTask.Yield(PlayerLoopTiming.Update);
         }
+
+        void OnDestroy()
+        {
+            _cancelTokenSource.Cancel();
+            _cancelTokenSource.Dispose();
+            
+        }
     }
 }

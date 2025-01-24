@@ -20,10 +20,10 @@ namespace Boids
         [BurstCompile]
         protected override SteeringOutput GetSteeringForNeighbours(Agent agent, Agent[] neighbours)
         {
-            if(math.distance(agent.transform.position, BubbleController.Instance.transform.position) < _arriveDistance)
-            {
-                return new SteeringOutput { Linear = 0, Angular = 0 };
-            }
+            // if(math.distance(agent.transform.position, BubbleController.Instance.transform.position) < _arriveDistance)
+            // {
+            //     return new SteeringOutput { Linear = 0, Angular = 0 };
+            // }
 
             var targetVelocity = float3.zero;
             foreach (var neighbour in neighbours)

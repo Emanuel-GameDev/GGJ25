@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool _isSpawning = false;
 
-    [SerializeField] private float _timeLeft = 0;
+    // [SerializeField] private float _timeLeft = 0;
 
     private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     
@@ -59,14 +59,16 @@ public class EnemySpawner : MonoBehaviour
             _cancellationTokenSource.Dispose();
             _cancellationTokenSource = new CancellationTokenSource();
             _isSpawning = false;
+            Debug.Log("Pool full");
         }
-        else
+        else if(pool.Count < _maxPoolSize)
         {
             if(_isSpawning == false)
             {
+                Debug.Log("Spawning");
+                _isSpawning = true;
                 SpawnEnemies().Forget();
 
-                _isSpawning = true;
             }
         }
     }
@@ -85,7 +87,7 @@ public class EnemySpawner : MonoBehaviour
 
             var spawnTimer = Random.Range(_minSpawnTimer, _maxSpawnTimer);
 
-            await UniTask.WaitForSeconds(spawnTimer);
+            await UniTask.WaitForSeconds(spawnTimer, cancellationToken: _cancellationTokenSource.Token);
 
             var x = Random.Range(_minXSpawnPosition, _maxXSpawnPosition);
             var y = Random.Range(_minYSpawnPosition, _maxYSpawnPosition);
@@ -118,40 +120,33 @@ public class EnemySpawner : MonoBehaviour
     [BurstCompile]
     private async UniTask TierUpdate()
     {
-        var startTime = Time.time;
-        await UniTask.WaitForSeconds(_timeLeft == 0 ? _timeToNextTier : _timeLeft, cancellationToken: _cancellationTokenSource.Token);
+        // var startTime = Time.time;
+        await UniTask.WaitForSeconds(_timeToNextTier);
         
-        if(!_cancellationTokenSource.IsCancellationRequested)
+        if(_actualTier == Tier.T7)
         {
-            if(_actualTier == Tier.T7)
+            if(firstCycle)
             {
-                if(firstCycle)
-                {
-                    firstCycle = false;
-                    _actualTiersAfterFirstCycle[0] = Tier.T7;
-                    _actualTiersAfterFirstCycle[1] = Tier.T1;
-                    _timeLeft = 0;
-                    TierUpdateAfterFirstCycle().Forget();
-                }
-            }
-            else
-            {
-                _actualTier++;
-                _timeLeft = 0;
-                TierUpdate().Forget();
+                firstCycle = false;
+                _actualTiersAfterFirstCycle[0] = Tier.T7;
+                _actualTiersAfterFirstCycle[1] = Tier.T1;
+                // _timeLeft = 0;
+                TierUpdateAfterFirstCycle().Forget();
             }
         }
         else
         {
-            var endTime = Time.time;
-            _timeLeft = _timeToNextTier - (endTime - startTime);
+            _actualTier++;
+            // _timeLeft = 0;
+            TierUpdate().Forget();
         }
+        
     }
 
     [BurstCompile]
     private async UniTask TierUpdateAfterFirstCycle()
     {
-        var startTime = Time.time;
+        // var startTime = Time.time;
         await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
 
         if(!_cancellationTokenSource.IsCancellationRequested)
@@ -168,13 +163,13 @@ public class EnemySpawner : MonoBehaviour
             }
             
             TierUpdateAfterFirstCycle().Forget();
-            _timeLeft = 0;
-            startTime = Time.time;
+            // _timeLeft = 0;
+            // startTime = Time.time;
         }
         else
         {
-            var endTime = Time.time;
-            _timeLeft = _timeToNextTier - (endTime - startTime);
+        //     var endTime = Time.time;
+        //     _timeLeft = _timeToNextTier - (endTime - startTime);
         }
 
 
