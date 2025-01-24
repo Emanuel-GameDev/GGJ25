@@ -11,6 +11,8 @@ public class BubbleController : MonoBehaviour
         }
     }
 
+    public bool isGrabbed = false;
+
     private void Awake()
     {
         _instance = this;
