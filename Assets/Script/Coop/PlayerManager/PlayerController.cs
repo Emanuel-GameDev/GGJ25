@@ -32,6 +32,7 @@ public class PlayerController : Player
         _moveAction.Enable();
 
         _rotateAction.performed += Rotate;
+        _rotateAction.canceled += Rotate;
         _rotateAction.Enable(); 
     }
 
@@ -41,6 +42,7 @@ public class PlayerController : Player
         _moveAction.Disable();
 
         _rotateAction.performed -= Rotate;
+        _rotateAction.canceled -= Rotate;
         _rotateAction.Disable();
     }
 
@@ -56,7 +58,10 @@ public class PlayerController : Player
     private void Rotate(InputAction.CallbackContext context)
     {
         _rotateValue = context.ReadValue<Vector2>();
-        Debug.Log("_rotate value: " + _rotateValue);
+        //Debug.Log("_rotate value: " + _rotateValue);
+
+        if (_rotateValue != Vector2.zero)
+            isShooting = true;
 
         switch ((_rotateValue.x, _rotateValue.y))
         {
@@ -85,7 +90,8 @@ public class PlayerController : Player
                 ApplyRotation(225f);
                 break;
             default:
-                // Nessuna rotazione se l'input è neutro
+                isShooting = false;
+
                 break;
         }
     }

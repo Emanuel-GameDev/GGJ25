@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,16 +7,15 @@ public class PlayerHandler : Player
 {
     #region Vars
 
-    #region Inputs
-
-    private InputActionAsset _inputAsset;
-    private InputActionMap _playerMap;
-    private InputAction _shootAction;
-
-    #endregion
-
     #region Weapons
+
     [SerializeField] List<BaseWeapon> weaponsEquipped;
+
+    [SerializeField]
+    protected float _fireRate = .3f;
+
+
+    private bool canShoot = true;
 
     #endregion
 
@@ -27,31 +27,27 @@ public class PlayerHandler : Player
 
     #region UnityFunctions
 
-    private void Awake()
+    private void Update()
     {
-        _inputAsset = GetComponent<PlayerInput>().actions;
-        _playerMap = _inputAsset.FindActionMap("Player");
-        _shootAction = _playerMap.FindAction("Shoot");
+        if (isShooting)
+        {
+            Debug.Log("shooting in update handler");
+            if (canShoot)
+            {
+                Debug.Log("shooting in update handler pt2");
+                ShootAll();
+                canShoot = false;
+                StartCoroutine(CooldownShooting());
+            }
+        }
     }
 
-    void OnEnable()
-    {
-        _shootAction.performed += ShootAll;
-        _shootAction.Enable();
-    }
-
-    void OnDisable()
-    {
-        _shootAction.performed -= ShootAll;
-        _shootAction.Disable();
-
-    }
 
     #endregion
 
     #region Weapons
 
-    private void ShootAll(InputAction.CallbackContext context)
+    private void ShootAll()
     {
         foreach (BaseWeapon weapon in weaponsEquipped)
         {
@@ -68,6 +64,12 @@ public class PlayerHandler : Player
     public void UnEquipWeapon(BaseWeapon weapon)
     {
         // Non si usa per ora ma non si sa mai
+    }
+
+    IEnumerator CooldownShooting()
+    {
+        yield return new WaitForSeconds(_fireRate);
+        canShoot = true;
     }
 
     #endregion

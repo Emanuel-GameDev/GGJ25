@@ -18,8 +18,6 @@ public enum WeaponType
 public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
-
-    
     public PlayerHandler playerHandler;
 
     [SerializeField]
@@ -36,6 +34,6 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public virtual void Shoot()
     {
-        Debug.Log("Sparo un colpo dal BaseWeapon");
+        //Debug.Log("Sparo un colpo dal BaseWeapon");
     }
 }
