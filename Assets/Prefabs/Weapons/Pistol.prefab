@@ -106,7 +106,7 @@ MonoBehaviour:
   _weaponType: 0
   tierCounter: 0
   _projectileSpeed: 25
-  _projectileDmg: 5
+  _projectileDmg: 1000
   _fireRate: 1
   projectilePrefab: {fileID: 3034941513264215578, guid: 73baee78ea1da034ca90a05b86db40ec, type: 3}
   poolSize: 20

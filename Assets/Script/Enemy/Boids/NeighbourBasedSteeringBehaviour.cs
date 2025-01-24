@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -21,6 +22,7 @@ namespace Boids
             return GetSteeringForNeighbours(agent, FindNeighbours(agent));
         }
 
+        [BurstCompile]
         private Agent[] FindNeighbours(Agent agent)
         {
             //return Object.FindObjectsOfType<Agent>().Where(x => x != agent && math.distancesq(agent.Position, x.Position) <= NeighbourRange * NeighbourRange).ToArray();

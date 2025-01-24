@@ -15,6 +15,7 @@ public class ControllerPlayersManager : DeviceManager
     protected override void Awake()
     {
         base.Awake();
+        
         _instance = this;
 
         int i = 0;

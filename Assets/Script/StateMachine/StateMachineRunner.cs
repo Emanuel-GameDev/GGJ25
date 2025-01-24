@@ -22,7 +22,7 @@ namespace StateMachineSpace
         private void Start()
         {
             // UniTask.RunOnThreadPool(() => _current.Init(gameObject, _cancelTokenSource.Token));
-            _current.Init(gameObject, _cancelTokenSource.Token).Forget();
+            StartStateMachine();
         }
 
         void Update()
@@ -48,6 +48,23 @@ namespace StateMachineSpace
             _current.Init(gameObject, _cancelTokenSource.Token).Forget();
 
             await UniTask.Yield(PlayerLoopTiming.Update);
+        }
+
+        public void PauseStateMachine()
+        {
+            _cancelTokenSource.Cancel();
+            _cancelTokenSource.Dispose();
+            _cancelTokenSource = new CancellationTokenSource();
+        }
+
+        public void StartStateMachine()
+        {
+            _current.Init(gameObject, _cancelTokenSource.Token).Forget();
+        }
+
+        void OnDestroy()
+        {
+            PauseStateMachine();
         }
     }
 }

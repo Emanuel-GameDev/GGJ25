@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private float _invincibilityTime = 2f;
     [SerializeField] private bool _invincible = false;
 
+    private bool _isInPause = false;
+
     void Awake()
     {
         EventManager.OnBubbleGrabbed += SetBubbleCarring;
@@ -23,6 +25,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if(_isInPause)
+            return;
+
         if(!_carryBubble
             && _oxygen > 0)
         {
@@ -89,5 +94,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
     }
 
-     
+    public void Pause()
+    {
+        _isInPause = true;
+    }
+
+    public void Unpause()
+    {
+        _isInPause = false;
+    }
 }

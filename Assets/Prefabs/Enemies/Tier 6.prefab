@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2682125687259287122}
   - component: {fileID: 6761533814526397650}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: Tier 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 20
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.5784075, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -221,7 +221,10 @@ MonoBehaviour:
   <damage>k__BackingField: 10
   <attackRate>k__BackingField: 2
   _speed: 5
-  _expDropPrefab: {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
+  _expDropPrefab:
+  - {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
+  - {fileID: 4048684018249095183, guid: 43f655a6fdee5df4cac806a55e363d34, type: 3}
+  - {fileID: 4048684018249095183, guid: 074945ebcb4e8cb4881d92a2745af95a, type: 3}
 --- !u!114 &2682125687259287122
 MonoBehaviour:
   m_ObjectHideFlags: 0

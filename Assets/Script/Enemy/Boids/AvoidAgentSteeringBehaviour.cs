@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -20,6 +21,8 @@ namespace Boids
         [SerializeField]
         private float _arriveDistance;
 
+
+        [BurstCompile]
         private Agent[] FindNeighbours(Agent agent)
         {
             return Object.FindObjectsOfType<Agent>().Where(x =>
@@ -28,8 +31,12 @@ namespace Boids
                          .ToArray();
         }
 
+        [BurstCompile]
         public override SteeringOutput GetSteering(Agent agent)
         {
+            if(BubbleController.Instance == null) 
+                return new SteeringOutput{Linear = 0, Angular = 0};
+
             if(math.distance(agent.transform.position, BubbleController.Instance.transform.position) > _arriveDistance)
             {
                 return new SteeringOutput{Linear = 0, Angular = 0};
@@ -58,6 +65,7 @@ namespace Boids
                 : new SteeringOutput { Angular = 0, Linear = float3.zero };
         }
 
+        [BurstCompile]
         private bool EvaluateAvoidanceFor(Agent agent, Agent target, out float timeToCollision,
             out SteeringOutput avoidance)
         {

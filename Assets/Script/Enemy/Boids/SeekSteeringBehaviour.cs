@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,11 +16,14 @@ namespace Boids
         [SerializeField]
         private Transform _target;
 
+        [BurstCompile]
         public sealed override SteeringOutput GetSteering(Agent agent)
         {
+            if (BubbleController.Instance == null) return new SteeringOutput{Linear = 0, Angular = 0};
             _target = BubbleController.Instance.transform;
-
-            //Debug.Log("distance: " + math.distance(agent.transform.position, _target.position));
+            
+            
+            // Debug.Log("distance: " + math.distance(agent.transform.position, _target.position));
             if(math.distance(agent.transform.position, _target.position) > _arriveDistance)
             {
                 return GetSteeringForTargetPosition(agent, _target.position);
@@ -28,6 +32,7 @@ namespace Boids
             return new SteeringOutput{Linear = 0, Angular = 0};
         }
 
+        [BurstCompile]
         protected virtual SteeringOutput GetSteeringForTargetPosition(Agent agent, float3 target)
         {
             return new SteeringOutput

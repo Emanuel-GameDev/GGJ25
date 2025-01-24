@@ -8,4 +8,5 @@ public static class EventManager
     public static UnityAction<GameObject> OnBubbleGrabbed;
     public static UnityAction<GameObject> OnBubbleThrown;
     public static UnityAction OnBubbleExploded;
+    public static UnityAction<GameObject> OnEnemyDeath;
 }
