@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     void Awake()
     {
         EventManager.OnBubbleGrabbed += SetBubbleCarring;
+        EventManager.OnBubbleThrown += SetBubbleCarring;
     }
 
     void Update()
@@ -73,7 +74,12 @@ public class PlayerStats : MonoBehaviour, IDamageable
         if(player == gameObject)
         {
             Debug.Log("TRUE Player: " + player.name);
-            _carryBubble = true;
+            if(_carryBubble)
+                _carryBubble = false;
+            else
+                _carryBubble = true;
         }
     }
+
+     
 }
