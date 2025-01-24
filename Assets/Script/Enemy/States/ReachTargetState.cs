@@ -6,11 +6,27 @@ using UnityEngine;
 [Serializable]
 public class ReachTargetState : State
 {
-    public Transform target;
-    private AEnemy _enemyAgent;
-    private Rigidbody2D _enemyAgentRb;
+    public AEnemy _enemyAgent;
+    public Rigidbody2D _enemyAgentRb;
 
     public override UniTask OnEnter(GameObject agent)
+    {
+
+        return base.OnEnter(agent);
+    }
+
+    public override UniTask OnUpdate(GameObject agent)
+    {
+        //TODO animazione e flip enemy
+        return base.OnUpdate(agent);
+    }
+
+    public override UniTask OnExit(GameObject agent)
+    {
+        return base.OnExit(agent);
+    }
+
+    public override void OnClone(ref State newObject, GameObject agent)
     {
         if(agent.TryGetComponent(out AEnemy enemyAgent))
         {
@@ -22,23 +38,8 @@ public class ReachTargetState : State
             _enemyAgentRb = rigidbody;
         }
 
-        return base.OnEnter(agent);
-    }
-
-    public override UniTask OnUpdate(GameObject agent)
-    {
-        _enemyAgentRb.MovePosition(Vector2.MoveTowards(_enemyAgentRb.position, BubbleController.Instance.transform.position, 0.1f));
-
-        return base.OnUpdate(agent);
-    }
-
-    public override UniTask OnExit(GameObject agent)
-    {
-        return base.OnExit(agent);
-    }
-
-    public override void OnClone(ref State newObject, GameObject agent)
-    {
         base.OnClone(ref newObject, agent);
+        ((ReachTargetState)newObject)._enemyAgentRb = _enemyAgentRb;
+        ((ReachTargetState)newObject)._enemyAgent = _enemyAgent;
     }
 }
