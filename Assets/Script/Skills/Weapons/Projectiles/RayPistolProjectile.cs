@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class RayPistolProjectile : MonoBehaviour
 {
-    [SerializeField]
-    private int _baseDmg = 5;
+    public int _baseDmg = 5;
 
     [SerializeField]
     private float aliveTime = 1.5f;

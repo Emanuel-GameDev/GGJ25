@@ -26,7 +26,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField]
     protected WeaponType _weaponType;
 
-    private int tierCounter = 0;
+    protected int tierCounter = 0;
 
     #endregion
 

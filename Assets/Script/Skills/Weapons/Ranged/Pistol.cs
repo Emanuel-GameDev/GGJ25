@@ -9,6 +9,9 @@ public class Pistol : BaseWeapon
     private float _projectileSpeed = 10f;
 
     [SerializeField]
+    private int _projectileDmg = 5;
+
+    [SerializeField]
     protected float _fireRate = .3f;
 
     [SerializeField]
@@ -16,6 +19,14 @@ public class Pistol : BaseWeapon
 
     [SerializeField, Tooltip("i proiettili da parte nella pool")]
     private int poolSize = 60;
+
+    [Header("TIER 1")]
+
+    [SerializeField]
+    private int tier1UpgradeDmg = 5;
+
+    [SerializeField, Range(0, 100)]
+    private int tier1UpgradeFireRate = 50;
 
 
     private GameObject pistolProjectilePool;
@@ -28,6 +39,17 @@ public class Pistol : BaseWeapon
         InitializePool();
     }
 
+    public override void UpgradeTier()
+    {
+        base.UpgradeTier();
+
+        if (tierCounter == 1)
+        {
+            _projectileDmg += tier1UpgradeDmg;
+            _fireRate += _fireRate * (tier1UpgradeFireRate / 100);
+        }
+    }
+
     private void InitializePool()
     {
         pistolProjectilePool = new GameObject();
@@ -36,10 +58,18 @@ public class Pistol : BaseWeapon
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject projectile = Instantiate(projectilePrefab, pistolProjectilePool.transform);
-            projectile.SetActive(false);
-            projectilePool.Add(projectile);
+            InstantiateProjectile();
+
+            if (tierCounter == 2)
+                InstantiateProjectile();
         }
+    }
+
+    private void InstantiateProjectile()
+    {
+        GameObject projectile = Instantiate(projectilePrefab, pistolProjectilePool.transform);
+        projectile.SetActive(false);
+        projectilePool.Add(projectile);
     }
 
     public override void Shoot()
@@ -51,6 +81,7 @@ public class Pistol : BaseWeapon
         GameObject projectile = GetPooledProjectile();
         if (projectile != null)
         {
+            projectile.GetComponent<RayPistolProjectile>()._baseDmg = _projectileDmg;
             projectile.transform.position = transform.position;
 
             if (playerHandler != null && projectile != null)
