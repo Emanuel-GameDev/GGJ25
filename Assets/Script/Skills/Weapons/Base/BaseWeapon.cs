@@ -18,15 +18,15 @@ public enum WeaponType
 public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
+
+    public string weaponName;
     public PlayerHandler playerHandler;
 
-    [SerializeField]
-    protected WeaponClass _weaponClass;
+    public WeaponClass _weaponClass;
 
-    [SerializeField]
-    protected WeaponType _weaponType;
+    public WeaponType _weaponType;
 
-    protected int tierCounter = 0;
+    public int tierCounter = 0;
 
     #endregion
 

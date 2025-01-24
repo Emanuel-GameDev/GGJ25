@@ -12,6 +12,8 @@ public class PlayerHandler : Player
     [SerializeField]
     protected float _fireRate = .3f;
 
+    [SerializeField]
+    private GameObject weaponContainerObj;
 
     private bool canShoot = true;
 
@@ -47,8 +49,12 @@ public class PlayerHandler : Player
         }
     }
 
-    public void EquipWeapon(BaseWeapon weaponToEquip)
+    public void EquipWeapon(GameObject weaponToEquipObj)
     {
+        weaponToEquipObj.transform.parent = weaponContainerObj.transform;
+        weaponToEquipObj.transform.localPosition = Vector3.zero;    
+
+        BaseWeapon weaponToEquip = weaponToEquipObj.GetComponent<BaseWeapon>();
         weaponToEquip.playerHandler = this;
 
         // questo potrebbe dare errore nel caso BaseWeapon andasse a cercare il primo base weapon uguale

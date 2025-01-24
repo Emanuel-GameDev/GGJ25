@@ -12,6 +12,8 @@ public class PlayerLevelManager : MonoBehaviour
     [SerializeField] private float _trueLevelUpThreshold = 300f;
     [SerializeField] private float _thresholdMultiplayer = 1.5f;
 
+    public PlayerHandler _playerHandler;
+
     void Update()
     {
         _trueLevelUpThreshold = _levelUpThreshold * _level * _thresholdMultiplayer;
