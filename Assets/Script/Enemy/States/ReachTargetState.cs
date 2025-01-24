@@ -27,7 +27,7 @@ public class ReachTargetState : State
 
     public override UniTask OnUpdate(GameObject agent)
     {
-        _enemyAgentRb.MovePosition(Vector2.MoveTowards(_enemyAgentRb.position, target.position, 0.1f));
+        _enemyAgentRb.MovePosition(Vector2.MoveTowards(_enemyAgentRb.position, BubbleController.Instance.transform.position, 0.1f));
 
         return base.OnUpdate(agent);
     }

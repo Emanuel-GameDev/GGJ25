@@ -11,7 +11,7 @@ public class IsNearEnoughTransition : Transition
 
     public override bool ShouldTransition(StateMachine stateMachine, GameObject agent)
     {
-        return Vector2.Distance(agent.transform.position, target.transform.position) < distance;
+        return Vector2.Distance(agent.transform.position, BubbleController.Instance.transform.position) < distance;
     }
 
     public override void OnClone(ref Transition newObject, GameObject agent)
