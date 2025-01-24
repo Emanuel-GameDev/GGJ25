@@ -59,7 +59,7 @@ public class LaserOne : BaseWeapon
         if (distance == Vector2.up)
         {
             Debug.Log("SU");
-            transform.rotation = Quaternion.Euler(new Vector3(90, 0, 90));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         if (distance == Vector2.down)
         {
