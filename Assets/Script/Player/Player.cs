@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
     public GameObject sight;
+
+    public static bool isShooting = false;
 }
