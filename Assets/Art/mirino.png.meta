@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: f7326465f1fa16540b8ae7980f29db8f
+guid: c96b6db2d654bb6419578be18624c8d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1753049922783043700
-    second: mirino (1)_0
-  - first:
-      213: 4018126612727147753
-    second: mirino (1)_1
-  - first:
-      213: -6978676701871927316
-    second: mirino (1)_2
-  - first:
-      213: -8586076520931083908
-    second: mirino (1)_3
-  - first:
-      213: 1830866561696485676
-    second: mirino (1)_4
+      213: -752483343528300055
+    second: mirino_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -62,7 +50,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.48395514, y: 0.11358466}
+  spritePivot: {x: 0.49331462, y: 0.100214}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mirino (1)_0
+      name: mirino_0
       rect:
         serializedVersion: 2
-        x: 164
-        y: 200
-        width: 17
-        height: 9
+        x: 162
+        y: 181
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8f9dfe126aeba7e0800000000000000
-      internalID: -1753049922783043700
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mirino (1)_1
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 200
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ec25268dd043c730800000000000000
-      internalID: 4018126612727147753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mirino (1)_2
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 208
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cef01a6a382c62f90800000000000000
-      internalID: -6978676701871927316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mirino (1)_3
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 199
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c79b49b25e028d880800000000000000
-      internalID: -8586076520931083908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mirino (1)_4
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 184
-        width: 9
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c215f01007b886910800000000000000
-      internalID: 1830866561696485676
+      spriteID: 9e1f899c264ae85f0800000000000000
+      internalID: -752483343528300055
       vertices: []
       indices: 
       edges: []
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mirino (1)_0: -1753049922783043700
-      mirino (1)_1: 4018126612727147753
-      mirino (1)_2: -6978676701871927316
-      mirino (1)_3: -8586076520931083908
-      mirino (1)_4: 1830866561696485676
+      mirino_0: -752483343528300055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

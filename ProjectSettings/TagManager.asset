@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Terrain
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2601199061
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3196418401
     locked: 0
   m_RenderingLayers:
   - Default

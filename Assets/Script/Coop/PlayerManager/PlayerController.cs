@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Player
 {
     private InputActionAsset _inputAsset;
     private InputActionMap _playerMap;
@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _speed;
     [SerializeField] private float deadZone = 0.2f;
-    [SerializeField] private GameObject mirino;
     
     void Awake()
     {
@@ -24,7 +23,7 @@ public class PlayerController : MonoBehaviour
         _moveAction = _playerMap.FindAction("Move");
         _rotateAction = _playerMap.FindAction("Rotate");
 
-        mirino = transform.GetChild(1).gameObject;
+        sight = transform.GetChild(1).gameObject;
     }
 
     void OnEnable()
@@ -57,10 +56,7 @@ public class PlayerController : MonoBehaviour
     private void Rotate(InputAction.CallbackContext context)
     {
         _rotateValue = context.ReadValue<Vector2>();
-
-        //var _rotateValueSafeNormalized = math.normalizesafe(_rotateValue);
-        //Debug.Log("Direction " + _rotateValueSafeNormalized);
-        Debug.Log("Direction: " + _rotateValue);
+        Debug.Log("_rotate value: " + _rotateValue);
 
         switch ((_rotateValue.x, _rotateValue.y))
         {
@@ -94,16 +90,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private Vector2 NormalizeInput(Vector2 input)
-    {
-        float x = Mathf.Round(input.x); // Arrotonda al numero intero più vicino
-        float y = Mathf.Round(input.y); // Arrotonda al numero intero più vicino
-        return new Vector2(x, y);
-    }
-
     private void ApplyRotation(float angle)
     {
-        mirino.transform.rotation = Quaternion.Euler(0, 0, angle);
+        sight.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     #endregion
