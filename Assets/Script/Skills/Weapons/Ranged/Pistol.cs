@@ -22,17 +22,12 @@ public class Pistol : BaseWeapon
 
     [Header("TIER 1")]
 
-    public bool tier1Unlocked = false;
 
     [SerializeField]
     private int tier1UpgradeDmg = 5;
 
     [SerializeField, Range(0, 100)]
     private int tier1UpgradeFireRate = 50;
-
-    [Header("TIER 2")]
-
-    public bool tier2Unlocked = false;
 
 
     private GameObject pistolProjectilePool;
@@ -53,8 +48,6 @@ public class Pistol : BaseWeapon
         {
             _projectileDmg += tier1UpgradeDmg;
             _fireRate *= (tier1UpgradeFireRate / 100);
-
-            tier1Unlocked = true;
         }
     }
 
@@ -88,9 +81,6 @@ public class Pistol : BaseWeapon
 
         if (tierCounter == 2)
         {
-            if (tier2Unlocked == false)
-                tier2Unlocked = true;
-
             GameObject projectile2 = GetPooledProjectile();
             Fire(projectile2);
         }
