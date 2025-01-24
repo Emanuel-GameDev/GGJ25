@@ -37,6 +37,7 @@ public class PlayerLevelManager : MonoBehaviour
         if(other.gameObject.TryGetComponent(out ExpItem expItem))
         {
             AddExp(expItem.EXPValue);
+            Destroy(expItem.gameObject);
         }
     }
 }

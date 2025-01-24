@@ -14,6 +14,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private float _invincibilityTime = 2f;
     [SerializeField] private bool _invincible = false;
 
+    void Awake()
+    {
+        EventManager.OnBubbleGrabbed += SetBubbleCarring;
+    }
+
     void Update()
     {
         if(!_carryBubble
@@ -60,5 +65,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private void Die()
     {
         EventManager.OnPlayerDeath?.Invoke();
+    }
+
+    private void SetBubbleCarring(GameObject player)
+    {
+        Debug.Log("Player: " + player.name);
+        if(player == gameObject)
+        {
+            Debug.Log("TRUE Player: " + player.name);
+            _carryBubble = true;
+        }
     }
 }
