@@ -11,9 +11,10 @@ public class AttackTargetState : State
     
     public override UniTask OnEnter(GameObject agent)
     {
-        var collider = agent.GetComponentInChildren<Collider2D>();
+        var collider = agent.GetComponentsInChildren<Collider2D>()[1];
         if(collider != null)
         {
+            // Debug.Log("Collider found: " + collider.gameObject.name);
             _collider = collider;
         }
         else
@@ -31,6 +32,7 @@ public class AttackTargetState : State
 
     public override async UniTask OnUpdate(GameObject agent)
     {
+        // Debug.Log("attack rate " + _damager.attackRate);
         _collider.enabled = true;
         await UniTask.Delay((int)(_damager.attackRate * 1000));
         _collider.enabled = false;

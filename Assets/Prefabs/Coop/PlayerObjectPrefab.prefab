@@ -151,7 +151,7 @@ MonoBehaviour:
   _carryBubble: 0
   _oxygenLossRate: 1
   _healthLossRate: 1
-  _invincibilityTime: 2
+  _invincibilityTime: 3
   _invincible: 0
 --- !u!70 &5807951594917234292
 CapsuleCollider2D:
@@ -413,6 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0d47fde8d67334ead1829cbadb0020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 0}
   _bubbleGrabbed: {fileID: 0}
 --- !u!58 &6291504020993389120
 CircleCollider2D:

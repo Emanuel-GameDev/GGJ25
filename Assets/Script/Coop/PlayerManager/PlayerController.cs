@@ -9,8 +9,11 @@ public class PlayerController : Player
     private InputActionMap _playerMap;
     private InputAction _moveAction;
     private InputAction _rotateAction;
+    private InputAction _throwAction;
+    public InputAction ThrowAction => _throwAction;
 
     private float2 _moveValue;
+    public float2 MoveValue => _moveValue;
     private Vector2 _rotateValue;    
 
     [SerializeField] private float _speed;
@@ -22,6 +25,7 @@ public class PlayerController : Player
         _playerMap = _inputAsset.FindActionMap("Player");
         _moveAction = _playerMap.FindAction("Move");
         _rotateAction = _playerMap.FindAction("Rotate");
+        _throwAction = _playerMap.FindAction("Throw");
 
         sight = transform.GetChild(1).gameObject;
     }
@@ -77,7 +81,7 @@ public class PlayerController : Player
             case (0f, 1f): // Su
                 ApplyRotation(0);
                 break;
-            case (0f, -1f): // Giù
+            case (0f, -1f): // Giï¿½
                 ApplyRotation(180f);
                 break;
             case (-1f, 1f): // Alto-Sinistra
