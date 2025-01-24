@@ -42,11 +42,11 @@ MonoBehaviour:
         Start: 0
         End: 1
         Priority: 0
-        distance: 2
+        distance: 1
     - rid: 3759364947529957442
       type: {class: IsInRangeTransition, ns: , asm: Assembly-CSharp}
       data:
         Start: 1
         End: 0
         Priority: 0
-        distance: 0
+        distance: 2
