@@ -587,9 +587,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 7143773122984941642}
     m_Modifications:
     - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: _fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: playerHandler
       value: 
       objectReference: {fileID: 1619505786427434148}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: _projectileSpeed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4375435237254895337, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

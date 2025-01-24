@@ -15,6 +15,6 @@ public class IsInRangeTransition : Transition
     public override void OnClone(ref Transition newObject, GameObject agent)
     {
         base.OnClone(ref newObject, agent);
-        ((IsNearEnoughTransition)newObject).distance = distance;
+        ((IsInRangeTransition)newObject).distance = distance;
     }
 }

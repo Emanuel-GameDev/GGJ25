@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RayPistolProjectile : MonoBehaviour
 {
+    [SerializeField]
+    private int _baseDmg = 5;
 
     [SerializeField]
     private float aliveTime = 1.5f;
@@ -16,15 +18,18 @@ public class RayPistolProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if ()
-        //{
-        //    //Collisione con nemico, distruzione
-        //}
+        if (collision.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(_baseDmg);
+            gameObject.SetActive(false);
+        }
     }
 
     IEnumerator CooldownProjectile()
     {
         yield return new WaitForSeconds(aliveTime);
-        gameObject.SetActive(false);
+
+        if (gameObject.activeSelf)
+            gameObject.SetActive(false);
     }
 }

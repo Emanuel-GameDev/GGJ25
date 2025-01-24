@@ -21,9 +21,6 @@ public abstract class BaseWeapon : MonoBehaviour
     public PlayerHandler playerHandler;
 
     [SerializeField]
-    protected float _baseDmg = 5f;
-
-    [SerializeField]
     protected WeaponClass _weaponClass;
 
     [SerializeField]
