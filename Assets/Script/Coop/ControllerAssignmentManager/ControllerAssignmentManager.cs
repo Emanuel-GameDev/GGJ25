@@ -35,11 +35,11 @@ public class ControllerAssignmentManager : DeviceManager
         //specificare la scena di assegnazione di controlli
         if (scene.name == "ControllerSelectionScene")
         {
-            Debug.Log("Scene already loaded");
+            // Debug.Log("Scene already loaded");
             return;
         }
 
-        Debug.Log("SendPlayersData");
+        // Debug.Log("SendPlayersData");
 
         ControllerPlayersManager.Instance.CopyPlayerInputManagerData(PlayerInputData.Clone(_playersData));
         

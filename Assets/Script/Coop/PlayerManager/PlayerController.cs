@@ -18,9 +18,13 @@ public class PlayerController : Player
 
     [SerializeField] private float _speed;
     [SerializeField] private float deadZone = 0.2f;
+
+    private Rigidbody2D rb;
     
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         _inputAsset = GetComponent<PlayerInput>().actions;
         _playerMap = _inputAsset.FindActionMap("Player");
         _moveAction = _playerMap.FindAction("Move");
@@ -52,10 +56,8 @@ public class PlayerController : Player
 
     void Update()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
         Vector2 newPosition = new Vector2(_moveValue.x, _moveValue.y) * _speed * Time.deltaTime;
-        rb.MovePosition(rb.position + newPosition);
+        transform.Translate(newPosition);
     }
 
     private void Movement(InputAction.CallbackContext context) => _moveValue = context.ReadValue<Vector2>();

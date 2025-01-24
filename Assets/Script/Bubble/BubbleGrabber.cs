@@ -26,9 +26,9 @@ public class BubbleGrabber : MonoBehaviour
             _bubbleGrabbed.isGrabbed = true;
             _bubbleGrabbed.isGrabbable = false;
 
-            bubble.gameObject.transform.SetParent(transform.parent, false);
+            _bubbleGrabbed.gameObject.transform.SetParent(transform.parent, false);
 
-            bubble.gameObject.transform.localPosition = Vector3.zero;
+            _bubbleGrabbed.gameObject.transform.localPosition = Vector3.zero;
 
             EventManager.OnBubbleGrabbed?.Invoke(transform.parent.gameObject);
         }
@@ -36,9 +36,9 @@ public class BubbleGrabber : MonoBehaviour
 
     public void ThrowBubble(InputAction.CallbackContext context)
     {
-        _bubbleGrabbed.ThrowTask(_playerController.MoveValue).Forget();
-        _bubbleGrabbed.isGrabbed = false;
         _bubbleGrabbed.transform.parent = null;
+        _bubbleGrabbed.ThrowTask(_playerController.MoveValue, transform.parent.gameObject).Forget();
+        _bubbleGrabbed.isGrabbed = false;
         _bubbleGrabbed = null;
     }
 }

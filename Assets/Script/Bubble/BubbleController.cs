@@ -23,8 +23,17 @@ public class BubbleController : MonoBehaviour
         _instance = this;
     }
 
-    public async UniTask ThrowTask(Vector2 direction)
+    // void Update()
+    // {
+    //     // if(isGrabbed && transform.parent != null)
+    //     // {
+    //     //     // transform.position = transform.parent.position;
+    //     // }
+    // }
+
+    public async UniTask ThrowTask(Vector2 direction, GameObject player)
     {
+        EventManager.OnBubbleThrown?.Invoke(player);
         // Debug.Log("Direction: " + direction);
         if(direction == Vector2.zero)
         {
