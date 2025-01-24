@@ -12,7 +12,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
     [SerializeField] private float _speed = 5f;
     public float Speed => _speed;
 
-    [SerializeField] private GameObject _expDropPrefab;
+    [SerializeField] private GameObject[] _expDropPrefab;
 
     void Awake()
     {
@@ -30,8 +30,34 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
 
     protected virtual void Die()
     {
-        //DROP ExP
-        Instantiate(_expDropPrefab, transform.position, Quaternion.identity);
+        var firstPlayerLevelManager = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponentInChildren<PlayerLevelManager>();
+        
+        PlayerLevelManager secondPlayerLevelManager = null;
+        if(ControllerPlayersManager.Instance.Players.Count > 1)
+            secondPlayerLevelManager = ControllerPlayersManager.Instance.Players[1].gameObject.GetComponentInChildren<PlayerLevelManager>();
+        
+        if(firstPlayerLevelManager.Level <= 10
+            || (secondPlayerLevelManager != null && secondPlayerLevelManager.Level <= 10))
+        {
+            var expDrop = Instantiate(_expDropPrefab[0], transform.position, Quaternion.identity);
+            var expValue = expDrop.GetComponent<ExpItem>().EXPValue;
+            expDrop.GetComponent<ExpItem>().EXPValue += expValue * (firstPlayerLevelManager.Level / 10f);
+        }
+        else if(firstPlayerLevelManager.Level <= 20
+            || (secondPlayerLevelManager != null && secondPlayerLevelManager.Level <= 20))
+        {
+            var expDrop = Instantiate(_expDropPrefab[1], transform.position, Quaternion.identity);
+            var expValue = expDrop.GetComponent<ExpItem>().EXPValue;
+            expDrop.GetComponent<ExpItem>().EXPValue += expValue * (firstPlayerLevelManager.Level / 10f);
+        }
+        else if(firstPlayerLevelManager.Level > 20
+            || (secondPlayerLevelManager != null && secondPlayerLevelManager.Level > 20))
+        {
+            var expDrop = Instantiate(_expDropPrefab[2], transform.position, Quaternion.identity);
+            var expValue = expDrop.GetComponent<ExpItem>().EXPValue;
+            expDrop.GetComponent<ExpItem>().EXPValue += expValue * (firstPlayerLevelManager.Level / 10f);
+        }
+
         EventManager.OnEnemyDeath?.Invoke(gameObject);
         Destroy(gameObject);
     }
