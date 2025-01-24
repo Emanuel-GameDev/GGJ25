@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class Pistol : BaseWeapon
+public class Sniper : BaseWeapon
 {
     [SerializeField]
     private float _projectileSpeed = 10f;
@@ -23,17 +23,28 @@ public class Pistol : BaseWeapon
 
     [Header("TIER 1")]
 
+    [SerializeField, Range(1, 100)]
+    private int _speedModifier = 20;
+
     [SerializeField]
-    private int tier1UpgradeDmg = 5;
+    private int _dmgMultiplier = 5;
+
+
+    [Header("TIER 2")]
 
     [SerializeField, Range(0, 100)]
-    private int tier1UpgradeFireRate = 50;
+    private int _fireRateMultiplier = 25;
+
+    [SerializeField, Range(1, 100)]
+    private int _projectileScaleMultiplier = 20;
 
 
     private GameObject pistolProjectilePool;
     private List<GameObject> projectilePool;
     private int currentPoolIndex = 0;
     private bool canShoot = true;
+
+
 
     private void Awake()
     {
@@ -46,11 +57,17 @@ public class Pistol : BaseWeapon
 
         if (tierCounter == 1)
         {
-            _projectileDmg += tier1UpgradeDmg;
-            _fireRate *= (tier1UpgradeFireRate / 100);
+            _projectileSpeed *= (_speedModifier /100);
+
+            _projectileDmg += _dmgMultiplier;
+        }
+        else if (tierCounter == 2)
+        {
+            projectilePrefab.gameObject.transform.localScale *= (_projectileScaleMultiplier / 100);
+
+            _fireRate *= (_fireRateMultiplier / 100);
         }
     }
-
     private void InitializePool()
     {
         pistolProjectilePool = new GameObject();
