@@ -3,19 +3,28 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int _health = 100;
+    [SerializeField] private float _health = 100;
+    [SerializeField] private float _maxHealth = 100;
     [SerializeField] private float _oxygen = 100f;
+    [SerializeField] private float _maxOxygen = 100f;
     [SerializeField] private bool _carryBubble = false;
     [SerializeField] private float _oxygenLossRate = 1f;
+    [SerializeField] private float _healthLossRate = 1f;
 
     [SerializeField] private float _invincibilityTime = 2f;
     [SerializeField] private bool _invincible = false;
 
     void Update()
     {
-        if(!_carryBubble)
+        if(!_carryBubble
+            && _oxygen > 0)
         {
             _oxygen -= _oxygenLossRate * Time.deltaTime;
+        }
+
+        if(_oxygen <= 0)
+        {
+            _health -= _healthLossRate * Time.deltaTime;
         }
     }
 
@@ -24,7 +33,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         _carryBubble = isCarringBubble;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if(_invincible)
             return;
