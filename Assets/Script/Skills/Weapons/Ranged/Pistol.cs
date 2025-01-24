@@ -9,18 +9,19 @@ public class Pistol : BaseWeapon
     private float _projectileSpeed = 10f;
 
     [SerializeField]
-    private GameObject projectilePrefab;
+    protected float _fireRate = .3f;
 
     [SerializeField]
-    private float cooldown = 1.5f;
+    private GameObject projectilePrefab;
 
     [SerializeField, Tooltip("i proiettili da parte nella pool")]
-    private int poolSize = 80;
+    private int poolSize = 60;
 
 
     private GameObject pistolProjectilePool;
     private List<GameObject> projectilePool;
     private int currentPoolIndex = 0;
+    private bool canShoot = true;
 
     private void Awake()
     {
@@ -45,17 +46,17 @@ public class Pistol : BaseWeapon
     {
         base.Shoot();
 
+        if (!canShoot) return;
+
         GameObject projectile = GetPooledProjectile();
         if (projectile != null)
         {
             projectile.transform.position = transform.position;
-            // dir mirino
+
             if (playerHandler != null && projectile != null)
             {
-                //Vector3 direction = playerHandler.sight.transform.position - projectile.transform.position; // Direzione verso il mirino
-                //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // Angolo in gradi
                 var sightRot = playerHandler.sight.transform.localRotation;
-                projectile.transform.localRotation = sightRot; // Ruota solo la Z
+                projectile.transform.localRotation = sightRot;
             }
 
             projectile.SetActive(true);
@@ -66,9 +67,10 @@ public class Pistol : BaseWeapon
                 Debug.Log("SHOOT " + projectile.transform.forward);
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
                 rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
-            }
 
-            StartCoroutine(CooldownProjectile(projectile));
+                canShoot = false;
+                StartCoroutine(CooldownShooting());
+            }
         }
 
     }
@@ -90,9 +92,9 @@ public class Pistol : BaseWeapon
         return null;
     }
 
-    IEnumerator CooldownProjectile(GameObject projectile)
+    IEnumerator CooldownShooting()
     {
-        yield return new WaitForSeconds(cooldown);
-        projectile.SetActive(false);
+        yield return new WaitForSeconds(_fireRate);
+        canShoot = true;
     }
 }

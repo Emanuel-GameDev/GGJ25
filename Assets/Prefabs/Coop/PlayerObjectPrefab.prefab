@@ -90,10 +90,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7bdc9c31-4639-4761-bd69-df9de36c152d
     m_ActionName: 'Player/Rotate[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 907b3f87-e22b-448f-8d56-0b8d2781db6a
-    m_ActionName: 'Player/Shoot[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -129,6 +125,7 @@ MonoBehaviour:
   sight: {fileID: 7768398026419434424}
   weaponsEquipped:
   - {fileID: 2937571543579219938}
+  _fireRate: 0.3
 --- !u!1 &2809160366887947494
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +411,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 7143773122984941642}
     m_Modifications:
     - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: _baseDmg
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: poolSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: _fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: playerHandler
       value: 
       objectReference: {fileID: 1619505786427434148}
+    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
+      propertyPath: _projectileSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4375435237254895337, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

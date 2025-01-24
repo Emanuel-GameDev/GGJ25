@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerHandler : Player
 {
@@ -31,14 +29,8 @@ public class PlayerHandler : Player
     {
         if (isShooting)
         {
-            Debug.Log("shooting in update handler");
-            if (canShoot)
-            {
-                Debug.Log("shooting in update handler pt2");
-                ShootAll();
-                canShoot = false;
-                StartCoroutine(CooldownShooting());
-            }
+            Debug.Log("shooting in update handler pt2");
+            ShootAll();
         }
     }
 
@@ -58,18 +50,27 @@ public class PlayerHandler : Player
     public void EquipWeapon(BaseWeapon weaponToEquip)
     {
         weaponToEquip.playerHandler = this;
-        weaponsEquipped.Add(weaponToEquip);
+
+        // questo potrebbe dare errore nel caso BaseWeapon andasse a cercare il primo base weapon uguale
+        BaseWeapon existingWeapon = weaponsEquipped.Find(w => w.GetType() == weaponToEquip.GetType());
+
+        if (existingWeapon != null)
+        {
+            // Se l'arma è già equipaggiata, potenziala
+            existingWeapon.UpgradeTier();
+            Debug.Log($"{weaponToEquip.name} è stata potenziata!");
+        }
+        else
+        {
+            // Altrimenti, equipaggia la nuova arma
+            weaponsEquipped.Add(weaponToEquip);
+            Debug.Log($"{weaponToEquip.name} è stata equipaggiata!");
+        }
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)
     {
         // Non si usa per ora ma non si sa mai
-    }
-
-    IEnumerator CooldownShooting()
-    {
-        yield return new WaitForSeconds(_fireRate);
-        canShoot = true;
     }
 
     #endregion

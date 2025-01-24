@@ -29,11 +29,19 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField]
     protected WeaponType _weaponType;
 
+    private int tierCounter = 0;
+
     #endregion
 
 
     public virtual void Shoot()
     {
         //Debug.Log("Sparo un colpo dal BaseWeapon");
+    }
+
+    public virtual void UpgradeTier()
+    {
+        if (tierCounter < 3)
+            tierCounter++;
     }
 }

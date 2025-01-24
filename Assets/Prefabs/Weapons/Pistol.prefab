@@ -105,6 +105,6 @@ MonoBehaviour:
   _weaponClass: 0
   _weaponType: 0
   _projectileSpeed: 25
+  _fireRate: 0.1
   projectilePrefab: {fileID: 3034941513264215578, guid: 73baee78ea1da034ca90a05b86db40ec, type: 3}
-  cooldown: 1.5
   poolSize: 20
