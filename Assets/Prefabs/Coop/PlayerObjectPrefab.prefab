@@ -155,7 +155,7 @@ MonoBehaviour:
   _oxygenLossRate: 1
   _oxygenGainRate: 2
   _healthLossRate: 1
-  _invincibilityTime: 3
+  _invincibilityTime: 1
   _invincible: 0
 --- !u!70 &5807951594917234292
 CapsuleCollider2D:

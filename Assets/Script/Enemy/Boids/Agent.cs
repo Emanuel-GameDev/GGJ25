@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -37,6 +38,7 @@ namespace Boids
             private set => transform.rotation = quaternion.Euler(0, value, 0);
         }
 
+        [BurstCompile]
         private void FixedUpdate()
         {
             foreach (var currentSteering in _steering)

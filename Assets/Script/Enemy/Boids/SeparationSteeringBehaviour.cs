@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace Boids
         [SerializeField]
         private float _arriveDistance;
 
+        [BurstCompile]
         protected override SteeringOutput GetSteeringForNeighbours(Agent agent, Agent[] neighbours)
         {
             if(math.distance(agent.transform.position, BubbleController.Instance.transform.position) < _arriveDistance)

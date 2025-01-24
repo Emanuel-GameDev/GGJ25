@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Unity.Burst;
 using UnityEngine;
 
 namespace StateMachineSpace
@@ -13,6 +14,7 @@ namespace StateMachineSpace
 
         public abstract bool ShouldTransition(StateMachine stateMachine, GameObject agent);
 
+        [BurstCompile]
         public virtual UniTask OnTransition()
         {
             return UniTask.CompletedTask;

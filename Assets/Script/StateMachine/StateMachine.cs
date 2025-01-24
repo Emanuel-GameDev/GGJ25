@@ -41,6 +41,7 @@ namespace StateMachineSpace
             return new StateMachine { States = states, Transitions = transitions };
         }
 
+        [BurstCompile]
         public async UniTask Init(GameObject target, CancellationToken token)
         {
             _currentState = DefaultState;
@@ -64,6 +65,7 @@ namespace StateMachineSpace
             }
         }
 
+        [BurstCompile]
         private bool ShouldExecuteTransition(GameObject target, out int selectedTransition)
         {
             selectedTransition = 0;
