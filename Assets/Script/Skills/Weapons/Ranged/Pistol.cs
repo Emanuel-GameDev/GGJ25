@@ -52,7 +52,7 @@ public class Pistol : BaseWeapon
         if (tierCounter == 1)
         {
             _projectileDmg += tier1UpgradeDmg;
-            _fireRate += _fireRate * (tier1UpgradeFireRate / 100);
+            _fireRate *= (tier1UpgradeFireRate / 100);
 
             tier1Unlocked = true;
         }

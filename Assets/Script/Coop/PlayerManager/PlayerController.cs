@@ -19,12 +19,11 @@ public class PlayerController : Player
     [SerializeField] private float _speed;
     [SerializeField] private float deadZone = 0.2f;
 
-    private Rigidbody2D rb;
+    private bool isfacingRight = true;
+    private SpriteRenderer spriteRenderer;
     
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         _inputAsset = GetComponent<PlayerInput>().actions;
         _playerMap = _inputAsset.FindActionMap("Player");
         _moveAction = _playerMap.FindAction("Move");
@@ -32,6 +31,7 @@ public class PlayerController : Player
         _throwAction = _playerMap.FindAction("Throw");
 
         sight = transform.GetChild(1).gameObject;
+        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -54,13 +54,24 @@ public class PlayerController : Player
         _rotateAction.Disable();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector2 newPosition = new Vector2(_moveValue.x, _moveValue.y) * _speed * Time.deltaTime;
         transform.Translate(newPosition);
+
+        if (newPosition.x < 0f && isfacingRight)
+            Flip();
+        if (newPosition.x > 0f && !isfacingRight)
+            Flip();
     }
 
     private void Movement(InputAction.CallbackContext context) => _moveValue = context.ReadValue<Vector2>();
+
+    private void Flip()
+    {
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+        isfacingRight = !isfacingRight;
+    }
 
     #region rotation
 

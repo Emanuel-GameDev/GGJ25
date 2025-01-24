@@ -1,12 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeaponDatabase", menuName = "Weapon Database", order = 1)]
-public class WeaponDatabase : ScriptableObject
-{
-    public List<GameObject> weaponDatabase;
-}
-
 public class WeaponManager : MonoBehaviour
 {
     public WeaponDatabase database;
