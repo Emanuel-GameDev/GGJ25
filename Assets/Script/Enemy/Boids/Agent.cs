@@ -38,9 +38,18 @@ namespace Boids
             private set => transform.rotation = quaternion.Euler(0, value, 0);
         }
 
+        private bool isInPause = false;
+
         [BurstCompile]
         private void FixedUpdate()
         {
+            if(isInPause)
+            {
+                LinearVelocity = new float3(0, 0, 0);
+                AngularVelocity = 0;
+                return;
+            }
+
             foreach (var currentSteering in _steering)
             {
                 var steering = currentSteering.GetSteering(this);
@@ -55,26 +64,16 @@ namespace Boids
 
             Position += LinearVelocity * Time.fixedDeltaTime;
             Orientation += AngularVelocity * Time.fixedDeltaTime;
+        }
 
-            // while (Position.x > 50)
-            // {
-            //     Position = new float3(Position.x - 100, 0, 0);
-            // }
-            
-            // while (Position.x < -50)
-            // {
-            //     Position = new float3(Position.x + 100, 0, 0);
-            // }
-            
-            // while (Position.z > 50)
-            // {
-            //     Position = new float3(0, 0, Position.z - 100);
-            // }
-            
-            // while (Position.z < -50)
-            // {
-            //     Position = new float3(0, 0, Position.z + 100);
-            // }
+        public void PauseAgent()
+        {
+            isInPause = true;
+        }
+
+        public void UnpauseAgent()
+        {
+            isInPause = false;
         }
     }
 }

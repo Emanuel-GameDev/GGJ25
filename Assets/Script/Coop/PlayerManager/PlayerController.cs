@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Player
+public class PlayerController : Player, IPauseable
 {
     private InputActionAsset _inputAsset;
     private InputActionMap _playerMap;
@@ -119,6 +119,24 @@ public class PlayerController : Player
     private void ApplyRotation(float angle)
     {
         sight.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    public void Pause()
+    {
+        _moveAction.Disable();
+        _rotateAction.Disable();
+        _throwAction.Disable();
+
+        GetComponent<PlayerStats>().Pause();
+    }
+
+    public void Unpause()
+    {
+        _moveAction.Enable();
+        _rotateAction.Enable();
+        _throwAction.Enable();
+
+        GetComponent<PlayerStats>().Unpause();
     }
 
     #endregion

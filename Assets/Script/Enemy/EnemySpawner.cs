@@ -10,7 +10,7 @@ public enum Tier
 {
     T1, T2, T3, T4, T5, T6, T7
 }
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour, IPauseable
 {
     [SerializeField] private bool firstCycle = true;
 
@@ -36,6 +36,8 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool _isSpawning = false;
 
+    [SerializeField]private bool _isInPause = false;
+
     // [SerializeField] private float _timeLeft = 0;
 
     private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
@@ -53,7 +55,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if(pool.Count >= _maxPoolSize)
+        if(pool.Count >= _maxPoolSize
+            || _isInPause == true)
         {
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource.Dispose();
@@ -61,14 +64,15 @@ public class EnemySpawner : MonoBehaviour
             _isSpawning = false;
             // Debug.Log("Pool full");
         }
-        else if(pool.Count < _maxPoolSize)
+        else if(pool.Count < _maxPoolSize
+            && _isInPause == false)
         {
             if(_isSpawning == false)
             {
                 // Debug.Log("Spawning");
                 _isSpawning = true;
                 SpawnEnemies().Forget();
-
+                TierUpdate().Forget();
             }
         }
     }
@@ -120,25 +124,30 @@ public class EnemySpawner : MonoBehaviour
     [BurstCompile]
     private async UniTask TierUpdate()
     {
-        // var startTime = Time.time;
-        await UniTask.WaitForSeconds(_timeToNextTier);
-        
-        if(_actualTier == Tier.T7)
+        while(_isSpawning)
         {
-            if(firstCycle)
+            await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
+            
+            if(_cancellationTokenSource.IsCancellationRequested)
             {
-                firstCycle = false;
-                _actualTiersAfterFirstCycle[0] = Tier.T7;
-                _actualTiersAfterFirstCycle[1] = Tier.T1;
-                // _timeLeft = 0;
-                TierUpdateAfterFirstCycle().Forget();
+                break;
             }
-        }
-        else
-        {
-            _actualTier++;
-            // _timeLeft = 0;
-            TierUpdate().Forget();
+
+            if(_actualTier == Tier.T7)
+            {
+                if(firstCycle)
+                {
+                    firstCycle = false;
+                    _actualTiersAfterFirstCycle[0] = Tier.T7;
+                    _actualTiersAfterFirstCycle[1] = Tier.T1;
+                    TierUpdateAfterFirstCycle().Forget();
+                }
+            }
+            else
+            {
+                _actualTier++;
+                TierUpdate().Forget();
+            }
         }
         
     }
@@ -178,5 +187,15 @@ public class EnemySpawner : MonoBehaviour
     private void RemoveEnemyFromPool(GameObject enemy)
     {
         pool.Remove(pool.Find(x => x.enemyObject == enemy));
+    }
+
+    public void Pause()
+    {
+        _isInPause = true;
+    }
+
+    public void Unpause()
+    {
+        _isInPause = false;
     }
 }

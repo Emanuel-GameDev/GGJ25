@@ -9,6 +9,7 @@ public class IsInRangeTransition : Transition
 
     public override bool ShouldTransition(StateMachine stateMachine, GameObject agent)
     {
+        if(BubbleController.Instance == null) return true;
         return Vector2.Distance(agent.transform.position, BubbleController.Instance.transform.position) > distance;
     }
 

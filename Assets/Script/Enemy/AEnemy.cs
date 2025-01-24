@@ -1,6 +1,8 @@
+using Boids;
+using StateMachineSpace;
 using UnityEngine;
 
-public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
+public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager, IPauseable
 {
     [SerializeField] private float _health = 100;
     public float Health => _health;
@@ -13,6 +15,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
     public float Speed => _speed;
 
     [SerializeField] private GameObject[] _expDropPrefab;
+
 
     void Awake()
     {
@@ -60,5 +63,17 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager
 
         EventManager.OnEnemyDeath?.Invoke(gameObject);
         Destroy(gameObject);
+    }
+
+    public void Pause()
+    {
+        GetComponent<StateMachineRunner>().PauseStateMachine();
+        GetComponent<Agent>().PauseAgent();
+    }
+
+    public void Unpause()
+    {
+        GetComponent<StateMachineRunner>().StartStateMachine();
+        GetComponent<Agent>().UnpauseAgent();
     }
 }
