@@ -20,6 +20,10 @@ public abstract class BaseWeapon : MonoBehaviour
     #region vars
 
     public string weaponName;
+    public string description;
+    public string tier1Description;
+    public string tier2Description;
+    public Sprite sprite;
     public PlayerHandler playerHandler;
 
     public WeaponClass _weaponClass;

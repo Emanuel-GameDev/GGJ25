@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLevelManager : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class PlayerLevelManager : MonoBehaviour
         _collider = GetComponent<CircleCollider2D>();
     }
 
+    private void Start()
+    {
+        EventManager.OnPlayerLevelUp += (level, manager) => { BarsUI.instance.SetExp((float)0, GetComponentInParent<PlayerInput>().playerIndex); };
+        BarsUI.instance.SetMaxExp((float)_trueLevelUpThreshold, GetComponentInParent<PlayerInput>().playerIndex);
+    }
+
     void Update()
     {
         _trueLevelUpThreshold = _levelUpThreshold * _level * _thresholdMultiplayer;
@@ -28,6 +35,9 @@ public class PlayerLevelManager : MonoBehaviour
     public void AddExp(float expToAdd)
     {
         _actualExp += expToAdd;
+
+        BarsUI.instance.SetExp(_actualExp, GetComponentInParent<PlayerInput>().playerIndex);
+
 
         if (_actualExp >= _trueLevelUpThreshold)
         {
@@ -38,7 +48,6 @@ public class PlayerLevelManager : MonoBehaviour
             //{
             //    Debug.Log($"Registered methods: {EventManager.OnPlayerLevelUp.GetInvocationList().Length}");
             //}
-
             EventManager.OnPlayerLevelUp?.Invoke(_level, this);
         }
     }

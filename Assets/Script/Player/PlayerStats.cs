@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
@@ -24,6 +25,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         EventManager.OnBubbleGrabbed += SetBubbleCarring;
         EventManager.OnBubbleThrown += SetBubbleCarring;
+
+        BarsUI.instance.SetMaxHealth(_maxHealth, GetComponent<PlayerInput>().playerIndex);
+        BarsUI.instance.SetMaxOxygen(_maxOxygen, GetComponent<PlayerInput>().playerIndex);
+        BarsUI.instance.SetExp((float)0, GetComponent<PlayerInput>().playerIndex);
     }
 
     void Update()
@@ -45,7 +50,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
         if(_oxygen <= 0)
         {
             _health -= _healthLossRate * Time.deltaTime;
+            BarsUI.instance.SetHealth(_health, GetComponent<PlayerInput>().playerIndex);
         }
+
+        BarsUI.instance.SetOxygen(_oxygen, GetComponent<PlayerInput>().playerIndex);
     }
 
     public void SetCarryBubble(bool isCarringBubble)
@@ -59,6 +67,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
             return;
 
         _health -= damage;
+
+        BarsUI.instance.SetHealth(_health, GetComponent<PlayerInput>().playerIndex);
         
         if (_health <= 0)
         {
