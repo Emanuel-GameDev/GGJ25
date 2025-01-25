@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: GranadeLauncher
+  description: wadafzdfhxfthxf
+  tier1Description: rgadfzgv
+  tier2Description: rgdcv regf
+  sprite: {fileID: 4148013707694447205, guid: 9245315c723bdb647a8cce148e4e837d, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
