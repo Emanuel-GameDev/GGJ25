@@ -16,9 +16,29 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager, IPauseable
 
     [SerializeField] private GameObject[] _expDropPrefab;
 
+    Agent agent;
+    SpriteRenderer spriteRenderer;
+
+    [SerializeField] bool invert = false;
+
     protected virtual void Awake()
     {
         damage = _baseDamage;
+        agent = GetComponent<Agent>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        Debug.Log("Velocity: " + agent.LinearVelocity.x);
+        if(agent.LinearVelocity.x > 0)
+        {
+            spriteRenderer.flipX = invert;
+        }
+        else
+        {
+            spriteRenderer.flipX = !invert;
+        }
     }
 
     public virtual void TakeDamage(float damage)
