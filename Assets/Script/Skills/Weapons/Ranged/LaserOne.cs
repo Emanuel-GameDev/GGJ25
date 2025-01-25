@@ -15,6 +15,9 @@ public class LaserOne : BaseWeapon
     [SerializeField]
     private int _baseMaxEnemyHit = 4;
 
+    [SerializeField]
+    private float _cooldown = 2f;
+
 
     [Header("Tier 1")]
 
@@ -92,10 +95,14 @@ public class LaserOne : BaseWeapon
     {
         if (enemyHit >= _baseMaxEnemyHit)
         {
+            Debug.Log("ENEMY HIT 5");
             StopCoroutine(ScaleSpriteX());
             transform.localScale = originalScale;
             enemyHit = 0;
-            canShoot = true;
+
+            StartCoroutine(Cooldown());
+            GetComponent<BoxCollider2D>().enabled = false;
+
             return;
         }
 
@@ -117,13 +124,16 @@ public class LaserOne : BaseWeapon
         }
 
         transform.localScale = originalScale;
-        gameObject.SetActive(false);
         canShoot = true;
     }
 
-    IEnumerator Cooldown(float time)
+    IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(time);
-        canShoot = true ;
+        Debug.Log("aaaaaaaaaaaaaa");
+
+        yield return new WaitForSeconds(_cooldown);
+        Debug.Log("bbbbbbbbbbbbbbbbbb");
+        GetComponent<BoxCollider2D>().enabled = true;
+        canShoot = true;
     }
 }

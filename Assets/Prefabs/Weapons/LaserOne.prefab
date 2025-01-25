@@ -147,15 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f5780f8ee696e489dcd70082e4e562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: LaserOne
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
   tierCounter: 0
-  _rayDuration: 5
-  _raySpeed: 10
+  _rayLenght: 50
+  _raySpeed: 80
   _baseDmg: 10
   _baseMaxEnemyHit: 4
+  _cooldown: 2
   _modifierEnemyHitTier1: 1
   _modifierEnemyHitTier2: 2
   _modifierDmg: 5

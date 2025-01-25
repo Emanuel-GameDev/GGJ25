@@ -99,6 +99,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f771a706-5848-4de5-aa81-da9dffc31cb6
     m_ActionName: 'Player/Throw[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc8240df-ed59-44e2-9827-f087a3ac2e96
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -298,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: 1
-  _exp: 0
+  _actualExp: 0
   _grabExpRange: 1
   _levelUpThreshold: 100
   _trueLevelUpThreshold: 100
@@ -715,18 +719,6 @@ PrefabInstance:
     - target: {fileID: 2356495904301073441, guid: 393a77721affbdd47be8e243d24127f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951891037875391370, guid: 393a77721affbdd47be8e243d24127f0, type: 3}
-      propertyPath: _raySpeed
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951891037875391370, guid: 393a77721affbdd47be8e243d24127f0, type: 3}
-      propertyPath: _rayLenght
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951891037875391370, guid: 393a77721affbdd47be8e243d24127f0, type: 3}
-      propertyPath: weaponName
-      value: LaserOne
       objectReference: {fileID: 0}
     - target: {fileID: 4951891037875391370, guid: 393a77721affbdd47be8e243d24127f0, type: 3}
       propertyPath: playerHandler
