@@ -101,15 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  description: 
-  tier1Description: 
-  tier2Description: 
-  sprite: {fileID: 0}
+  description: pistooooooooool
+  tier1Description: wdEFWEFDQEF
+  tier2Description: DFDADFGGFVAD
+  sprite: {fileID: 448484585768131267, guid: 1f54ae05c48450f4fb392744ab00428f, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
   tierCounter: 0
-  shootClip: {fileID: 8300000, guid: 5da551d7e3bbac84abeef2e652890d91, type: 3}
   _projectileSpeed: 15
   _projectileDmg: 10
   _fireRate: 1

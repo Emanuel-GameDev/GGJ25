@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,43 @@ public class WeaponManager : MonoBehaviour
     public GameObject[] ActualWeaponPoolPlayer2 = new GameObject[3];
     public PlayerLevelManager ActualLevelingPlayer1;
     public PlayerLevelManager ActualLevelingPlayer2;
+
+
+
+
+    public TextMeshProUGUI textNome1P1;
+    public TextMeshProUGUI textNome2P1;
+    public TextMeshProUGUI textNome3P1;
+    public TextMeshProUGUI textDesc1P1;
+    public TextMeshProUGUI textDesc2P1;
+    public TextMeshProUGUI textDesc3P1;
+    public Image sprite1P1;
+    public Image sprite2P1;
+    public Image sprite3P1;
+
+    [Space]
+
+    public TextMeshProUGUI textNome1P2;
+    public TextMeshProUGUI textNome2P2;
+    public TextMeshProUGUI textNome3P2;
+    public TextMeshProUGUI textDesc1P2;
+    public TextMeshProUGUI textDesc2P2;
+    public TextMeshProUGUI textDesc3P2;
+    public Image sprite1P2;
+    public Image sprite2P2;
+    public Image sprite3P2;
+
+    [Space]
+
+    public TextMeshProUGUI textNome1Passive;
+    public TextMeshProUGUI textNome2Passive;
+    public TextMeshProUGUI textNome3Passive;
+    public TextMeshProUGUI textDesc1Passive;
+    public TextMeshProUGUI textDesc2Passive;
+    public TextMeshProUGUI textDesc3Passive;
+    public Image sprite1Passive;
+    public Image sprite2Passive;
+    public Image sprite3Passive;
 
     private void Awake()
     {
@@ -104,6 +142,7 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolPanel1.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
 
 
+
                 // if()
                 // weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
                 // weaponPoolPanel2.transform.GetChild()
@@ -114,6 +153,8 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
+                // Carico dati su UI PASSIVE
+
                 ActualLevelingPlayer1 = levelManager;
                 for(int i = 0; i < 3; i++)
                 {
@@ -121,6 +162,20 @@ public class WeaponManager : MonoBehaviour
                     GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
                     ActualWeaponPoolPlayer1[i] = randomWeaponPrefab;
                 }
+
+                // carico dati delle armi su UI
+                textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().name;
+                textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
+                textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
+
+                textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
+                textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
+                textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
+
+                sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
+                sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
+                sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
+
             }
             else if(ControllerPlayersManager.Instance.Players.Count > 1 
                     && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
@@ -141,6 +196,8 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
+                // Carico dati su UI PASSIVE
+
                 ActualLevelingPlayer2 = levelManager;
 
                 for(int i = 0; i < 3; i++)
@@ -149,6 +206,20 @@ public class WeaponManager : MonoBehaviour
                     GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
                     ActualWeaponPoolPlayer2[i] = randomWeaponPrefab;
                 }
+
+                // carico dati delle armi su UI
+                textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
+                textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
+                textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
+
+                textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
+                textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
+                textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
+
+                sprite1P2.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
+                sprite2P2.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
+                sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
+
             }
 
             //TODO 
@@ -166,6 +237,7 @@ public class WeaponManager : MonoBehaviour
     public void CleanActualPoolFirstPlayer(int Index)
     {
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
+
 
         BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer1[Index].GetComponent<BaseWeapon>().GetType());
 
@@ -219,7 +291,7 @@ public class WeaponManager : MonoBehaviour
     public void CleanActualPoolSecondPlayer(int Index)
     {
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer2._playerHandler.GetEquippedWeapons();
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer2[Index].name);
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer2[Index].GetType());
 
         if (existingWeapon != null)
         {

@@ -9,6 +9,9 @@ public enum PassiveType
 }
 public abstract class BasePassive : MonoBehaviour
 {
+    public string passiveName;
+    public string passiveDescription;
+    public Sprite passiveSprite;
     public bool activeOneTime = false;
     public bool alreadyActivated = false;
     public int TierCounter = 1;

@@ -101,15 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Sniper
-  description: 
+  description: sniperrrrrrrrrrrr
   tier1Description: 
   tier2Description: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -5872358580721838609, guid: d3f68ebc69b16064591ec967ffe08488, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
   tierCounter: 0
-  shootClip: {fileID: 8300000, guid: 84bccbb0fae220e4aaf8b71e3fd6e00e, type: 3}
   _projectileSpeed: 20
   _projectileDmg: 20
   _fireRate: 2
