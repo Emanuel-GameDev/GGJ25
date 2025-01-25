@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 302a4a2eca7e7ab4fadf0d7e57a390d9, type: 3}
   m_Name: NewWeaponDatabase
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponDatabase
+  m_EditorClassIdentifier: 
   weaponDatabase:
   - {fileID: 8833570150891916588, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
-  - {fileID: 3669024643391548188, guid: 968dcb2340cdbb0498ef5f38c25be5c5, type: 3}
