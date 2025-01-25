@@ -13,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else 
+        else
             Destroy(gameObject);
     }
 
@@ -65,21 +65,21 @@ public class WeaponManager : MonoBehaviour
     {
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
         var pauseManager = FindAnyObjectByType<PauseManager>();
-        
-        if(pauseManager != null)
+
+        if (pauseManager != null)
         {
             pauseManager.pauseAction.Disable();
             pauseManager.PauseAll();
         }
 
-        if(canvas.Length > 0)
+        if (canvas.Length > 0)
         {
             var canvasScript = canvas[0].GetComponent<Canvas>();
             canvasScript.enabled = true;
 
             var playerControllerRef = levelManager.gameObject.GetComponentInParent<PlayerController>();
             Debug.Log("PlayerID: " + playerControllerRef.PlayerID);
-            if(playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
+            if (playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
             {
                 var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
                 var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
@@ -89,7 +89,7 @@ public class WeaponManager : MonoBehaviour
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
                 passivesPool.SetActive(false);
             }
-            else if(ControllerPlayersManager.Instance.Players.Count > 1 && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
+            else if (ControllerPlayersManager.Instance.Players.Count > 1 && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
             {
                 var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
                 var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
@@ -108,41 +108,43 @@ public class WeaponManager : MonoBehaviour
 
             ActualLevelingPlayer = levelManager;
 
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 int randomIndex = Random.Range(0, database.weaponDatabase.Count);
                 GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
                 ActualWeaponPool[i] = randomWeaponPrefab;
+                Debug.Log(ActualWeaponPool[i]);
             }
         }
 
-        
+
     }
 
     public void CleanActualPool(int Index)
     {
 
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer._playerHandler.GetEquippedWeapons();
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPool[Index].GetType());
+
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPool[Index].name);
 
         if (existingWeapon != null)
-            {
-                // Se l'arma � gi� equipaggiata, potenziala
-                existingWeapon.UpgradeTier();
-                Debug.Log($"{existingWeapon.name} � stata potenziata!");
-            }
-            else
-            {
-                // Altrimenti, equipaggia la nuova arma
-                GameObject instantiatedWeapon = Instantiate(ActualWeaponPool[Index]);
+        {
+            // Se l'arma � gi� equipaggiata, potenziala
+            existingWeapon.UpgradeTier();
+            Debug.Log($"{existingWeapon.name} � stata potenziata!");
+        }
+        else
+        {
+            // Altrimenti, equipaggia la nuova arma
+            GameObject instantiatedWeapon = Instantiate(ActualWeaponPool[Index]);
 
-                // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
-                ActualLevelingPlayer._playerHandler.EquipWeapon(instantiatedWeapon);
+            // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
+            ActualLevelingPlayer._playerHandler.EquipWeapon(instantiatedWeapon);
 
-                Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
-            }
+            Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
+        }
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             ActualWeaponPool[i] = null;
         }
@@ -153,8 +155,8 @@ public class WeaponManager : MonoBehaviour
         canvas[0].SetActive(false);
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
-        
-        if(pauseManager != null)
+
+        if (pauseManager != null)
         {
             pauseManager.pauseAction.Disable();
             pauseManager.PauseAll();
