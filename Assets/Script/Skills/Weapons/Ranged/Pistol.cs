@@ -118,6 +118,7 @@ public class Pistol : BaseWeapon
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
                 rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
             }
+
         }
 
     }

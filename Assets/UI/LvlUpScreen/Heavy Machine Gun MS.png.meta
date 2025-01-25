@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Heavy Machine Gun MS_0: -7681239818646102791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

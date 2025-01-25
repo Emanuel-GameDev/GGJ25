@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pistola laser_0: 448484585768131267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

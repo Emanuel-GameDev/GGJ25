@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Sniper
+  description: sniperrrrrrrrrrrr
+  tier1Description: 
+  tier2Description: 
+  sprite: {fileID: -5872358580721838609, guid: d3f68ebc69b16064591ec967ffe08488, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0

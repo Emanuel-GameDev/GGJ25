@@ -184,6 +184,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: LaserBlade
+  description: 
+  tier1Description: 
+  tier2Description: 
+  sprite: {fileID: 1595933476515001672, guid: c215376c2dd21c449bc12dce0b32d866, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 1
   _weaponType: 4

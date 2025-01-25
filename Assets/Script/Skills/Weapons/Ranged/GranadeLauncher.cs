@@ -47,6 +47,7 @@ public class GranadeLauncher : BaseWeapon
     private void Awake()
     {
         InitializePool();
+        projectilePrefab.gameObject.transform.localScale = new Vector3(1, 1, 0);
     }
 
     private void InitializePool()

@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: GranadeLauncher
+  description: wadafzdfhxfthxf
+  tier1Description: rgadfzgv
+  tier2Description: rgdcv regf
+  sprite: {fileID: 4148013707694447205, guid: 9245315c723bdb647a8cce148e4e837d, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
@@ -110,6 +114,6 @@ MonoBehaviour:
   _fireRate: 5
   projectilePrefab: {fileID: 128874490809771551, guid: b4bd0577e8992f4409828b20cc243458, type: 3}
   poolSize: 25
-  tier1UpgradeDmg: 5
+  _scaleIncrease: 10
   _fireRateModifier: 50
   _dmgModifier: 10

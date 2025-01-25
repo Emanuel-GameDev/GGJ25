@@ -11,8 +11,7 @@ public class RayPistolProjectile : MonoBehaviour
     private float aliveTime = 1.5f;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
         StartCoroutine(CooldownProjectile());
     }
