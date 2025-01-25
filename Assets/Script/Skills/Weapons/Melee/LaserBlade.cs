@@ -37,7 +37,7 @@ public class LaserBlade : BaseWeapon
         bladePivot = transform.parent.gameObject;
 
         sightRef = playerHandler.sight.transform;
-    }
+    }   
 
     private void Update()
     {

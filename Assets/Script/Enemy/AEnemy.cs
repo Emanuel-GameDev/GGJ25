@@ -16,7 +16,6 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager, IPauseable
 
     [SerializeField] private GameObject[] _expDropPrefab;
 
-
     void Awake()
     {
         damage = _baseDamage;
@@ -25,6 +24,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager, IPauseable
     public void TakeDamage(float damage)
     {
         _health -= damage;
+        Debug.Log("Damage taken: " + damage);
         if (_health <= 0)
         {
             Die();

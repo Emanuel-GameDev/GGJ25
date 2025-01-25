@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LaserOne : BaseWeapon
@@ -119,7 +120,7 @@ public class LaserOne : BaseWeapon
         }
 
         transform.localScale = originalScale;
-        canShoot = true;
+        StartCoroutine(Cooldown());
     }
 
     IEnumerator Cooldown()

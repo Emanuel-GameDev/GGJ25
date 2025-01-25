@@ -106,12 +106,12 @@ MonoBehaviour:
   _weaponType: 0
   tierCounter: 0
   _projectileSpeed: 10
-  _projectileDmg: 2
+  _projectileDmg: 5
   _fireAmountPerSeconds: 10
   _fireDuration: 4
   _cooldown: 5
-  angleSpread: 60
-  projectilePrefab: {fileID: 0}
+  angleSpread: 2
+  projectilePrefab: {fileID: 3034941513264215578, guid: 7c5205776af746d479215cbd9603f1aa, type: 3}
   poolSize: 60
   _durationMultiplier: 15
   _fireAmountMultiplier: 2
