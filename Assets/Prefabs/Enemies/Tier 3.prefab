@@ -216,9 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055cc28f6130ad943b004707b24a7448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  _baseDamage: 10
-  <damage>k__BackingField: 10
+  _health: 50
+  _baseDamage: 2
+  <damage>k__BackingField: 2
   <attackRate>k__BackingField: 2
   _speed: 5
   _expDropPrefab:
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e63607c1f04ee4da409c32ca7c6d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLinearSpeed: 5
+  _maxLinearSpeed: 3
   _maxAngularSpeed: 360
   _radius: 0.5
   _steering:
