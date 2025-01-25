@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float Oxygen => _oxygen;
     [SerializeField] private float _maxOxygen = 100f;
     [SerializeField] private bool _carryBubble = false;
+    public bool CarryBubble => _carryBubble;
     [SerializeField] private float _oxygenLossRate = 1f;
     [SerializeField] private float _oxygenGainRate = 2f;
     [SerializeField] private float _healthLossRate = 1f;
@@ -44,8 +46,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
         {
             _health -= _healthLossRate * Time.deltaTime;
         }
-
-        
     }
 
     public void SetCarryBubble(bool isCarringBubble)
@@ -112,5 +112,19 @@ public class PlayerStats : MonoBehaviour, IDamageable
         {
             _oxygen = 0;
         }
+    }
+
+    public void RegenerateHealth(float amount)
+    {
+        _health += amount;
+        if(_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+    }
+
+    public void RiseOxygenGainRate(int amount)
+    {
+        _oxygenGainRate += _oxygenGainRate * amount / 100f;
     }
 }

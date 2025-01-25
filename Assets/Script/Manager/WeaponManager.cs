@@ -27,7 +27,7 @@ public class WeaponManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // EventManager.OnPlayerLevelUp -= EquipRandomWeapon;
+        EventManager.OnPlayerLevelUp -= SetUpChooseWeaponCanvas;
     }
 
     public void EquipRandomWeapon(int level, PlayerLevelManager levelManager)
@@ -66,6 +66,17 @@ public class WeaponManager : MonoBehaviour
 
     private void SetUpChooseWeaponCanvas(int level, PlayerLevelManager levelManager)
     {
+        if(ControllerPlayersManager.Instance.Players.Count == 1 && level%5 == 0)
+            return;
+        else if(ControllerPlayersManager.Instance.Players.Count == 2 )
+        {
+            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level 
+            + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponent<PlayerLevelManager>().Level;
+
+            if(levelSomma%5 == 0)
+                return;
+        } 
+
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
         var pauseManager = FindAnyObjectByType<PauseManager>();
         
