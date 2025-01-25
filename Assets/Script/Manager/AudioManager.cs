@@ -47,6 +47,7 @@ namespace Managers
         public void PlayAudioClip(AudioClip clipToPLay)
         {
             GameObject temp = Instantiate(prefabEmpty, Camera.main.transform.position, Quaternion.identity);
+            temp.AddComponent<AudioSource>();
             temp.GetComponent<AudioSource>().clip = clipToPLay;
 
             //switch (audioType)            //forse ci serve piu in la,vediamo visto che qua passano solo effetti
@@ -71,6 +72,7 @@ namespace Managers
         public void PlayAudioClipWithPosition(AudioClip clipToPLay, Vector3 position)
         {
             GameObject temp = Instantiate(prefabEmpty, position, Quaternion.identity);
+            temp.AddComponent<AudioSource>();
             temp.GetComponent<AudioSource>().clip = clipToPLay;
 
             //switch (audioType)            //forse ci serve piu in la,vediamo visto che qua passano solo effetti
