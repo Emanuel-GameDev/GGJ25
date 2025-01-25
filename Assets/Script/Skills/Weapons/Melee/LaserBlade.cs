@@ -37,7 +37,7 @@ public class LaserBlade : BaseWeapon
         bladePivot = transform.parent.gameObject;
 
         sightRef = playerHandler.sight.transform;
-    }
+    }   
 
     private void Update()
     {
@@ -49,17 +49,14 @@ public class LaserBlade : BaseWeapon
             bladePivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180f));
         if (distance == Vector2.right)
         {
-            Debug.Log("DX");
             bladePivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         if (distance == Vector2.up)
         {
-            Debug.Log("SU");
             bladePivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         if (distance == Vector2.down)
         {
-            Debug.Log("GIU");
             bladePivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
         }
     }

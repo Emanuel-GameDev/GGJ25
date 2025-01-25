@@ -12,6 +12,8 @@ public class PlayerHandler : Player
     [SerializeField]
     private GameObject weaponContainerObj;
 
+    private PlayerController controller;
+
     #endregion
 
     #region Passives
@@ -22,9 +24,14 @@ public class PlayerHandler : Player
 
     #region UnityFunctions
 
+    private void Start()
+    {
+        controller = GetComponent<PlayerController>();
+    }
+
     private void Update()
     {
-        if (isShooting)
+        if (controller.isShooting)
         {
             ShootAll();
         }
@@ -37,9 +44,9 @@ public class PlayerHandler : Player
 
     private void ShootAll()
     {
-        foreach (BaseWeapon weapon in weaponsEquipped)
+        for (int i = 0; i < weaponsEquipped.Count; i++)
         {
-            weapon.Shoot();
+            weaponsEquipped[i].Shoot();
         }
     }
 
@@ -52,7 +59,20 @@ public class PlayerHandler : Player
     {
         weaponToEquipObj.transform.parent = weaponContainerObj.transform;
         weaponToEquipObj.transform.localPosition = Vector3.zero;
-        weaponsEquipped.Add(weaponToEquipObj.GetComponent<BaseWeapon>());    
+
+        BaseWeapon weapon = weaponToEquipObj.GetComponent<BaseWeapon>();
+
+        if (weapon == null)
+        {
+            weapon = weaponToEquipObj.GetComponentInChildren<BaseWeapon>();
+        }
+
+        if (weapon == null)
+            Debug.Log("è null porcoddio");
+        
+
+        weaponsEquipped.Add(weapon);
+        weapon.playerHandler = this;
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)

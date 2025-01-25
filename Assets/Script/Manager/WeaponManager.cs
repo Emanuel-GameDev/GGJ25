@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class WeaponManager : MonoBehaviour
 {
     public WeaponDatabase database;
-    public static WeaponManager instance;
+    public static WeaponManager Instance;
 
     public GameObject[] ActualWeaponPoolPlayer1 = new GameObject[3];
     public GameObject[] ActualWeaponPoolPlayer2 = new GameObject[3];
@@ -14,8 +14,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else 
             Destroy(gameObject);
     }
@@ -104,7 +104,6 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
                 ActualLevelingPlayer1 = levelManager;
-
                 for(int i = 0; i < 3; i++)
                 {
                     int randomIndex = Random.Range(0, database.weaponDatabase.Count);
@@ -155,9 +154,19 @@ public class WeaponManager : MonoBehaviour
 
     public void CleanActualPoolFirstPlayer(int Index)
     {
-        
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer1[Index].name);
+
+        foreach (BaseWeapon weapon in playerWeapons)
+        {
+            Debug.Log("player 1 equipped weapon: " + weapon);
+        }
+
+        foreach (GameObject weapon in ActualWeaponPoolPlayer1)
+        {
+            Debug.Log("player 1 database weapon: " + weapon);
+        }
+
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer1[Index].GetComponent<BaseWeapon>().GetType());
 
         if (existingWeapon != null)
         {

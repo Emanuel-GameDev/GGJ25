@@ -69,7 +69,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1743028898238628981}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -99,6 +99,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f771a706-5848-4de5-aa81-da9dffc31cb6
     m_ActionName: 'Player/Throw[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc8240df-ed59-44e2-9827-f087a3ac2e96
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 07bfe934-958c-437c-928f-76ece8d53019
+    m_ActionName: 'Selection/Next[/Keyboard/downArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e64641fc-3cad-49b0-9dfa-461568f8e5d7
+    m_ActionName: 'Selection/Back[/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fb42a89-acb9-4a34-b2fe-b7c06362de2f
+    m_ActionName: 'Selection/Confirm[/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -119,6 +135,7 @@ MonoBehaviour:
   sight: {fileID: 7768398026419434424}
   _speed: 15
   deadZone: 0.2
+  PlayerID: 
 --- !u!114 &1619505786427434148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,10 +315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: 1
-  _exp: 0
+  _actualExp: 0
   _grabExpRange: 1
-  _levelUpThreshold: 100
-  _trueLevelUpThreshold: 100
+  _levelUpThreshold: 1
+  _trueLevelUpThreshold: 1
   _thresholdMultiplayer: 1
   _playerHandler: {fileID: 1619505786427434148}
 --- !u!58 &221380426522801150
@@ -677,25 +694,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 7143773122984941642}
     m_Modifications:
     - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
-      propertyPath: _fireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
-      propertyPath: weaponName
-      value: Pistola a Raggi
-      objectReference: {fileID: 0}
-    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: playerHandler
       value: 
       objectReference: {fileID: 1619505786427434148}
-    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
-      propertyPath: _projectileDmg
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 726211510649729904, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
-      propertyPath: _projectileSpeed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4375435237254895337, guid: 1e161ed0801ae5f4399585a29fadc6ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

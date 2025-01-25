@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LaserOne : BaseWeapon
@@ -14,6 +15,9 @@ public class LaserOne : BaseWeapon
 
     [SerializeField]
     private int _baseMaxEnemyHit = 4;
+
+    [SerializeField]
+    private float _cooldown = 2f;
 
 
     [Header("Tier 1")]
@@ -36,7 +40,6 @@ public class LaserOne : BaseWeapon
 
     private void Start()
     {
-        gameObject.SetActive(false);
         originalScale = transform.localScale;
     }
 
@@ -53,23 +56,19 @@ public class LaserOne : BaseWeapon
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180f));
         if (distance == Vector2.right)
         {
-            Debug.Log("DX");
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         if (distance == Vector2.up)
         {
-            Debug.Log("SU");
-            transform.rotation = Quaternion.Euler(new Vector3(90, 0, 90));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         if (distance == Vector2.down)
         {
-            Debug.Log("GIU");
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
         }
 
         canShoot = false;
         enemyHit = 0;
-        gameObject.SetActive(true);
         StartCoroutine(ScaleSpriteX());
     }
 
@@ -92,9 +91,14 @@ public class LaserOne : BaseWeapon
     {
         if (enemyHit >= _baseMaxEnemyHit)
         {
+            Debug.Log("ENEMY HIT 5");
             StopCoroutine(ScaleSpriteX());
             transform.localScale = originalScale;
-            canShoot = true;
+            enemyHit = 0;
+
+            StartCoroutine(Cooldown());
+            GetComponent<BoxCollider2D>().enabled = false;
+
             return;
         }
 
@@ -116,7 +120,13 @@ public class LaserOne : BaseWeapon
         }
 
         transform.localScale = originalScale;
-        gameObject.SetActive(false);
+        StartCoroutine(Cooldown());
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(_cooldown);
+        GetComponent<BoxCollider2D>().enabled = true;
         canShoot = true;
     }
 }

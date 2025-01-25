@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class Pistol : BaseWeapon
+public class MachineGun : BaseWeapon
 {
     [SerializeField]
     private float _projectileSpeed = 10f;
 
     [SerializeField]
-    private int _projectileDmg = 5;
+    private int _projectileDmg = 2;
 
-    [SerializeField, Min(0.1f)]
-    protected float _fireRate = 2f;
+    [SerializeField]
+    private int _fireAmountPerSeconds = 10;
+
+    [SerializeField]
+    private float _fireDuration = 4;
+
+    [SerializeField]
+    protected float _cooldown = 5f;
+
+    [SerializeField]
+    private float angleSpread = 60;
 
     [SerializeField]
     private GameObject projectilePrefab;
@@ -23,39 +31,30 @@ public class Pistol : BaseWeapon
 
     [Header("TIER 1")]
 
-    [SerializeField]
-    private int tier1UpgradeDmg = 5;
+    [SerializeField, Range(1, 100)]
+    private float _durationMultiplier = 15;
 
-    [SerializeField, Range(0, 100)]
-    private float tier1UpgradeFireRate = 50;
+    [SerializeField]
+    private int _fireAmountMultiplier = 2;
+
 
     [Header("TIER 2")]
 
+    [SerializeField, Range(-100, 0)]
+    private int _cooldownMultiplier = 25;
+
     [SerializeField]
-    private float timeBetweenShoots = 0.1f;
+    private int _dmgAdd = 1;
 
 
+    private bool canShoot = true;
+    private int currentPoolIndex = 0;
     private GameObject pistolProjectilePool;
     private List<GameObject> projectilePool;
-    private int currentPoolIndex = 0;
-    private bool canShoot = true;
 
     private void Awake()
     {
         InitializePool();
-    }
-
-    public override void UpgradeTier()
-    {
-        base.UpgradeTier();
-
-        if (tierCounter == 1)
-        {
-            _projectileDmg += tier1UpgradeDmg;
-
-            float percentage = (float)tier1UpgradeFireRate / 100f;
-            _fireRate *= percentage;
-        }
     }
 
     private void InitializePool()
@@ -79,29 +78,51 @@ public class Pistol : BaseWeapon
 
     public override void Shoot()
     {
+        Debug.Log("Start Shoot");
         base.Shoot();
 
         if (!canShoot) return;
+        Debug.Log("Shooting");
+        canShoot = false;
+        StartCoroutine(ShootingRepeat());
 
-        GameObject projectile = GetPooledProjectile();
-        Fire(projectile);
+    }
 
-        if (tierCounter == 2)
+    IEnumerator ShootingRepeat()
+    {
+        float elapsedTime = 0f;
+        float shotInterval = 1f / _fireAmountPerSeconds;
+
+        while (elapsedTime < _fireDuration)
         {
-            StartCoroutine(CooldownGeneric(timeBetweenShoots));
+
+            GameObject projectile = GetPooledProjectile();
+            Fire(projectile);
+
+            yield return new WaitForSeconds(shotInterval);
+
+            elapsedTime += shotInterval;
+
         }
 
-        StartCoroutine(CooldownShooting());
+        StartCoroutine(Cooldown());
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(_cooldown);
+        canShoot = true;
     }
 
     private void Fire(GameObject projectile)
     {
         if (projectile != null)
         {
-            canShoot = false;
-
             projectile.GetComponent<RayPistolProjectile>()._baseDmg = _projectileDmg;
             projectile.transform.position = transform.position;
+
+            float randPos = Random.Range(-(angleSpread / 2), (angleSpread / 2));
+            Debug.Log(randPos);
 
             if (playerHandler != null && projectile != null)
             {
@@ -114,9 +135,9 @@ public class Pistol : BaseWeapon
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                //Debug.Log("SHOOT " + projectile.transform.forward);
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
-                rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
+                var newPos = new Vector3(sightObjectRef.x + randPos, sightObjectRef.y + randPos);
+                rb.AddForce((newPos - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
             }
         }
 
@@ -139,18 +160,24 @@ public class Pistol : BaseWeapon
         return null;
     }
 
-    IEnumerator CooldownShooting()
+    public override void UpgradeTier()
     {
-        yield return new WaitForSeconds(_fireRate);
+        base.UpgradeTier();
 
-        canShoot = true;
-    }
+        if (tierCounter == 1)
+        {
+            float percentage = (float)_durationMultiplier / 100f;
+            _fireDuration *= percentage;
 
-    IEnumerator CooldownGeneric(float num)
-    {
-        yield return new WaitForSeconds(num);
+            _fireAmountPerSeconds += _fireAmountMultiplier;
+        }
 
-        GameObject projectile2 = GetPooledProjectile();
-        Fire(projectile2);
+        if (tierCounter == 2)
+        {
+            float percentage = (float)_cooldownMultiplier / 100f;
+            _cooldown *= percentage;
+
+            _projectileDmg += _dmgAdd;
+        }
     }
 }
