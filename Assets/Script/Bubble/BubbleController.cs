@@ -69,4 +69,8 @@ public class BubbleController : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
     }
+
+    public void TakeOxygen(float damage)
+    {
+    }
 }

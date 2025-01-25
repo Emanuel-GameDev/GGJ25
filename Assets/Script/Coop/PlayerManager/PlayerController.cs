@@ -144,4 +144,9 @@ public class PlayerController : Player, IPauseable
     }
 
     #endregion
+
+    public void RiseSpeed (float amount)
+    {
+        _speed += _speed * amount / 100f;
+    }
 }

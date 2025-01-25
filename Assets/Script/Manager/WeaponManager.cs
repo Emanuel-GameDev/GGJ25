@@ -27,7 +27,7 @@ public class WeaponManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // EventManager.OnPlayerLevelUp -= EquipRandomWeapon;
+        EventManager.OnPlayerLevelUp -= SetUpChooseWeaponCanvas;
     }
 
     public void EquipRandomWeapon(int level, PlayerLevelManager levelManager)
@@ -66,6 +66,17 @@ public class WeaponManager : MonoBehaviour
 
     private void SetUpChooseWeaponCanvas(int level, PlayerLevelManager levelManager)
     {
+        if(ControllerPlayersManager.Instance.Players.Count == 1 && level%5 == 0)
+            return;
+        else if(ControllerPlayersManager.Instance.Players.Count == 2 )
+        {
+            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level 
+            + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponent<PlayerLevelManager>().Level;
+
+            if(levelSomma%5 == 0)
+                return;
+        } 
+
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
         var pauseManager = FindAnyObjectByType<PauseManager>();
         
@@ -156,16 +167,6 @@ public class WeaponManager : MonoBehaviour
     public void CleanActualPoolFirstPlayer(int Index)
     {
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
-
-        foreach (BaseWeapon weapon in playerWeapons)
-        {
-            Debug.Log("player 1 equipped weapon: " + weapon);
-        }
-
-        foreach (GameObject weapon in ActualWeaponPoolPlayer1)
-        {
-            Debug.Log("player 1 database weapon: " + weapon);
-        }
 
         BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer1[Index].GetComponent<BaseWeapon>().GetType());
 

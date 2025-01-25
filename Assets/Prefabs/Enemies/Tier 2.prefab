@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5237258806265827149}
   - component: {fileID: 2690961232193222551}
   - component: {fileID: 501443796010263373}
-  - component: {fileID: 3209091093542708369}
   - component: {fileID: 2682125687259287122}
   - component: {fileID: 6761533814526397650}
+  - component: {fileID: 6717048738505630730}
   m_Layer: 10
   m_Name: Tier 2
   m_TagString: Untagged
@@ -204,27 +204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Schema: {fileID: 11400000, guid: cdae1d8b3fa90434496995ec705c8568, type: 2}
   _currentStateName: 
---- !u!114 &3209091093542708369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692031475928474871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055cc28f6130ad943b004707b24a7448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 20
-  _baseDamage: 3
-  <damage>k__BackingField: 3
-  <attackRate>k__BackingField: 2
-  _speed: 5
-  _expDropPrefab:
-  - {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
-  - {fileID: 4048684018249095183, guid: 43f655a6fdee5df4cac806a55e363d34, type: 3}
-  - {fileID: 4048684018249095183, guid: 074945ebcb4e8cb4881d92a2745af95a, type: 3}
 --- !u!114 &2682125687259287122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,9 +253,9 @@ MonoBehaviour:
     - rid: 3759364951881810181
       type: {class: SeparationSteeringBehaviour, ns: Boids, asm: Assembly-CSharp}
       data:
-        NeighbourRange: 5
-        _visionConeSize: 180
-        _maxAcceleration: 25
+        NeighbourRange: 5.64
+        _visionConeSize: 192.53
+        _maxAcceleration: 29.2
         _forceDropCurve:
           serializedVersion: 2
           m_Curve:
@@ -302,6 +281,29 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         _arriveDistance: 0.5
+--- !u!114 &6717048738505630730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692031475928474871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5804f68c22d05fe4d84603ee5a40dd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 20
+  _baseDamage: 3
+  <damage>k__BackingField: 3
+  <attackRate>k__BackingField: 2
+  _speed: 5
+  _expDropPrefab:
+  - {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
+  - {fileID: 4048684018249095183, guid: 43f655a6fdee5df4cac806a55e363d34, type: 3}
+  - {fileID: 4048684018249095183, guid: 074945ebcb4e8cb4881d92a2745af95a, type: 3}
+  _speedBoost: 20
+  _isFurious: 0
 --- !u!1 &8628928856168759597
 GameObject:
   m_ObjectHideFlags: 0
