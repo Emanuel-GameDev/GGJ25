@@ -80,13 +80,6 @@ public class Pistol : BaseWeapon
 
         GameObject projectile = GetPooledProjectile();
         Fire(projectile);
-
-        if (tierCounter == 2)
-        {
-            GameObject projectile2 = GetPooledProjectile();
-            Fire(projectile2);
-        }
-
     }
 
     private void Fire(GameObject projectile)
@@ -139,6 +132,14 @@ public class Pistol : BaseWeapon
     IEnumerator CooldownShooting()
     {
         yield return new WaitForSeconds(_fireRate);
-        canShoot = true;
+
+
+        if (tierCounter == 2)
+        {
+            GameObject projectile2 = GetPooledProjectile();
+            Fire(projectile2);
+        }
+        else
+            canShoot = true;
     }
 }
