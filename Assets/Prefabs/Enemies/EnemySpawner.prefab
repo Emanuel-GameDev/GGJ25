@@ -56,5 +56,6 @@ MonoBehaviour:
   _maxYSpawnPosition: 20
   _enemyTierListSO: {fileID: 11400000, guid: 0c79e0e3ed408b64b8e6463ccb3ed6e6, type: 2}
   pool: []
-  _maxPoolSize: 40
+  _maxPoolSize: 10
   _isSpawning: 1
+  _isInPause: 0
