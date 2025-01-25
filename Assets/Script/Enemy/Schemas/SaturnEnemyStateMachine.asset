@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe70515b0e3f46a7965bfd809c725bc5, type: 3}
+  m_Name: SaturnEnemyStateMachine
+  m_EditorClassIdentifier: 
+  StateMachine:
+    DefaultState: 0
+    States:
+    - rid: 3759364970915561541
+    - rid: 3759364951881810183
+    Transitions:
+    - rid: 3759364951881810186
+    - rid: 3759364951881810187
+  references:
+    version: 2
+    RefIds:
+    - rid: 3759364951881810183
+      type: {class: ReachTargetState, ns: , asm: Assembly-CSharp}
+      data:
+        GraphPosition:
+          x: 161.6
+          y: 14.399994
+        _enemyAgent: {fileID: 0}
+        _enemyAgentRb: {fileID: 0}
+    - rid: 3759364951881810186
+      type: {class: IsNearEnoughTransition, ns: , asm: Assembly-CSharp}
+      data:
+        Start: 1
+        End: 0
+        Priority: 0
+        distance: 5
+    - rid: 3759364951881810187
+      type: {class: IsInRangeTransition, ns: , asm: Assembly-CSharp}
+      data:
+        Start: 0
+        End: 1
+        Priority: 0
+        distance: 6
+    - rid: 3759364970915561541
+      type: {class: SaturnAttackState, ns: , asm: Assembly-CSharp}
+      data:
+        GraphPosition:
+          x: 161.6
+          y: 204.80002
+        projectilePrefab: {fileID: 0}
+        force: 15
+        cooldown: 3
