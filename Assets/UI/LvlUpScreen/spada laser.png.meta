@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spada laser_0: 1595933476515001672
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
