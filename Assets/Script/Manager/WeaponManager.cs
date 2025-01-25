@@ -153,6 +153,8 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
+                // Carico dati su UI PASSIVE
+
                 ActualLevelingPlayer1 = levelManager;
                 for(int i = 0; i < 3; i++)
                 {
@@ -169,6 +171,10 @@ public class WeaponManager : MonoBehaviour
                 textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
                 textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
                 textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
+
+                sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
+                sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
+                sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
 
             }
             else if(ControllerPlayersManager.Instance.Players.Count > 1 
@@ -190,6 +196,8 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
+                // Carico dati su UI PASSIVE
+
                 ActualLevelingPlayer2 = levelManager;
 
                 for(int i = 0; i < 3; i++)
@@ -207,6 +215,10 @@ public class WeaponManager : MonoBehaviour
                 textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
                 textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
                 textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
+
+                sprite1P2.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
+                sprite2P2.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
+                sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
 
             }
 
