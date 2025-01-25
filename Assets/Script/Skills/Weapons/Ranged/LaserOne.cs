@@ -129,10 +129,7 @@ public class LaserOne : BaseWeapon
 
     IEnumerator Cooldown()
     {
-        Debug.Log("aaaaaaaaaaaaaa");
-
         yield return new WaitForSeconds(_cooldown);
-        Debug.Log("bbbbbbbbbbbbbbbbbb");
         GetComponent<BoxCollider2D>().enabled = true;
         canShoot = true;
     }

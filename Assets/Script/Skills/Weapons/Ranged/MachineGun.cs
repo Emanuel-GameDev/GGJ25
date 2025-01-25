@@ -14,7 +14,7 @@ public class MachineGun : BaseWeapon
     private int _fireAmountPerSeconds = 10;
 
     [SerializeField]
-    private int _fireDuration = 4;
+    private float _fireDuration = 4;
 
     [SerializeField]
     protected float _cooldown = 5f;
@@ -32,7 +32,7 @@ public class MachineGun : BaseWeapon
     [Header("TIER 1")]
 
     [SerializeField, Range(1, 100)]
-    private int _durationMultiplier = 15;
+    private float _durationMultiplier = 15;
 
     [SerializeField]
     private int _fireAmountMultiplier = 2;
@@ -40,8 +40,8 @@ public class MachineGun : BaseWeapon
 
     [Header("TIER 2")]
 
-    [SerializeField, Range(1, 100)]
-    private int _cooldownAdd = 25;
+    [SerializeField, Range(-100, 0)]
+    private int _cooldownMultiplier = 25;
 
     [SerializeField]
     private int _dmgAdd = 1;
@@ -120,14 +120,13 @@ public class MachineGun : BaseWeapon
             projectile.GetComponent<RayPistolProjectile>()._baseDmg = _projectileDmg;
             projectile.transform.position = transform.position;
 
+            float randPos = Random.Range(-(angleSpread / 2), (angleSpread / 2));
+            Debug.Log(randPos);
+
             if (playerHandler != null && projectile != null)
             {
-                var sightRot = playerHandler.sight.transform.localRotation;     
-                float randomAngle = Random.Range(-(angleSpread / 2), (angleSpread / 2));
-                Quaternion coneRotation = Quaternion.Euler(0, 0, sightRot.eulerAngles.z + randomAngle);
-
-                projectile.transform.localRotation = coneRotation;
-
+                var sightRot = playerHandler.sight.transform.localRotation;
+                projectile.transform.localRotation = sightRot;
             }
 
             projectile.SetActive(true);
@@ -135,9 +134,9 @@ public class MachineGun : BaseWeapon
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                //Debug.Log("SHOOT " + projectile.transform.forward);
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
-                rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
+                var newPos = new Vector3(sightObjectRef.x + randPos, sightObjectRef.y + randPos);
+                rb.AddForce((newPos - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
             }
         }
 
@@ -163,5 +162,21 @@ public class MachineGun : BaseWeapon
     public override void UpgradeTier()
     {
         base.UpgradeTier();
+
+        if (tierCounter == 1)
+        {
+            float percentage = (float)_durationMultiplier / 100f;
+            _fireDuration *= percentage;
+
+            _fireAmountPerSeconds += _fireAmountMultiplier;
+        }
+
+        if (tierCounter == 2)
+        {
+            float percentage = (float)_cooldownMultiplier / 100f;
+            _cooldown *= percentage;
+
+            _projectileDmg += _dmgAdd;
+        }
     }
 }
