@@ -38,6 +38,18 @@ public class WeaponManager : MonoBehaviour
     public Image sprite2P2;
     public Image sprite3P2;
 
+    [Space]
+
+    public TextMeshProUGUI textNome1Passive;
+    public TextMeshProUGUI textNome2Passive;
+    public TextMeshProUGUI textNome3Passive;
+    public TextMeshProUGUI textDesc1Passive;
+    public TextMeshProUGUI textDesc2Passive;
+    public TextMeshProUGUI textDesc3Passive;
+    public Image sprite1Passive;
+    public Image sprite2Passive;
+    public Image sprite3Passive;
+
     private void Awake()
     {
         if (Instance == null)
