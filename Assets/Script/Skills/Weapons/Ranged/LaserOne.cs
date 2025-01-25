@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class LaserOne : BaseWeapon
     [SerializeField, Range(-100, 100)]
     private int _modifierDmg = 5;
 
+    
 
     private bool canShoot = true;
     private int enemyHit = 0;
@@ -69,6 +71,9 @@ public class LaserOne : BaseWeapon
 
         canShoot = false;
         enemyHit = 0;
+
+       
+
         StartCoroutine(ScaleSpriteX());
     }
 
