@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RayPistolProjectile : MonoBehaviour
 {
+    public bool goTrough = false;
+
     public int _baseDmg = 5;
 
     [SerializeField]
@@ -20,7 +22,9 @@ public class RayPistolProjectile : MonoBehaviour
         if (collision.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(_baseDmg);
-            gameObject.SetActive(false);
+
+            if (!goTrough)
+                gameObject.SetActive(false);
         }
     }
 

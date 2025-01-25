@@ -150,6 +150,7 @@ public class Sniper : BaseWeapon
         return null;
     }
 
+
     IEnumerator CooldownShooting()
     {
         yield return new WaitForSeconds(_fireRate);
