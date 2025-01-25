@@ -20,6 +20,9 @@ public class MachineGun : BaseWeapon
     protected float _cooldown = 5f;
 
     [SerializeField]
+    private float angleSpread = 60;
+
+    [SerializeField]
     private GameObject projectilePrefab;
 
     [SerializeField, Tooltip("i proiettili da parte nella pool")]
@@ -119,8 +122,12 @@ public class MachineGun : BaseWeapon
 
             if (playerHandler != null && projectile != null)
             {
-                var sightRot = playerHandler.sight.transform.localRotation;
-                projectile.transform.localRotation = sightRot;
+                var sightRot = playerHandler.sight.transform.localRotation;     
+                float randomAngle = Random.Range(-(angleSpread / 2), (angleSpread / 2));
+                Quaternion coneRotation = Quaternion.Euler(0, 0, sightRot.eulerAngles.z + randomAngle);
+
+                projectile.transform.localRotation = coneRotation;
+
             }
 
             projectile.SetActive(true);
