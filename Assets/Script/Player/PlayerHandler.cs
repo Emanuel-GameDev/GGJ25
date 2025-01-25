@@ -52,11 +52,7 @@ public class PlayerHandler : Player
     {
         weaponToEquipObj.transform.parent = weaponContainerObj.transform;
         weaponToEquipObj.transform.localPosition = Vector3.zero;
-
-        BaseWeapon weapon = weaponToEquipObj.GetComponent<BaseWeapon>();
-        weaponsEquipped.Add(weapon);
-        weapon.playerHandler = this;
-
+        weaponsEquipped.Add(weaponToEquipObj.GetComponent<BaseWeapon>());    
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)

@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
     public WeaponDatabase database;
     public static WeaponManager instance;
 
-    public GameObject[] ActualWeaponPool = new GameObject[3];
-    public PlayerLevelManager ActualLevelingPlayer;
+    public GameObject[] ActualWeaponPoolPlayer1 = new GameObject[3];
+    public GameObject[] ActualWeaponPoolPlayer2 = new GameObject[3];
+    public PlayerLevelManager ActualLevelingPlayer1;
+    public PlayerLevelManager ActualLevelingPlayer2;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        else
+        else 
             Destroy(gameObject);
     }
 
@@ -65,39 +68,77 @@ public class WeaponManager : MonoBehaviour
     {
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
         var pauseManager = FindAnyObjectByType<PauseManager>();
-
-        if (pauseManager != null)
+        
+        if(pauseManager != null)
         {
             pauseManager.pauseAction.Disable();
             pauseManager.PauseAll();
         }
 
-        if (canvas.Length > 0)
+        if(canvas.Length > 0)
         {
             var canvasScript = canvas[0].GetComponent<Canvas>();
             canvasScript.enabled = true;
 
             var playerControllerRef = levelManager.gameObject.GetComponentInParent<PlayerController>();
-            Debug.Log("PlayerID: " + playerControllerRef.PlayerID);
-            if (playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
+            // Debug.Log("PlayerID: " + playerControllerRef.PlayerID);
+            if(playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
             {
                 var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
-                var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
-                weaponPoolPanel1.SetActive(true);
-                weaponPoolPanel2.SetActive(false);
+                
+                weaponPoolPanel1.gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel1.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel1.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel1.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel1.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
+
+
+                // if()
+                // weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
+                // weaponPoolPanel2.transform.GetChild()
 
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-                passivesPool.SetActive(false);
+                passivesPool.gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+
+                ActualLevelingPlayer1 = levelManager;
+
+                for(int i = 0; i < 3; i++)
+                {
+                    int randomIndex = Random.Range(0, database.weaponDatabase.Count);
+                    GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
+                    ActualWeaponPoolPlayer1[i] = randomWeaponPrefab;
+                }
             }
-            else if (ControllerPlayersManager.Instance.Players.Count > 1 && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
+            else if(ControllerPlayersManager.Instance.Players.Count > 1 
+                    && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
             {
-                var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
                 var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
-                weaponPoolPanel1.SetActive(false);
-                weaponPoolPanel2.SetActive(true);
+
+                weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel2.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel2.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel2.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = true;
+                weaponPoolPanel2.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
+
+                
 
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-                passivesPool.SetActive(false);
+                passivesPool.gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+
+                ActualLevelingPlayer2 = levelManager;
+
+                for(int i = 0; i < 3; i++)
+                {
+                    int randomIndex = Random.Range(0, database.weaponDatabase.Count);
+                    GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
+                    ActualWeaponPoolPlayer2[i] = randomWeaponPrefab;
+                }
             }
 
             //TODO 
@@ -106,57 +147,110 @@ public class WeaponManager : MonoBehaviour
             //Script che aumenta e dimnuisce un indice per la scelta dell'arma
             //Premi tasto per assegnare l'arma scelta al player 
 
-            ActualLevelingPlayer = levelManager;
-
-            for (int i = 0; i < 3; i++)
-            {
-                int randomIndex = Random.Range(0, database.weaponDatabase.Count);
-                GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
-                ActualWeaponPool[i] = randomWeaponPrefab;
-                Debug.Log(ActualWeaponPool[i]);
-            }
+            
         }
 
-
+        
     }
 
-    public void CleanActualPool(int Index)
+    public void CleanActualPoolFirstPlayer(int Index)
     {
-
-        List<BaseWeapon> playerWeapons = ActualLevelingPlayer._playerHandler.GetEquippedWeapons();
-
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPool[Index].name);
+        
+        List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer1[Index].name);
 
         if (existingWeapon != null)
         {
-            // Se l'arma � gi� equipaggiata, potenziala
             existingWeapon.UpgradeTier();
             Debug.Log($"{existingWeapon.name} � stata potenziata!");
         }
         else
         {
             // Altrimenti, equipaggia la nuova arma
-            GameObject instantiatedWeapon = Instantiate(ActualWeaponPool[Index]);
+            GameObject instantiatedWeapon = Instantiate(ActualWeaponPoolPlayer1[Index]);
 
             // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
-            ActualLevelingPlayer._playerHandler.EquipWeapon(instantiatedWeapon);
+            ActualLevelingPlayer1._playerHandler.EquipWeapon(instantiatedWeapon);
 
             Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
         }
 
-        for (int i = 0; i < 3; i++)
+        for(int i = 0; i < 3; i++)
         {
-            ActualWeaponPool[i] = null;
+            ActualWeaponPoolPlayer1[i] = null;
         }
 
-        ActualLevelingPlayer = null;
+        ActualLevelingPlayer1 = null;
+
+        var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
+                
+        weaponPoolPanel1.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel1.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel1.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel1.gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel1.gameObject.GetComponent<WeaponPoolSelector>().enabled = false;
+
 
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
-        canvas[0].SetActive(false);
+        var canvasScript = canvas[0].GetComponent<Canvas>();
+        canvasScript.enabled = false;
+
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
+        
+        if(pauseManager != null
+        && ActualLevelingPlayer2 == null)
+        {
+            pauseManager.pauseAction.Disable();
+            pauseManager.PauseAll();
+        }
+    }
 
-        if (pauseManager != null)
+    public void CleanActualPoolSecondPlayer(int Index)
+    {
+        List<BaseWeapon> playerWeapons = ActualLevelingPlayer2._playerHandler.GetEquippedWeapons();
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer2[Index].name);
+
+        if (existingWeapon != null)
+        {
+            existingWeapon.UpgradeTier();
+            Debug.Log($"{existingWeapon.name} � stata potenziata!");
+        }
+        else
+        {
+            // Altrimenti, equipaggia la nuova arma
+            GameObject instantiatedWeapon = Instantiate(ActualWeaponPoolPlayer2[Index]);
+
+            // Aggiungi l'arma istanziata alla lista delle armi equipaggiate di PlayerHandler
+            ActualLevelingPlayer2._playerHandler.EquipWeapon(instantiatedWeapon);
+
+            Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
+        }
+
+        for(int i = 0; i < 3; i++)
+        {
+            ActualWeaponPoolPlayer2[i] = null;
+        }
+
+        ActualLevelingPlayer2 = null;
+
+        var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
+                
+        weaponPoolPanel2.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel2.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel2.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
+        weaponPoolPanel2.gameObject.GetComponent<WeaponPoolSelector>().enabled = false;  
+
+
+        var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
+        var canvasScript = canvas[0].GetComponent<Canvas>();
+        canvasScript.enabled = false;
+
+        var pauseManager = FindAnyObjectByType<PauseManager>();
+        
+        if(pauseManager != null
+        && ActualLevelingPlayer1 == null)
         {
             pauseManager.pauseAction.Disable();
             pauseManager.PauseAll();
