@@ -19,6 +19,8 @@ public class PlayerController : Player, IPauseable
     [SerializeField] private float _speed;
     [SerializeField] private float deadZone = 0.2f;
 
+    public string PlayerID = "";
+
     private bool isfacingRight = true;
     private SpriteRenderer spriteRenderer;
     
@@ -123,6 +125,7 @@ public class PlayerController : Player, IPauseable
 
     public void Pause()
     {
+        _moveValue = Vector2.zero;
         _moveAction.Disable();
         _rotateAction.Disable();
         _throwAction.Disable();

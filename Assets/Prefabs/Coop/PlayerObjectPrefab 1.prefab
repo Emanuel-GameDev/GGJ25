@@ -119,6 +119,7 @@ MonoBehaviour:
   sight: {fileID: 7768398026419434424}
   _speed: 15
   deadZone: 0.2
+  PlayerID: 
 --- !u!114 &1619505786427434148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: 1
-  _exp: 0
+  _actualExp: 0
   _grabExpRange: 1
   _levelUpThreshold: 100
   _trueLevelUpThreshold: 100
@@ -790,10 +791,12 @@ MonoBehaviour:
   _weaponClass: 1
   _weaponType: 4
   tierCounter: 0
-  _baseDmg: 10
-  _hitRate: 1
+  _baseDmg: 160
+  _hitRate: 0.5
   hitAreaModifierTier1: 50
   _dmgAddiction: 5
+  hitAreaModifierTier2: 20
+  distanceModifier: 20
 --- !u!60 &8123877030353748341
 PolygonCollider2D:
   m_ObjectHideFlags: 0
