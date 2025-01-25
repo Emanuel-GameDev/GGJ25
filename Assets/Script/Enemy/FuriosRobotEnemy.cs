@@ -21,6 +21,8 @@ public class FuriosRobotEnemy : AEnemy
         if (!_isFurious)
         {
             _agent.MaxLinearSpeed = _agent.MaxLinearSpeed + _agent.MaxLinearSpeed * _speedBoost / 100f;
+            _isFurious = true;
+            GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 }
