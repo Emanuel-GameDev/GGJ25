@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - ChooseWeaponCanvas
+  - Player1WeaponPool
+  - Player2WeaponPool
+  - PassivePool
   layers:
   - Default
   - TransparentFX

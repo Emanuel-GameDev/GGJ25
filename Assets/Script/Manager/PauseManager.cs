@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PauseManager : MonoBehaviour
 {
     PlayerInputs playerInputs;
-    InputAction pauseAction;
+    public InputAction pauseAction;
 
     [SerializeField] private bool inPause = false;
     void Awake()
@@ -21,6 +21,7 @@ public class PauseManager : MonoBehaviour
     {
         if(!inPause)
         {
+            Debug.Log("Pause");
             var pausableEnemyObjects = FindObjectsByType<AEnemy>(FindObjectsSortMode.None).ToList(); 
             foreach (var pausableEnemy in pausableEnemyObjects)
             {
@@ -43,6 +44,7 @@ public class PauseManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Unpause");
             var pausableEnemyObjects = FindObjectsByType<AEnemy>(FindObjectsSortMode.None).ToList(); 
             foreach (var pausableEnemy in pausableEnemyObjects)
             {

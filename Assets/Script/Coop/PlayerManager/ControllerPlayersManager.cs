@@ -21,9 +21,10 @@ public class ControllerPlayersManager : DeviceManager
         int i = 0;
         _players.ForEach(player => 
         {
+            
             player.transform.position = _startingPoints[i].position;
             i++;
-            Debug.Log((player.name));
+            Debug.Log(player.gameObject.name);
         });
     }
 

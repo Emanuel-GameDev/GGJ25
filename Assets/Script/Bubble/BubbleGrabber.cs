@@ -36,6 +36,8 @@ public class BubbleGrabber : MonoBehaviour
 
     public void ThrowBubble(InputAction.CallbackContext context)
     {
+        if(_bubbleGrabbed == null) return;
+        
         _bubbleGrabbed.transform.parent = null;
         _bubbleGrabbed.ThrowTask(_playerController.MoveValue, transform.parent.gameObject).Forget();
         _bubbleGrabbed.isGrabbed = false;
