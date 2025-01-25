@@ -9,12 +9,16 @@ public class RayPistolProjectile : MonoBehaviour
 
     [SerializeField]
     private float aliveTime = 1.5f;
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootClip;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(CooldownProjectile());
+        //AUDIO
+        //AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
