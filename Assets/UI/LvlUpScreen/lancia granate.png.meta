@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lancia granate_0: 4148013707694447205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
