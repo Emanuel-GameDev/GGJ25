@@ -47,7 +47,7 @@ public class BubbleController : MonoBehaviour, IDamageable
         
         isGrabbable = false;
 
-        rb.linearVelocity = direction * 5f;
+        rb.linearVelocity = direction * speed;
         
         await UniTask.Delay(time * 1000);
         
