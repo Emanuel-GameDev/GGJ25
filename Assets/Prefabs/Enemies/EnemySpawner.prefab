@@ -46,16 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCycle: 1
   _actualTier: 0
-  _actualTiersAfterFirstCycle: 0000000000000000
+  _actualTiersAfterFirstCycle: 00000000010000000200000003000000040000000500000006000000
   _timeToNextTier: 20
   _minSpawnTimer: 0.1
   _maxSpawnTimer: 1.2
-  _minXSpawnPosition: 10
+  _minXSpawnPosition: -20
   _maxXSpawnPosition: 20
-  _minYSpawnPosition: 10
+  _minYSpawnPosition: -20
   _maxYSpawnPosition: 20
   _enemyTierListSO: {fileID: 11400000, guid: 0c79e0e3ed408b64b8e6463ccb3ed6e6, type: 2}
   pool: []
-  _maxPoolSize: 10
+  _maxPoolSize: 40
   _isSpawning: 1
   _isInPause: 0
