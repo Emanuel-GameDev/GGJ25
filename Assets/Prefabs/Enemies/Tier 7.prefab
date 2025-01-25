@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bd5046e86fa5a4993a7687ce65d807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Schema: {fileID: 11400000, guid: 1483903bd3babee4f90c6358613fb667, type: 2}
+  Schema: {fileID: 11400000, guid: cdae1d8b3fa90434496995ec705c8568, type: 2}
   _currentStateName: 
 --- !u!114 &3209091093542708369
 MonoBehaviour:
