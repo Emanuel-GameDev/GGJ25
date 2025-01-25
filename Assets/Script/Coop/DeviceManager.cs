@@ -13,7 +13,9 @@ public class DeviceManager : MonoBehaviour
     protected PlayerInputManager _playerInputManager;
     [SerializeField] protected List<PlayerInput> _players;
     public List<PlayerInput> Players => _players;
+
     [SerializeField] protected List<PlayerInputData> _playersData = new List<PlayerInputData>();
+    public List<PlayerInputData> PlayersData => _playersData;
 
     [Header("Prefab References")]
     
