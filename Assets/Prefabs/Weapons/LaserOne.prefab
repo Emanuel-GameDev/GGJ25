@@ -148,10 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: LaserOne
+  description: 
+  tier1Description: 
+  tier2Description: 
+  sprite: {fileID: 0}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
   tierCounter: 0
+  shootClip: {fileID: 8300000, guid: a5f1df76aaaa3324fa1c053a9a953a28, type: 3}
   _rayLenght: 50
   _raySpeed: 80
   _baseDmg: 10

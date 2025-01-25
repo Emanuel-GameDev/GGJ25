@@ -184,10 +184,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: LaserBlade
+  description: 
+  tier1Description: 
+  tier2Description: 
+  sprite: {fileID: 0}
   playerHandler: {fileID: 0}
   _weaponClass: 1
   _weaponType: 4
   tierCounter: 0
+  shootClip: {fileID: 8300000, guid: 97078bed720fb304a82cd5bf05810803, type: 3}
   _baseDmg: 20
   _hitRate: 1
   hitAreaModifierTier1: 50

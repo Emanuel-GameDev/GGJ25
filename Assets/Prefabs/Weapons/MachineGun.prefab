@@ -101,10 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: MachineGun
+  description: 
+  tier1Description: 
+  tier2Description: 
+  sprite: {fileID: 0}
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
   tierCounter: 0
+  shootClip: {fileID: 8300000, guid: fb9ed196d6707f648851698fc15b0799, type: 3}
   _projectileSpeed: 10
   _projectileDmg: 5
   _fireAmountPerSeconds: 10
