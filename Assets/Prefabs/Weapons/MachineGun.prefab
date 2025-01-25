@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204c8b9a7d9b76543a50bcbcacc42b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: MachineGun
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0
@@ -110,9 +110,10 @@ MonoBehaviour:
   _fireAmountPerSeconds: 10
   _fireDuration: 4
   _cooldown: 5
+  angleSpread: 60
   projectilePrefab: {fileID: 0}
   poolSize: 60
   _durationMultiplier: 15
   _fireAmountMultiplier: 2
-  _cooldownAdd: 25
+  _cooldownMultiplier: 0
   _dmgAdd: 1

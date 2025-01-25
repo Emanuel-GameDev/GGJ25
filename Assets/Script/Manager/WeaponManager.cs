@@ -104,7 +104,6 @@ public class WeaponManager : MonoBehaviour
                 passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
 
                 ActualLevelingPlayer1 = levelManager;
-
                 for(int i = 0; i < 3; i++)
                 {
                     int randomIndex = Random.Range(0, database.weaponDatabase.Count);
@@ -157,6 +156,7 @@ public class WeaponManager : MonoBehaviour
     {
         
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
+
         BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer1[Index].name);
 
         if (existingWeapon != null)

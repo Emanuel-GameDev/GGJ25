@@ -35,6 +35,8 @@ public class AttackTargetState : State
     [BurstCompile]
     public override async UniTask OnUpdate(GameObject agent)
     {
+        if (agent == null) return; 
+
         // Debug.Log("attack rate " + _damager.attackRate);
         _collider.enabled = true;
 

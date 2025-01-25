@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8d6ae14d7d9cc4ea04248eae5368d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Sniper
   playerHandler: {fileID: 0}
   _weaponClass: 0
   _weaponType: 0

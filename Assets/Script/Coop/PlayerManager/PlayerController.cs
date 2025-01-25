@@ -20,6 +20,7 @@ public class PlayerController : Player, IPauseable
     [SerializeField] private float deadZone = 0.2f;
 
     public string PlayerID = "";
+    public bool isShooting = false;
 
     private bool isfacingRight = true;
     private SpriteRenderer spriteRenderer;
