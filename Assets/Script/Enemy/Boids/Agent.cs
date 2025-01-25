@@ -19,7 +19,7 @@ namespace Boids
         [SerializeReference, SubclassSelector]
         private SteeringBehaviour[] _steering = Array.Empty<SteeringBehaviour>();
 
-        public float MaxLinearSpeed => _maxLinearSpeed;
+        public float MaxLinearSpeed {get{return _maxLinearSpeed;} set{_maxLinearSpeed = value;} }
         public float MaxAngularSpeed => _maxAngularSpeed;
         public float Radius => _radius;
 
