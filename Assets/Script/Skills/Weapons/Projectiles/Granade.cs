@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class Granade : MonoBehaviour
     [SerializeField]
     private float _timeBeforeStop = 2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip explosionClip;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -60,5 +63,10 @@ public class Granade : MonoBehaviour
     public void SetColliderRadius(float amount)
     {
         circleCollider.radius = amount;
+    }
+
+    public void PlayExplosionSound()
+    {
+        AudioManager.instance.PlayAudioClipWithPosition(explosionClip,transform.position);
     }
 }

@@ -19,7 +19,10 @@ public enum WeaponType
 public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootClip;
 
+    [Header("Generics")]
     public string weaponName;
     public string description;
     public string tier1Description;
@@ -33,8 +36,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public int tierCounter = 0;
 
-    [Header("Audio")]
-    [SerializeField] private AudioClip shootClip;
+   
 
     #endregion
 
