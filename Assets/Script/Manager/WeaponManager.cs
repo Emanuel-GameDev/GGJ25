@@ -154,10 +154,19 @@ public class WeaponManager : MonoBehaviour
 
     public void CleanActualPoolFirstPlayer(int Index)
     {
-        
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
 
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer1[Index].name);
+        foreach (BaseWeapon weapon in playerWeapons)
+        {
+            Debug.Log("player 1 equipped weapon: " + weapon);
+        }
+
+        foreach (GameObject weapon in ActualWeaponPoolPlayer1)
+        {
+            Debug.Log("player 1 database weapon: " + weapon);
+        }
+
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer1[Index].GetComponent<BaseWeapon>().GetType());
 
         if (existingWeapon != null)
         {
