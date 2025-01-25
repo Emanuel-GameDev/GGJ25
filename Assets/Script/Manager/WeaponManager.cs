@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,31 @@ public class WeaponManager : MonoBehaviour
     public GameObject[] ActualWeaponPoolPlayer2 = new GameObject[3];
     public PlayerLevelManager ActualLevelingPlayer1;
     public PlayerLevelManager ActualLevelingPlayer2;
+
+
+
+
+    public TextMeshProUGUI textNome1P1;
+    public TextMeshProUGUI textNome2P1;
+    public TextMeshProUGUI textNome3P1;
+    public TextMeshProUGUI textDesc1P1;
+    public TextMeshProUGUI textDesc2P1;
+    public TextMeshProUGUI textDesc3P1;
+    public Image sprite1P1;
+    public Image sprite2P1;
+    public Image sprite3P1;
+
+    [Space]
+
+    public TextMeshProUGUI textNome1P2;
+    public TextMeshProUGUI textNome2P2;
+    public TextMeshProUGUI textNome3P2;
+    public TextMeshProUGUI textDesc1P2;
+    public TextMeshProUGUI textDesc2P2;
+    public TextMeshProUGUI textDesc3P2;
+    public Image sprite1P2;
+    public Image sprite2P2;
+    public Image sprite3P2;
 
     private void Awake()
     {
@@ -104,6 +130,7 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolPanel1.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
 
 
+
                 // if()
                 // weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
                 // weaponPoolPanel2.transform.GetChild()
@@ -121,6 +148,16 @@ public class WeaponManager : MonoBehaviour
                     GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
                     ActualWeaponPoolPlayer1[i] = randomWeaponPrefab;
                 }
+
+                // carico dati delle armi su UI
+                textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().name;
+                textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
+                textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
+
+                textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
+                textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
+                textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
+
             }
             else if(ControllerPlayersManager.Instance.Players.Count > 1 
                     && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
@@ -149,6 +186,16 @@ public class WeaponManager : MonoBehaviour
                     GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
                     ActualWeaponPoolPlayer2[i] = randomWeaponPrefab;
                 }
+
+                // carico dati delle armi su UI
+                textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
+                textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
+                textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
+
+                textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
+                textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
+                textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
+
             }
 
             //TODO 
