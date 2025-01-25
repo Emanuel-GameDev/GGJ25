@@ -33,7 +33,7 @@ public class Sniper : BaseWeapon
     [Header("TIER 2")]
 
     [SerializeField, Range(0, 100)]
-    private int _fireRateMultiplier = 25;
+    private float _fireRateMultiplier = 25;
 
     [SerializeField, Range(1, 100)]
     private int _projectileScaleMultiplier = 20;
@@ -65,7 +65,7 @@ public class Sniper : BaseWeapon
         {
             projectilePrefab.gameObject.transform.localScale *= (_projectileScaleMultiplier / 100);
 
-            _fireRate *= (_fireRateMultiplier / 100);
+            _fireRate *= (float)_fireRateMultiplier / 100f;
         }
     }
     private void InitializePool()
