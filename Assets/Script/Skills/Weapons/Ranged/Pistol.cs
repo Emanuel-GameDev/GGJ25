@@ -11,8 +11,8 @@ public class Pistol : BaseWeapon
     [SerializeField]
     private int _projectileDmg = 5;
 
-    [SerializeField]
-    protected float _fireRate = 1f;
+    [SerializeField, Min(0.1f)]
+    protected float _fireRate = 2f;
 
     [SerializeField]
     private GameObject projectilePrefab;
@@ -27,7 +27,7 @@ public class Pistol : BaseWeapon
     private int tier1UpgradeDmg = 5;
 
     [SerializeField, Range(0, 100)]
-    private int tier1UpgradeFireRate = 50;
+    private float tier1UpgradeFireRate = 50;
 
 
     private GameObject pistolProjectilePool;
@@ -47,7 +47,9 @@ public class Pistol : BaseWeapon
         if (tierCounter == 1)
         {
             _projectileDmg += tier1UpgradeDmg;
-            _fireRate *= (tier1UpgradeFireRate / 100);
+
+            float percentage = (float)tier1UpgradeFireRate / 100f;
+            _fireRate *= percentage;
         }
     }
 
@@ -91,6 +93,8 @@ public class Pistol : BaseWeapon
     {
         if (projectile != null)
         {
+            canShoot = false;
+
             projectile.GetComponent<RayPistolProjectile>()._baseDmg = _projectileDmg;
             projectile.transform.position = transform.position;
 
@@ -109,7 +113,6 @@ public class Pistol : BaseWeapon
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
                 rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
 
-                canShoot = false;
                 StartCoroutine(CooldownShooting());
             }
         }
