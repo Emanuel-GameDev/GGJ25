@@ -24,16 +24,14 @@ public class GranadeLauncher : BaseWeapon
 
     [Header("TIER 1")]
 
-    [SerializeField]
-    private int tier1UpgradeDmg = 5;
-
-    [SerializeField, Range(1, 100)]
-    private float _fireRateModifier = 50;
-
-    [Header("TIER 2")]
-
     [SerializeField, Range(1, 100)]
     private float _scaleIncrease = 20f;
+
+    [SerializeField, Range(1, 100)]
+    private float _fireRateModifier = 20;
+
+
+    [Header("TIER 2")]
 
     [SerializeField]
     private int _dmgModifier = 10;
@@ -94,8 +92,6 @@ public class GranadeLauncher : BaseWeapon
         if (!canShoot) return;
 
         GameObject projectile = GetPooledProjectile();
-        if (projectile == null)
-            Debug.Log("sakfjshid");
         Fire(projectile);
     }
 
