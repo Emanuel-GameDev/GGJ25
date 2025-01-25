@@ -112,3 +112,4 @@ MonoBehaviour:
   poolSize: 30
   tier1UpgradeDmg: 5
   tier1UpgradeFireRate: 50
+  timeBetweenShoots: 0.1

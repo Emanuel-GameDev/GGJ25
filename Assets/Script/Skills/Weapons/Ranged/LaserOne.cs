@@ -94,6 +94,7 @@ public class LaserOne : BaseWeapon
         {
             StopCoroutine(ScaleSpriteX());
             transform.localScale = originalScale;
+            enemyHit = 0;
             canShoot = true;
             return;
         }
@@ -118,5 +119,11 @@ public class LaserOne : BaseWeapon
         transform.localScale = originalScale;
         gameObject.SetActive(false);
         canShoot = true;
+    }
+
+    IEnumerator Cooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canShoot = true ;
     }
 }
