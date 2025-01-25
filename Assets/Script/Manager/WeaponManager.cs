@@ -238,6 +238,7 @@ public class WeaponManager : MonoBehaviour
     {
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
 
+
         BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer1[Index].GetComponent<BaseWeapon>().GetType());
 
         if (existingWeapon != null)
@@ -290,7 +291,7 @@ public class WeaponManager : MonoBehaviour
     public void CleanActualPoolSecondPlayer(int Index)
     {
         List<BaseWeapon> playerWeapons = ActualLevelingPlayer2._playerHandler.GetEquippedWeapons();
-        BaseWeapon existingWeapon = playerWeapons.Find(w => w.name == ActualWeaponPoolPlayer2[Index].name);
+        BaseWeapon existingWeapon = playerWeapons.Find(w => w.GetType() == ActualWeaponPoolPlayer2[Index].GetType());
 
         if (existingWeapon != null)
         {

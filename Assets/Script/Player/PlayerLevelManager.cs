@@ -23,7 +23,9 @@ public class PlayerLevelManager : MonoBehaviour
 
     private void Start()
     {
-        EventManager.OnPlayerLevelUp += (level, manager) => { BarsUI.instance.SetExp((float)0, GetComponentInParent<PlayerInput>().playerIndex); };
+        EventManager.OnPlayerLevelUp += (level, manager) => { BarsUI.instance.SetExp((float)0, GetComponentInParent<PlayerInput>().playerIndex);
+                                                              BarsUI.instance.SetMaxExp((float)_trueLevelUpThreshold, GetComponentInParent<PlayerInput>().playerIndex);
+        };
         BarsUI.instance.SetMaxExp((float)_trueLevelUpThreshold, GetComponentInParent<PlayerInput>().playerIndex);
     }
 
