@@ -1569,7 +1569,7 @@ PrefabInstance:
     - target: {fileID: 1855259425110079139, guid: 60bf0dfd3cf41e242878dfb7acec55f1, type: 3}
       propertyPath: _promptPrefab
       value: 
-      objectReference: {fileID: 1743028898238628981, guid: 422afa6095145b6448637f6ece35c5f0, type: 3}
+      objectReference: {fileID: 1743028898238628981, guid: 3bf0d38722978444ebf7bf092691a27f, type: 3}
     - target: {fileID: 1855259425110079139, guid: 60bf0dfd3cf41e242878dfb7acec55f1, type: 3}
       propertyPath: _playersData.Array.size
       value: 2
@@ -1723,7 +1723,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6517738060039365053, guid: b314e16bbb1d39a46be9db9f1bcd7c20, type: 3}
       propertyPath: _maxPoolSize
-      value: 10
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517738060039365053, guid: b314e16bbb1d39a46be9db9f1bcd7c20, type: 3}
+      propertyPath: _minXSpawnPosition
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517738060039365053, guid: b314e16bbb1d39a46be9db9f1bcd7c20, type: 3}
+      propertyPath: _minYSpawnPosition
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
