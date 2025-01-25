@@ -69,10 +69,14 @@ public class PlayerHandler : Player
 
         if (weapon == null)
             Debug.Log("è null porcoddio");
-        
 
-        weaponsEquipped.Add(weapon);
-        weapon.playerHandler = this;
+        if (weaponsEquipped.Count < 3)
+        {
+            weaponsEquipped.Add(weapon);
+            weapon.playerHandler = this;
+        }
+        else
+            Debug.Log("NUMERO MASSIMO DI ARMI EQUIPAGGIATE");
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)
