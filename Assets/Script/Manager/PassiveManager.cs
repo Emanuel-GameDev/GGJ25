@@ -44,6 +44,8 @@ public class PassiveManager : MonoBehaviour
         var index = Random.Range(0, _passiveDatabase.passiveList.Count);
         var passive = _passiveDatabase.passiveList[index];
 
+        Debug.Log("EQUIPPED PASSIVE: " + passive.name);
+
         if(_equippedPassives.Contains(passive))
         {
             _equippedPassives[_equippedPassives.IndexOf(passive)].UpgradeTier();
