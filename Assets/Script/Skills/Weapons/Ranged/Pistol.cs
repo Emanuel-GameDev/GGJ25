@@ -29,6 +29,11 @@ public class Pistol : BaseWeapon
     [SerializeField, Range(0, 100)]
     private float tier1UpgradeFireRate = 50;
 
+    [Header("TIER 2")]
+
+    [SerializeField]
+    private float timeBetweenShoots = 0.1f;
+
 
     private GameObject pistolProjectilePool;
     private List<GameObject> projectilePool;
@@ -80,6 +85,13 @@ public class Pistol : BaseWeapon
 
         GameObject projectile = GetPooledProjectile();
         Fire(projectile);
+
+        if (tierCounter == 2)
+        {
+            StartCoroutine(CooldownGeneric(timeBetweenShoots));
+        }
+
+        StartCoroutine(CooldownShooting());
     }
 
     private void Fire(GameObject projectile)
@@ -105,8 +117,6 @@ public class Pistol : BaseWeapon
                 //Debug.Log("SHOOT " + projectile.transform.forward);
                 var sightObjectRef = playerHandler.sight.gameObject.transform.GetChild(0).position;
                 rb.AddForce((sightObjectRef - projectile.transform.position) * _projectileSpeed, ForceMode2D.Impulse);
-
-                StartCoroutine(CooldownShooting());
             }
         }
 
@@ -133,13 +143,14 @@ public class Pistol : BaseWeapon
     {
         yield return new WaitForSeconds(_fireRate);
 
+        canShoot = true;
+    }
 
-        if (tierCounter == 2)
-        {
-            GameObject projectile2 = GetPooledProjectile();
-            Fire(projectile2);
-        }
-        else
-            canShoot = true;
+    IEnumerator CooldownGeneric(float num)
+    {
+        yield return new WaitForSeconds(num);
+
+        GameObject projectile2 = GetPooledProjectile();
+        Fire(projectile2);
     }
 }
