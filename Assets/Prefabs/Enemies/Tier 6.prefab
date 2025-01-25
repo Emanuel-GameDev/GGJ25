@@ -225,6 +225,7 @@ MonoBehaviour:
   - {fileID: 4048684018249095183, guid: c73ce7722614991479446adacd1922fb, type: 3}
   - {fileID: 4048684018249095183, guid: 43f655a6fdee5df4cac806a55e363d34, type: 3}
   - {fileID: 4048684018249095183, guid: 074945ebcb4e8cb4881d92a2745af95a, type: 3}
+  invert: 1
 --- !u!114 &2682125687259287122
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -124,9 +124,9 @@ public class EnemySpawner : MonoBehaviour, IPauseable
     [BurstCompile]
     private async UniTask TierUpdate()
     {
-        while(_isSpawning)
+        while(true)
         {
-            await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
+            await UniTask.WaitForSeconds(_timeToNextTier);
             
             if(_cancellationTokenSource.IsCancellationRequested)
             {
