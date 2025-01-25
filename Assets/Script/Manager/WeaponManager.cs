@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class WeaponManager : MonoBehaviour
 {
     public WeaponDatabase database;
-    public static WeaponManager instance;
+    public static WeaponManager Instance;
 
     public GameObject[] ActualWeaponPoolPlayer1 = new GameObject[3];
     public GameObject[] ActualWeaponPoolPlayer2 = new GameObject[3];
@@ -14,8 +14,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else 
             Destroy(gameObject);
     }

@@ -156,7 +156,7 @@ MonoBehaviour:
   _raySpeed: 80
   _baseDmg: 10
   _baseMaxEnemyHit: 4
-  _cooldown: 20
+  _cooldown: 4
   _modifierEnemyHitTier1: 1
   _modifierEnemyHitTier2: 2
   _modifierDmg: 5

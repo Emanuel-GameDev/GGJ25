@@ -78,10 +78,11 @@ public class MachineGun : BaseWeapon
 
     public override void Shoot()
     {
+        Debug.Log("Start Shoot");
         base.Shoot();
 
         if (!canShoot) return;
-
+        Debug.Log("Shooting");
         canShoot = false;
         StartCoroutine(ShootingRepeat());
 

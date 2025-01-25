@@ -39,6 +39,14 @@ public abstract class BaseWeapon : MonoBehaviour
     public virtual void UpgradeTier()
     {
         if (tierCounter < 3)
+        {
             tierCounter++;
+
+            if (tierCounter == 3)
+            {
+                GameObject w = WeaponManager.Instance.database.weaponDatabase.Find(w => w.name == name);
+                WeaponManager.Instance.database.weaponDatabase.Remove(w);
+            }
+        }
     }
 }

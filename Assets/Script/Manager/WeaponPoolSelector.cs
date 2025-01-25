@@ -75,9 +75,9 @@ public class WeaponPoolSelector : MonoBehaviour
     private void Confirm()
     {
         if(actualPlayer == 1)
-            WeaponManager.instance.CleanActualPoolFirstPlayer(actualIndex);
+            WeaponManager.Instance.CleanActualPoolFirstPlayer(actualIndex);
         if(actualPlayer == 2)
-            WeaponManager.instance.CleanActualPoolSecondPlayer(actualIndex);
+            WeaponManager.Instance.CleanActualPoolSecondPlayer(actualIndex);
     }
 
     void OnDisable()
