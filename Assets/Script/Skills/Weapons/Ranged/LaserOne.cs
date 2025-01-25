@@ -39,7 +39,6 @@ public class LaserOne : BaseWeapon
 
     private void Start()
     {
-        gameObject.SetActive(false);
         originalScale = transform.localScale;
     }
 
@@ -72,7 +71,6 @@ public class LaserOne : BaseWeapon
 
         canShoot = false;
         enemyHit = 0;
-        gameObject.SetActive(true);
         StartCoroutine(ScaleSpriteX());
     }
 
