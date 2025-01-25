@@ -63,6 +63,14 @@ public class BarsUI : MonoBehaviour
             healthBarP2.value = health;
     }
 
+    public void SetMaxExp(float exp, int ID)
+    {
+        if (ID == _player1ID)
+            expBarP1.maxValue = exp;
+        else if (ID == _player2ID)
+            expBarP1.maxValue = exp;
+    }
+
     public void SetMaxOxygen(float oxygen, int ID)
     {
         if (ID == _player1ID)

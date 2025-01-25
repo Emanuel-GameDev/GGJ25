@@ -95,7 +95,6 @@ public class WeaponManager : MonoBehaviour
             // Debug.Log("PlayerID: " + playerControllerRef.PlayerID);
             if(playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
             {
-                Debug.Log("papkfjsoi");
                 var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
                 
                 weaponPoolPanel1.gameObject.GetComponent<Image>().enabled = true;

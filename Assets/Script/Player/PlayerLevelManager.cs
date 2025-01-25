@@ -23,7 +23,8 @@ public class PlayerLevelManager : MonoBehaviour
 
     private void Start()
     {
-        EventManager.OnPlayerLevelUp += (level, manager) => { BarsUI.instance.SetExp((float)0, GetComponent<PlayerInput>().playerIndex); };
+        EventManager.OnPlayerLevelUp += (level, manager) => { BarsUI.instance.SetExp((float)0, GetComponentInParent<PlayerInput>().playerIndex); };
+        BarsUI.instance.SetMaxExp((float)_trueLevelUpThreshold, GetComponentInParent<PlayerInput>().playerIndex);
     }
 
     void Update()
@@ -35,6 +36,9 @@ public class PlayerLevelManager : MonoBehaviour
     {
         _actualExp += expToAdd;
 
+        BarsUI.instance.SetExp(_actualExp, GetComponentInParent<PlayerInput>().playerIndex);
+
+
         if (_actualExp >= _trueLevelUpThreshold)
         {
             _level++;
@@ -44,9 +48,6 @@ public class PlayerLevelManager : MonoBehaviour
             //{
             //    Debug.Log($"Registered methods: {EventManager.OnPlayerLevelUp.GetInvocationList().Length}");
             //}
-
-            BarsUI.instance.SetExp(_actualExp, GetComponent<PlayerInput>().playerIndex);
-
             EventManager.OnPlayerLevelUp?.Invoke(_level, this);
         }
     }
