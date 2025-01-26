@@ -143,10 +143,6 @@ public class WeaponManager : MonoBehaviour
 
 
 
-                // if()
-                // weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
-                // weaponPoolPanel2.transform.GetChild()
-
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
                 passivesPool.gameObject.GetComponent<Image>().enabled = false;
                 passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
@@ -221,17 +217,8 @@ public class WeaponManager : MonoBehaviour
                 sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
 
             }
-
-            //TODO 
-            //Poolla 3 armi
-            //Sostituisci le immagini di base con le icone delle armi
-            //Script che aumenta e dimnuisce un indice per la scelta dell'arma
-            //Premi tasto per assegnare l'arma scelta al player 
-
             
         }
-
-        
     }
 
     public void CleanActualPoolFirstPlayer(int Index)
@@ -279,7 +266,6 @@ public class WeaponManager : MonoBehaviour
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
 
-        GameHUDmanager.instance.LoadWeaponSprites();
 
         if (pauseManager != null
         && ActualLevelingPlayer2 == null)
@@ -332,7 +318,6 @@ public class WeaponManager : MonoBehaviour
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
 
-        GameHUDmanager.instance.LoadWeaponSprites();
         
         if(pauseManager != null
         && ActualLevelingPlayer1 == null)

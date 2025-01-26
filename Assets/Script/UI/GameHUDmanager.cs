@@ -16,10 +16,14 @@ public class GameHUDmanager : MonoBehaviour
 
     public static GameHUDmanager instance;
 
-    private void Start()
+    private void Awake()
     {
-        LoadWeaponSprites();
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
+
 
     public void UpdateLvlText(PlayerLevelManager lvlManager, int lvl)
     {
@@ -33,23 +37,30 @@ public class GameHUDmanager : MonoBehaviour
         }
     }
 
-    public void LoadWeaponSprites()
+    public void LoadWeaponSprites(PlayerHandler handler, int ID)
     {
-        if (WeaponManager.Instance.ActualLevelingPlayer1._playerHandler.GetEquippedWeapons() == null)
-            Debug.Log("kajdfksdf");
-
-        List<BaseWeapon> equippedWeaponsP1 = WeaponManager.Instance.ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
-
-        List<BaseWeapon> equippedWeaponsP2 = WeaponManager.Instance.ActualLevelingPlayer2._playerHandler.GetEquippedWeapons();
-
-        for (int i = 0; i < slotRecapP1.transform.childCount; i++)
+        if (ID ==0)
         {
-            slotRecapP1.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = equippedWeaponsP1[i].sprite;
+            List<BaseWeapon> equippedWeaponsP1 = handler.GetEquippedWeapons();
+
+            for (int i = 0; i < equippedWeaponsP1.Count; i++)
+            {
+                slotRecapP1.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = equippedWeaponsP1[i].sprite;
+
+                slotRecapP1.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
+
         }
-
-        for (int i = 0; i < slotRecapP2.transform.childCount; i++)
+        else if (ID ==1)
         {
-            slotRecapP1.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = equippedWeaponsP2[i].sprite;
+            List<BaseWeapon> equippedWeaponsP2 = handler.GetEquippedWeapons();
+
+            for (int i = 0; i < equippedWeaponsP2.Count; i++)
+            {
+                slotRecapP2.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = equippedWeaponsP2[i].sprite;
+                slotRecapP2.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
+
         }
     }
 

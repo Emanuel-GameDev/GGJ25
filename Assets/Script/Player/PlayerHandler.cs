@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHandler : Player
 {
@@ -27,6 +28,7 @@ public class PlayerHandler : Player
     private void Start()
     {
         controller = GetComponent<PlayerController>();
+        GameHUDmanager.instance.LoadWeaponSprites(this, GetComponent<PlayerInput>().playerIndex);
     }
 
     private void Update()
@@ -77,6 +79,8 @@ public class PlayerHandler : Player
         }
         else
             Debug.Log("NUMERO MASSIMO DI ARMI EQUIPAGGIATE");
+
+        GameHUDmanager.instance.LoadWeaponSprites(this, GetComponent<PlayerInput>().playerIndex);
     }
 
     public void UnEquipWeapon(BaseWeapon weapon)
