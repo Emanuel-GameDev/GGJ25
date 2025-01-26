@@ -86,7 +86,7 @@ public class PassiveManager : MonoBehaviour
         {
             if (!outlines[i].enabled)
             {
-
+                outlines[i].enabled = true;
             }
         }
     }
