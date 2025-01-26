@@ -46,7 +46,7 @@ public class BarsUI : MonoBehaviour
         if (ID == _player1ID)
             oxygenBarP1.value = oxygen;
         else if (ID == _player2ID)
-            oxygenBarP1.value = oxygen;
+            oxygenBarP2.value = oxygen;
     }
 
     public void SetMaxHealth(float health, int ID)
@@ -68,7 +68,7 @@ public class BarsUI : MonoBehaviour
         if (ID == _player1ID)
             expBarP1.maxValue = exp;
         else if (ID == _player2ID)
-            expBarP1.maxValue = exp;
+            expBarP2.maxValue = exp;
     }
 
     public void SetMaxOxygen(float oxygen, int ID)
@@ -76,12 +76,12 @@ public class BarsUI : MonoBehaviour
         if (ID == _player1ID)
             oxygenBarP1.maxValue = oxygen;
         else if (ID == _player2ID)
-            oxygenBarP1.maxValue = oxygen;
+            oxygenBarP2.maxValue = oxygen;
 
 
         if (ID == _player1ID)
             oxygenBarP1.value = oxygen;
         else if (ID == _player2ID)
-            oxygenBarP1.value = oxygen;
+            oxygenBarP2.value = oxygen;
     }
 }
