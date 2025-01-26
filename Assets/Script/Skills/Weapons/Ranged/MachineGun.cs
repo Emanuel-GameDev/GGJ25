@@ -166,7 +166,7 @@ public class MachineGun : BaseWeapon
 
         if (tierCounter == 1)
         {
-            float percentage = (float)_durationMultiplier / 100f;
+            float percentage = (float)((_durationMultiplier / 100f)+1f);
             _fireDuration *= percentage;
 
             _fireAmountPerSeconds += _fireAmountMultiplier;
