@@ -14,7 +14,7 @@ public class GameHUDmanager : MonoBehaviour
     public GameObject lvlRefP1;
     public GameObject lvlRefP2;
 
-    public GameObject schermataMrte;
+    public GameObject schermataMorte;
 
     public static GameHUDmanager instance;
 
@@ -26,15 +26,28 @@ public class GameHUDmanager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        EventManager.OnPlayerDeath += Die();
+        //EventManager.OnPlayerDeath += Die();
+
+        schermataMorte.SetActive(false);
     }
 
-    private UnityAction Die()
+    private void OnDisable()
     {
-        schermataMrte.SetActive(true);
-        return null;
+        //EventManager.OnPlayerDeath -= Die();
+    }
+
+
+    public void Die()
+    {
+        if (schermataMorte.activeSelf) return;
+
+        schermataMorte.SetActive(true);
+
+        EventManager.OnPlayerDeath?.Invoke();
+
+
     }
 
     public void UpdateLvlText(PlayerLevelManager lvlManager, int lvl)

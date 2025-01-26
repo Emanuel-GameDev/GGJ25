@@ -177,6 +177,7 @@ MonoBehaviour:
   _healthLossRate: 2
   _invincibilityTime: 1
   _invincible: 0
+  schermataMortePrefab: {fileID: 1283577255945470820, guid: cbf50749e7f3a3544be6363e507fdd25, type: 3}
 --- !u!70 &5807951594917234292
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
