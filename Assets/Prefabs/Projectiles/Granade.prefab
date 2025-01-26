@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dmg: 0
   _timeBeforeStop: 0.7
-  shootClip: {fileID: 8300000, guid: 8b6cd0c7f8d96e14d9e22efb08585b49, type: 3}
+  shootClip: {fileID: 8300000, guid: 9af65de2450ef6e42b9f08313477d7ca, type: 3}
   explosionClip: {fileID: 8300000, guid: cbf65c1d71b2a80409f9db884f613595, type: 3}
 --- !u!95 &477123233175258845
 Animator:
