@@ -42,16 +42,20 @@ public class PassiveManager : MonoBehaviour
 
     private void EquipPassive(int level, PlayerLevelManager playerLevelManager)
     {
-        if (ControllerPlayersManager.Instance.Players.Count == 1 && level % 5 != 0)
+        if (level % 5 != 0)
             return;
-        else if (ControllerPlayersManager.Instance.Players.Count == 2)
-        {
-            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level
-            + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponent<PlayerLevelManager>().Level;
+        //else if (ControllerPlayersManager.Instance.Players.Count == 2)
+        //{
+        //    if (!ControllerPlayersManager.Instance.Players[0].gameObject.GetComponentInChildren<PlayerLevelManager>()) 
+        //    {
+        //        Debug.Log("passive manager There is no PlayerLevelManager");
+        //    }
+        //    int levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponentInChildren<PlayerLevelManager>()._level
+        //    + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponentInChildren<PlayerLevelManager>()._level;
 
-            if (levelSomma % 5 != 0)
-                return;
-        }
+        //    if (levelSomma % 5 != 0)
+        //        return;
+        //}
 
         Debug.Log("IS EQUIPPING Passive level: " + level);
 

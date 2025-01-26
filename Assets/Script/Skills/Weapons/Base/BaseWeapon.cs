@@ -55,11 +55,11 @@ public abstract class BaseWeapon : MonoBehaviour
         {
             tierCounter++;
 
-            if (tierCounter == 3)
-            {
-                GameObject w = WeaponManager.Instance.database.weaponDatabase.Find(w => w.name == name);
-                WeaponManager.Instance.database.weaponDatabase.Remove(w);
-            }
+            //if (tierCounter == 3)
+            //{
+            //    GameObject w = WeaponManager.Instance.database.weaponDatabase.Find(w => w.name == name);
+            //    WeaponManager.Instance.database.weaponDatabase.Remove(w);
+            //}
         }
     }
 }

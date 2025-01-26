@@ -121,30 +121,24 @@ public class EnemySpawner : MonoBehaviour, IPauseable
     [BurstCompile]
     private async UniTask TierUpdate()
     {
-        while (_isSpawning)
+        
+        await UniTask.WaitForSeconds(_timeToNextTier);
+
+        if (_actualTier == Tier.T7)
         {
-            await UniTask.WaitForSeconds(_timeToNextTier, cancellationToken: _cancellationTokenSource.Token);
-
-            if (_cancellationTokenSource.IsCancellationRequested)
+            if (firstCycle)
             {
-                break;
-            }
-
-            if (_actualTier == Tier.T7)
-            {
-                if (firstCycle)
-                {
-                    firstCycle = false;
-                    _actualTiersAfterFirstCycle[0] = Tier.T7;
-                    _actualTiersAfterFirstCycle[1] = Tier.T1;
-                    TierUpdateAfterFirstCycle().Forget();
-                }
-            }
-            else
-            {
-                _actualTier = (Tier)((int)_actualTier + 1);  // Increment correctly from T1 to T7
+                firstCycle = false;
+                _actualTiersAfterFirstCycle[0] = Tier.T7;
+                _actualTiersAfterFirstCycle[1] = Tier.T1;
+                TierUpdateAfterFirstCycle().Forget();
             }
         }
+        else
+        {
+            _actualTier = (Tier)((int)_actualTier + 1);  // Increment correctly from T1 to T7
+        }
+        
     }
 
     [BurstCompile]

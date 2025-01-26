@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerLevelManager : MonoBehaviour
 {
-    [SerializeField] private int _level = 1;
+    [SerializeField] public int _level = 1;
     public int Level => _level;
     [SerializeField] private float _actualExp = 0f;
     public float ActualExp => _actualExp;
