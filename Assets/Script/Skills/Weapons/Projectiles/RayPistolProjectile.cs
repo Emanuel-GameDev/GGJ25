@@ -26,20 +26,22 @@ public class RayPistolProjectile : MonoBehaviour
         {
             //AUDIO
             if (!isFromMachineGun)
+            {
                 if (shootClip != null)
                     AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
-                else
+            }
+            else
+            {
+                if (machineGunClips.Count != 0)
                 {
-                    if (machineGunClips.Count != 0)
-                    {
-                        AudioClip randomMachineGunSound = machineGunClips[Random.Range(0, machineGunClips.Count)];
+                    AudioClip randomMachineGunSound = machineGunClips[Random.Range(0, machineGunClips.Count)];
 
-                        if (randomMachineGunSound != null)
-                        {
-                            AudioManager.instance.PlayAudioClipWithPosition(randomMachineGunSound, transform.position);
-                        }
+                    if (randomMachineGunSound != null)
+                    {
+                        AudioManager.instance.PlayAudioClipWithPosition(randomMachineGunSound, transform.position);
                     }
                 }
+            }
             StartCoroutine(CooldownProjectile());
         }
 
