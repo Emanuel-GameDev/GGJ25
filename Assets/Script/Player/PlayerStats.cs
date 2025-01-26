@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private float _invincibilityTime = 2f;
     [SerializeField] private bool _invincible = false;
 
+    [SerializeField] GameObject schermataMortePrefab;
+    private GameObject schermataMorte;
+
     private bool _isInPause = false;
 
     void Awake()
@@ -53,6 +56,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
             BarsUI.instance.SetHealth(_health, GetComponent<PlayerInput>().playerIndex);
         }
 
+        if (_health <= 0)
+        {
+            GameHUDmanager.instance.Die();
+        }
+
         BarsUI.instance.SetOxygen(_oxygen, GetComponent<PlayerInput>().playerIndex);
     }
 
@@ -72,7 +80,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         
         if (_health <= 0)
         {
-            Die();
+            GameHUDmanager.instance.Die();
         }
         else
         {
@@ -87,20 +95,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
         _invincible = false;
     }
 
-    private void Die()
-    {
-        var pauseManager = FindAnyObjectByType<PauseManager>();
-
-        if (pauseManager != null)
-        {
-            pauseManager.pauseAction.Disable();
-            pauseManager.PauseAll();
-        }
-
-        EventManager.OnPlayerDeath?.Invoke();
-
-
-    }
 
     private void SetBubbleCarring(GameObject player)
     {

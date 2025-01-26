@@ -2972,7 +2972,7 @@ MonoBehaviour:
   slotRecapP2: {fileID: 1280051456}
   lvlRefP1: {fileID: 149105066}
   lvlRefP2: {fileID: 149105067}
-  schermataMrte: {fileID: 1754878340}
+  schermataMorte: {fileID: 1754878340}
 --- !u!1 &1308742075
 GameObject:
   m_ObjectHideFlags: 0
