@@ -50,6 +50,7 @@ public class WeaponPoolSelector : MonoBehaviour
             actualIndex = 0;
         }
 
+        childs[previousIndex].GetComponent<Image>().color = new Color(255, 255, 255, 1);
         childs[actualIndex].GetComponent<Image>().color = Color.red;
 
         previousIndex = actualIndex;
@@ -65,6 +66,7 @@ public class WeaponPoolSelector : MonoBehaviour
             actualIndex = 2;
         }
 
+        childs[previousIndex].GetComponent<Image>().color = new Color(255, 255, 255, 1);
         childs[actualIndex].GetComponent<Image>().color = Color.red;
 
         previousIndex = actualIndex;

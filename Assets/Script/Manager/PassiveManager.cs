@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PassiveManager : MonoBehaviour
 {
     [SerializeField] private List<BasePassive> _equippedPassives = new List<BasePassive>();
     [SerializeField] private PassiveDatabase _passiveDatabase;
+
+    [SerializeField] GameObject passiveSlot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -55,6 +58,16 @@ public class PassiveManager : MonoBehaviour
         {
             passive.ApplyEffect();
             _equippedPassives.Add(passive);
+        }
+
+        // Equipaggio nella game HUD
+        for (int i = 0; i < passiveSlot.transform.childCount; i++)
+        {
+            if (!passiveSlot.transform.GetChild(i).GetChild(0).gameObject.activeSelf)
+            {
+                passiveSlot.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = passive.passiveSprite;
+                passiveSlot.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
         }
     }
 }

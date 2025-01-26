@@ -8,6 +8,8 @@ TagManager:
   - Player1WeaponPool
   - Player2WeaponPool
   - PassivePool
+  - Slot1
+  - Slot2
   layers:
   - Default
   - TransparentFX
