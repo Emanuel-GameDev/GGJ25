@@ -136,6 +136,7 @@ MonoBehaviour:
   _speed: 15
   deadZone: 0.2
   PlayerID: 
+  isShooting: 0
 --- !u!114 &1619505786427434148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,8 +318,8 @@ MonoBehaviour:
   _level: 1
   _actualExp: 0
   _grabExpRange: 1
-  _levelUpThreshold: 1
-  _trueLevelUpThreshold: 1
+  _levelUpThreshold: 2
+  _trueLevelUpThreshold: 2
   _thresholdMultiplayer: 1
   _playerHandler: {fileID: 1619505786427434148}
 --- !u!58 &221380426522801150

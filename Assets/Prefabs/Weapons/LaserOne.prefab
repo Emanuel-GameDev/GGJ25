@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: LaserOne
-  description: 
-  tier1Description: 
-  tier2Description: 
+  description: NONNOO LAAASEEER
+  tier1Description: Enemy Hit +1
+  tier2Description: Enemy Hit+2; Damage +5
   sprite: {fileID: -3687990071922252070, guid: cd29d62fa6eaa324a9ad1d39037835fc, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0
