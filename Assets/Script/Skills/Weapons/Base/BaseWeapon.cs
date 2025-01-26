@@ -47,7 +47,10 @@ public abstract class BaseWeapon : MonoBehaviour
 
 
         //AUDIO
-        AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+        if (shootClip != null)
+        {
+            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+        }
     }
 
     public virtual void UpgradeTier()
