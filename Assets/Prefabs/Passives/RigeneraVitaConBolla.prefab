@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fec76313e1f2f349b358195e524c39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passiveName: MedicBall
+  passiveDescription: +0.3 HP/s
+  passiveSprite: {fileID: 21300000, guid: 2d09bdd137dfc8142bf1a3aad451ebfd, type: 3}
   activeOneTime: 0
   alreadyActivated: 0
   TierCounter: 1
   PassiveType: 0
-  recuperoVitaConBolla: 0.2
+  recuperoVitaConBolla: 0.3

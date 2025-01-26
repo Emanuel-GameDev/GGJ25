@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7829b93f56c23ea42afb3d393b55c2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passiveName: Breath of Fresh Air
+  passiveDescription: O2 Regen Speed +5
+  passiveSprite: {fileID: 21300000, guid: 8ba609dccdc127949b08fec380078b7b, type: 3}
   activeOneTime: 1
   alreadyActivated: 0
   TierCounter: 1
   PassiveType: 1
-  aumentoRecuperoOssigeno: 10
+  aumentoRecuperoOssigeno: 5

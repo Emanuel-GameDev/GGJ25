@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114467b33878f1f4cb8ff54b7ee279fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passiveName: I'm Speed
+  passiveDescription: Movement Speed +10%
+  passiveSprite: {fileID: 21300000, guid: 10824b2fe5a751141bec18a19aa3ab81, type: 3}
   activeOneTime: 1
   alreadyActivated: 0
   TierCounter: 1
