@@ -12,8 +12,8 @@ public class PlayerController : Player, IPauseable
     private InputAction _throwAction;
     public InputAction ThrowAction => _throwAction;
 
-    private float2 _moveValue;
-    public float2 MoveValue => _moveValue;
+    private Vector2 _moveValue;
+    public Vector2 MoveValue => _moveValue;
     private Vector2 _rotateValue;
 
     [SerializeField] private float _speed;
@@ -74,10 +74,10 @@ public class PlayerController : Player, IPauseable
 
     private void Movement(InputAction.CallbackContext context)
     {
-        
+        _moveValue = context.ReadValue<Vector2>();
 
         // Update isMoving based on the magnitude of movement input
-        if (context.ReadValue<Vector2>().magnitude >  deadZone) // If the input is beyond the dead zone, the player is moving
+        if (_moveValue.magnitude >  deadZone) // If the input is beyond the dead zone, the player is moving
         {
             isMoving = true;
             animator.SetBool("isMoving", isMoving);
