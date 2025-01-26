@@ -167,15 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4247462296dc012489f2672493a421d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  _maxHealth: 100
+  _health: 50
+  _maxHealth: 50
   _oxygen: 100
   _maxOxygen: 100
   _carryBubble: 0
-  _oxygenLossRate: 1
-  _oxygenGainRate: 2
-  _healthLossRate: 1
-  _invincibilityTime: 3
+  _oxygenLossRate: 5
+  _oxygenGainRate: 15
+  _healthLossRate: 2
+  _invincibilityTime: 1
   _invincible: 0
 --- !u!70 &5807951594917234292
 CapsuleCollider2D:
@@ -319,9 +319,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: 1
   _actualExp: 0
-  _grabExpRange: 10
+  _grabExpRange: 2
   _levelUpThreshold: 10
-  _trueLevelUpThreshold: 100
+  _trueLevelUpThreshold: 10
   _thresholdMultiplayer: 1.2
   _playerHandler: {fileID: 1619505786427434148}
 --- !u!58 &221380426522801150

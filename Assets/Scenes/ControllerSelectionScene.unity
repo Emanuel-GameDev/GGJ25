@@ -444,7 +444,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _players: []
   _playersData: []
-  _promptPrefab: {fileID: 862672060540861505, guid: 69019f43c9bc06a469f7552b564575f7, type: 3}
+  _promptPrefab: {fileID: 862672060540861505, guid: 54eba04e598eb75478d72c0be1c8ff99, type: 3}
+  imageList:
+  - {fileID: 21300000, guid: ea9fe7b872e1a70429c14ae38aba7e46, type: 3}
+  - {fileID: 21300000, guid: 07a3476f382b93845913bc2fec055b09, type: 3}
   _controllerGrid: {fileID: 1728799234}
 --- !u!1 &763646458
 GameObject:
@@ -529,14 +532,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.23487005, b: 0.23487005, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2033217867978056435, guid: 36382596a28c76d4f8c702de140723c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

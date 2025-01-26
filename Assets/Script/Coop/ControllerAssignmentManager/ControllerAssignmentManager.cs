@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,9 @@ using UnityEngine.UI;
 
 public class ControllerAssignmentManager : DeviceManager
 {
+    [SerializeField]
+    private List<Sprite> imageList;
+
     [Header("UI References")]
     [Tooltip("Grid to add cards to")]
     [SerializeField] private GameObject _controllerGrid;
@@ -94,9 +98,12 @@ public class ControllerAssignmentManager : DeviceManager
     {
         // Debug.Log($"Adding card: {cardToAdd.playerIndex}");
         cardToAdd.transform.SetParent(_controllerGrid.transform);
-        cardToAdd.transform.localScale = new Vector3(1f, 1f, 1f);
+        cardToAdd.transform.localScale = new Vector3(1f, 1f, 0f);
 
-        UICardUpdate(cardToAdd.gameObject);
+        cardToAdd.GetComponent<Image>().sprite = imageList[0];
+        imageList.Remove(imageList[0]);
+
+        //UICardUpdate(cardToAdd.gameObject);
     }
 
     private void UICardUpdate(GameObject cardObj)
