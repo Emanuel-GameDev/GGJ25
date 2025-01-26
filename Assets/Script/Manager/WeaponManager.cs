@@ -196,17 +196,42 @@ public class WeaponManager : MonoBehaviour
                     textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
 
                 if (!ActualWeaponPoolPlayer1[1].TryGetComponent(out BaseWeapon c))
-                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponentInChildren<BaseWeapon>().name;
+                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponentInChildren<BaseWeapon>().description;
                 else
-                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
+                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
 
-                textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
-                textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
-                textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
 
-                sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
-                sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
-                sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon d))
+                    textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
+
+                if (!ActualWeaponPoolPlayer1[1].TryGetComponent(out BaseWeapon e))
+                    textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
+
+                if (!ActualWeaponPoolPlayer1[1].TryGetComponent(out BaseWeapon f))
+                    textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
+
+
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon g))
+                    sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
+
+                if (!ActualWeaponPoolPlayer1[1].TryGetComponent(out BaseWeapon h))
+                    sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
+
+                if (!ActualWeaponPoolPlayer1[1].TryGetComponent(out BaseWeapon l))
+                    sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
+
             }
             else if (levelManager.GetComponentInParent<PlayerInput>().playerIndex == 1)
             {
@@ -267,31 +292,53 @@ public class WeaponManager : MonoBehaviour
 
                 // carico dati delle armi su UI
                 
-                if (ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>() == null)
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon a))
                     textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponentInChildren<BaseWeapon>().name;
                 else
                     textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
 
-                if (ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>() == null)
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon b))
                     textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponentInChildren<BaseWeapon>().name;
                 else
                     textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
                 
-                if (ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>() == null)
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon c))
                     textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponentInChildren<BaseWeapon>().name;
                 else
                     textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
 
-                textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
-                textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
 
-                textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
-                textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
-                textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon d))
+                    textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
 
-                sprite1P2.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
-                sprite2P2.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
-                sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon e))
+                    textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
+
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon f))
+                    textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponentInChildren<BaseWeapon>().description;
+                else
+                    textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
+
+
+
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon g))
+                    sprite1P2.sprite = ActualWeaponPoolPlayer2[0].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite1P2.sprite = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().sprite;
+
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon h))
+                    sprite2P2.sprite = ActualWeaponPoolPlayer2[1].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite2P2.sprite = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().sprite;
+
+                if (!ActualWeaponPoolPlayer1[0].TryGetComponent(out BaseWeapon l))
+                    sprite3P2.sprite = ActualWeaponPoolPlayer2[2].GetComponentInChildren<BaseWeapon>().sprite;
+                else
+                    sprite3P2.sprite = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().sprite;
             }
 
         }
