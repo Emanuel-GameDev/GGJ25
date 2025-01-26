@@ -9,8 +9,6 @@ public class SceneChanger : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else
-            Destroy(gameObject);
 
         DontDestroyOnLoad(this);
     }
