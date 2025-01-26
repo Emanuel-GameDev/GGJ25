@@ -132,7 +132,6 @@ public class WeaponManager : MonoBehaviour
 
             if (levelManager.GetComponentInParent<PlayerInput>().playerIndex == 0)
             {
-                Debug.Log("A");
                 var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
 
                 weaponPoolPanel1.gameObject.GetComponent<Image>().enabled = true;
@@ -182,7 +181,6 @@ public class WeaponManager : MonoBehaviour
             }
             else if (levelManager.GetComponentInParent<PlayerInput>().playerIndex == 1)
             {
-                Debug.Log("B");
                 var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
 
                 weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = true;
