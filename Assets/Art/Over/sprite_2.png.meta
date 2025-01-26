@@ -97,7 +97,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -106,12 +106,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -625,7 +625,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -634,7 +634,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sprite_2_0: -6981641179300335697
+      sprite_2_1: 5742541816403897934
+      sprite_2_10: 1660699091727894837
+      sprite_2_11: 4062562897994135834
+      sprite_2_12: 7260826492696289620
+      sprite_2_13: -696335991340593080
+      sprite_2_14: 7550484172538439377
+      sprite_2_15: 9041472679665760778
+      sprite_2_16: -446375786214501703
+      sprite_2_17: 4496577080353024028
+      sprite_2_18: -9120812411520658518
+      sprite_2_19: -8135553668792921845
+      sprite_2_2: -8331909182945598094
+      sprite_2_20: -1011779514177057747
+      sprite_2_3: 1207572534422275166
+      sprite_2_4: -1174721704435091041
+      sprite_2_5: -831797182033384550
+      sprite_2_6: 4201033612598326047
+      sprite_2_7: -5438098755237914677
+      sprite_2_8: -3430383360923295238
+      sprite_2_9: 5693804674990935894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

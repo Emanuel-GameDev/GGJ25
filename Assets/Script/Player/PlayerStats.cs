@@ -89,7 +89,17 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        var pauseManager = FindAnyObjectByType<PauseManager>();
+
+        if (pauseManager != null)
+        {
+            pauseManager.pauseAction.Disable();
+            pauseManager.PauseAll();
+        }
+
         EventManager.OnPlayerDeath?.Invoke();
+
+
     }
 
     private void SetBubbleCarring(GameObject player)
