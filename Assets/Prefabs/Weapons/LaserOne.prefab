@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f5780f8ee696e489dcd70082e4e562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootClip: {fileID: 8300000, guid: a5f1df76aaaa3324fa1c053a9a953a28, type: 3}
   weaponName: LaserOne
   description: 
   tier1Description: 

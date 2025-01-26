@@ -19,8 +19,8 @@ public enum WeaponType
 public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
-    //[Header("Audio")]
-    //[SerializeField] private AudioClip shootClip;
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootClip;
 
     [Header("Generics")]
     public string weaponName;
@@ -47,7 +47,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
 
         //AUDIO
-        //AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+        AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
     }
 
     public virtual void UpgradeTier()
