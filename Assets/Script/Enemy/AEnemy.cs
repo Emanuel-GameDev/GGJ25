@@ -30,7 +30,7 @@ public abstract class AEnemy : MonoBehaviour, IDamageable, IDamager, IPauseable
 
     void Update()
     {
-        Debug.Log("Velocity: " + agent.LinearVelocity.x);
+        
         if(agent.LinearVelocity.x > 0)
         {
             spriteRenderer.flipX = invert;
