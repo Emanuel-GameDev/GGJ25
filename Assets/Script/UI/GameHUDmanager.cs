@@ -46,8 +46,6 @@ public class GameHUDmanager : MonoBehaviour
         schermataMorte.SetActive(true);
 
         EventManager.OnPlayerDeath?.Invoke();
-
-
     }
 
     public void UpdateLvlText(PlayerLevelManager lvlManager, int lvl)
