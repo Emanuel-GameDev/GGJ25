@@ -35,6 +35,9 @@ public class GameHUDmanager : MonoBehaviour
 
     public void LoadWeaponSprites()
     {
+        if (WeaponManager.Instance.ActualLevelingPlayer1._playerHandler.GetEquippedWeapons() == null)
+            Debug.Log("kajdfksdf");
+
         List<BaseWeapon> equippedWeaponsP1 = WeaponManager.Instance.ActualLevelingPlayer1._playerHandler.GetEquippedWeapons();
 
         List<BaseWeapon> equippedWeaponsP2 = WeaponManager.Instance.ActualLevelingPlayer2._playerHandler.GetEquippedWeapons();
