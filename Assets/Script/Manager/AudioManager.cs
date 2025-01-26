@@ -29,7 +29,7 @@ namespace Managers
         {
             if (instance != null)
             {
-                Debug.LogError("trovato gia un AudioManager nella scena");
+                Debug.Log("trovato gia un AudioManager nella scena");
             }
             else
             {
@@ -40,7 +40,7 @@ namespace Managers
 
         private void Start()
         {
-            PlayOSTLevel_1();
+            //PlayOSTLevel_1();
         }
 
 
@@ -72,8 +72,8 @@ namespace Managers
         public void PlayAudioClipWithPosition(AudioClip clipToPLay, Vector3 position)
         {
             GameObject temp = Instantiate(prefabEmpty, position, Quaternion.identity);
-            temp.AddComponent<AudioSource>();
-            temp.GetComponent<AudioSource>().clip = clipToPLay;
+            AudioSource source = temp.AddComponent<AudioSource>();
+            source.clip = clipToPLay;
 
             //switch (audioType)            //forse ci serve piu in la,vediamo visto che qua passano solo effetti
             //{
@@ -87,10 +87,10 @@ namespace Managers
             //        break;
             //}
 
-            temp.GetComponent<AudioSource>().outputAudioMixerGroup = audioMixerEffect;
+            source.outputAudioMixerGroup = audioMixerEffect;
 
 
-            temp.GetComponent<AudioSource>().Play();
+            source.Play();
 
             Destroy(temp, clipToPLay.length);
         }
