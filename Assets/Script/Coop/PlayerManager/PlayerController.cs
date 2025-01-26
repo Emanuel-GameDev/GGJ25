@@ -14,17 +14,19 @@ public class PlayerController : Player, IPauseable
 
     private float2 _moveValue;
     public float2 MoveValue => _moveValue;
-    private Vector2 _rotateValue;    
+    private Vector2 _rotateValue;
 
     [SerializeField] private float _speed;
     [SerializeField] private float deadZone = 0.2f;
 
     public string PlayerID = "";
     public bool isShooting = false;
+    public bool isMoving = false; // Flag to check if the player is moving
 
     private bool isfacingRight = true;
     private SpriteRenderer spriteRenderer;
-    
+    public Animator animator;
+
     void Awake()
     {
         _inputAsset = GetComponent<PlayerInput>().actions;
@@ -32,6 +34,8 @@ public class PlayerController : Player, IPauseable
         _moveAction = _playerMap.FindAction("Move");
         _rotateAction = _playerMap.FindAction("Rotate");
         _throwAction = _playerMap.FindAction("Throw");
+
+        
 
         sight = transform.GetChild(1).gameObject;
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -44,7 +48,7 @@ public class PlayerController : Player, IPauseable
 
         _rotateAction.performed += Rotate;
         _rotateAction.canceled += Rotate;
-        _rotateAction.Enable(); 
+        _rotateAction.Enable();
     }
 
     void OnDisable()
@@ -68,7 +72,24 @@ public class PlayerController : Player, IPauseable
             Flip();
     }
 
-    private void Movement(InputAction.CallbackContext context) => _moveValue = context.ReadValue<Vector2>();
+    private void Movement(InputAction.CallbackContext context)
+    {
+        
+
+        // Update isMoving based on the magnitude of movement input
+        if (context.ReadValue<Vector2>().magnitude >  deadZone) // If the input is beyond the dead zone, the player is moving
+        {
+            isMoving = true;
+            animator.SetBool("isMoving", isMoving);
+            
+        }
+        else
+        {
+            isMoving = false; // If there is no movement input, the player is not moving
+            
+            animator.SetBool("isMoving", isMoving);
+        }
+    }
 
     private void Flip()
     {
@@ -81,40 +102,38 @@ public class PlayerController : Player, IPauseable
     private void Rotate(InputAction.CallbackContext context)
     {
         _rotateValue = context.ReadValue<Vector2>();
-        //Debug.Log("_rotate value: " + _rotateValue);
 
         if (_rotateValue != Vector2.zero)
             isShooting = true;
 
         switch ((_rotateValue.x, _rotateValue.y))
         {
-            case (-1f, 0f): // Sinistra
+            case (-1f, 0f): // Left
                 ApplyRotation(90f);
                 break;
-            case (1f, 0f): // Destra
+            case (1f, 0f): // Right
                 ApplyRotation(-90f);
                 break;
-            case (0f, 1f): // Su
+            case (0f, 1f): // Up
                 ApplyRotation(0);
                 break;
-            case (0f, -1f): // Gi�
+            case (0f, -1f): // Down
                 ApplyRotation(180f);
                 break;
-            case (-1f, 1f): // Alto-Sinistra
+            case (-1f, 1f): // Up-Left
                 ApplyRotation(45f);
                 break;
-            case (1f, 1f): // Alto-Destra
+            case (1f, 1f): // Up-Right
                 ApplyRotation(-45f);
                 break;
-            case (-1f, -1f): // Basso-Sinistra
-                ApplyRotation(145f);
+            case (-1f, -1f): // Down-Left
+                ApplyRotation(135f);
                 break;
-            case (1f, -1f): // Basso-Destra
+            case (1f, -1f): // Down-Right
                 ApplyRotation(225f);
                 break;
             default:
                 isShooting = false;
-
                 break;
         }
     }
@@ -145,7 +164,7 @@ public class PlayerController : Player, IPauseable
 
     #endregion
 
-    public void RiseSpeed (float amount)
+    public void RiseSpeed(float amount)
     {
         _speed += _speed * amount / 100f;
     }

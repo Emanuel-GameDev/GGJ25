@@ -136,6 +136,9 @@ MonoBehaviour:
   _speed: 15
   deadZone: 0.2
   PlayerID: 
+  isShooting: 0
+  isMoving: 0
+  animator: {fileID: 767031502380978381}
 --- !u!114 &1619505786427434148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +574,7 @@ GameObject:
   - component: {fileID: 2223230973229312607}
   - component: {fileID: 7175051300096456464}
   - component: {fileID: 6568314650933352280}
+  - component: {fileID: 767031502380978381}
   m_Layer: 6
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -685,6 +689,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.0001, y: 0.0001}
   m_Direction: 0
+--- !u!95 &767031502380978381
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511026291496016636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 489ff3a3f2231084e9679b044ff26c0d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &368945173210809418
 PrefabInstance:
   m_ObjectHideFlags: 0
