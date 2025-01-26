@@ -40,7 +40,7 @@ namespace Managers
 
         private void Start()
         {
-            //PlayOSTLevel_1();
+            PlayOSTLevel_1();
         }
 
 
@@ -98,8 +98,8 @@ namespace Managers
         public void PlayOSTLevel_1()
         {
             GameObject temp = Instantiate(prefabEmpty);
-            temp.gameObject.name = "shfefejhui";
-            temp.GetComponent<AudioSource>().clip = clipOSTLevel_1;
+            temp.gameObject.name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            temp.AddComponent<AudioSource>().clip = clipOSTLevel_1;
             temp.GetComponent<AudioSource>().loop = true;
 
             temp.GetComponent<AudioSource>().outputAudioMixerGroup = audioMixerMusic;
