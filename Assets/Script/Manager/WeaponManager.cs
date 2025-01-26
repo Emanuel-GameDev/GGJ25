@@ -185,9 +185,20 @@ public class WeaponManager : MonoBehaviour
                 }
 
                 // carico dati delle armi su UI
-                textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().name;
-                textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
-                textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
+                if (ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>() == null)
+                    textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().name;
+
+                if (ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>() == null)
+                    textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
+
+                if (ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>() == null)
+                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
 
                 textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
                 textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
