@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using UnityEngine;
 
@@ -103,6 +104,16 @@ public class LaserBlade : BaseWeapon
         if (collision.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(_baseDmg);
+        }
+    }
+
+
+    public void playSwordAnim()
+    {
+        //AUDIO
+        if (shootClip != null)
+        {
+            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
         }
     }
 }
