@@ -277,10 +277,11 @@ public class WeaponManager : MonoBehaviour
         var canvasScript = canvas[0].GetComponent<Canvas>();
         canvasScript.enabled = false;
 
-
         var pauseManager = FindAnyObjectByType<PauseManager>();
-        
-        if(pauseManager != null
+
+        GameHUDmanager.instance.LoadWeaponSprites();
+
+        if (pauseManager != null
         && ActualLevelingPlayer2 == null)
         {
             pauseManager.pauseAction.Disable();
@@ -330,6 +331,8 @@ public class WeaponManager : MonoBehaviour
         canvasScript.enabled = false;
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
+
+        GameHUDmanager.instance.LoadWeaponSprites();
         
         if(pauseManager != null
         && ActualLevelingPlayer1 == null)
