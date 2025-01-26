@@ -26,15 +26,25 @@ public class RayPistolProjectile : MonoBehaviour
         {
             //AUDIO
             if (!isFromMachineGun)
-                AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+            {
+                if (shootClip != null)
+                    AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+            }
             else
             {
-                AudioClip randomMachineGunSound = machineGunClips[Random.Range(0, machineGunClips.Count)];
-                AudioManager.instance.PlayAudioClipWithPosition(randomMachineGunSound, transform.position);
+                if (machineGunClips.Count != 0)
+                {
+                    AudioClip randomMachineGunSound = machineGunClips[Random.Range(0, machineGunClips.Count)];
+
+                    if (randomMachineGunSound != null)
+                    {
+                        AudioManager.instance.PlayAudioClipWithPosition(randomMachineGunSound, transform.position);
+                    }
+                }
             }
             StartCoroutine(CooldownProjectile());
         }
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
