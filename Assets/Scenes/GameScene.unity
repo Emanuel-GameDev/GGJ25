@@ -2606,6 +2606,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6517738060039365053, guid: b314e16bbb1d39a46be9db9f1bcd7c20, type: 3}
+      propertyPath: _maxPoolSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517738060039365053, guid: b314e16bbb1d39a46be9db9f1bcd7c20, type: 3}
+      propertyPath: _timeToNextTier
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

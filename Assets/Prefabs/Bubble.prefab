@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrabbed: 0
   isGrabbable: 1
-  speed: 25
-  time: 2
+  speed: 10
+  time: 1
   _health: 100
   _maxHealth: 100
 --- !u!58 &6867671983314515391
