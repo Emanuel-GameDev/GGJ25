@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e847366c1c492694e855efb907a22be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootClip: {fileID: 8300000, guid: 97078bed720fb304a82cd5bf05810803, type: 3}
   weaponName: LaserBlade
   description: may the force be with you
   tier1Description: Area +50%

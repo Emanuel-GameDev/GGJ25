@@ -132,6 +132,12 @@ MonoBehaviour:
   goTrough: 0
   _baseDmg: 5
   aliveTime: 1.5
+  isFromMachineGun: 1
+  shootClip: {fileID: 8300000, guid: 5cb6675fc95bc994f87dd625d73d6771, type: 3}
+  machineGunClips:
+  - {fileID: 8300000, guid: 1f2e65ca5e645d74295b4c5624da8a41, type: 3}
+  - {fileID: 8300000, guid: 2e2157ddb48fc7f45a3cc5f783437d54, type: 3}
+  - {fileID: 8300000, guid: fb8cd17f852f79142a98dbfa4114960e, type: 3}
 --- !u!70 &5146419168887083529
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
