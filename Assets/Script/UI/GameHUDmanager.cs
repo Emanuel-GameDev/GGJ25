@@ -27,13 +27,13 @@ public class GameHUDmanager : MonoBehaviour
 
     public void UpdateLvlText(PlayerLevelManager lvlManager, int lvl)
     {
-        if (lvlManager.gameObject.GetComponent<PlayerInput>().playerIndex == 0)
+        if (lvlManager.gameObject.GetComponentInParent<PlayerInput>().playerIndex == 0)
         {
-            lvlRefP1.GetComponent<TextMeshProUGUI>().text = lvl.ToString();
+            lvlRefP1.GetComponentInChildren<TextMeshProUGUI>().text = lvl.ToString();
         }
-        else if (lvlManager.gameObject.GetComponent<PlayerInput>().playerIndex == 1)
+        else if (lvlManager.gameObject.GetComponentInParent<PlayerInput>().playerIndex == 1)
         {
-            lvlRefP2.GetComponent<TextMeshProUGUI>().text = lvl.ToString();
+            lvlRefP2.GetComponentInChildren<TextMeshProUGUI>().text = lvl.ToString();
         }
     }
 
