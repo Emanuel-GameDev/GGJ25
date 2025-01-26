@@ -1,5 +1,7 @@
+using Managers;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Granade : MonoBehaviour
 {
@@ -8,23 +10,33 @@ public class Granade : MonoBehaviour
     [SerializeField]
     private float _timeBeforeStop = 2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootClip;
+    [SerializeField] private AudioClip explosionClip;
 
     private Rigidbody2D rb;
     private Animator anim;
     private CircleCollider2D circleCollider;
     private Sprite originalSprite;
+    private int counter = 0;
 
     private void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        if (counter == 0) { counter++; }
+        else
+        {
+            rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
 
-        originalSprite = GetComponent<SpriteRenderer>().sprite;
+            originalSprite = GetComponent<SpriteRenderer>().sprite;
 
-        circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.enabled = false;
+            circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.enabled = false;
 
-        StartCoroutine(CooldownProjectile());
+            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+
+            StartCoroutine(CooldownProjectile());
+        }
     }
 
     IEnumerator CooldownProjectile()
@@ -60,5 +72,10 @@ public class Granade : MonoBehaviour
     public void SetColliderRadius(float amount)
     {
         circleCollider.radius = amount;
+    }
+
+    public void PlayExplosionSound()
+    {
+        AudioManager.instance.PlayAudioClipWithPosition(explosionClip,transform.position);
     }
 }

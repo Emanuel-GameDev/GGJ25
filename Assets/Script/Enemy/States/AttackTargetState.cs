@@ -35,15 +35,28 @@ public class AttackTargetState : State
     [BurstCompile]
     public override async UniTask OnUpdate(GameObject agent)
     {
-        if (agent == null) return; 
+        if (agent == null) return;
 
-        // Debug.Log("attack rate " + _damager.attackRate);
+        // Verifica se il collider esiste prima di accedere ad esso
+        if (_collider == null)
+        {
+            Debug.LogWarning("Collider is missing or has been destroyed!");
+            return;
+        }
+
         _collider.enabled = true;
 
         await UniTask.Delay((int)(_damager.attackRate * 1000));
-        // Debug.Log("AttackTargetState update");
+
+        // Verifica di nuovo se il collider esiste prima di accedervi
+        if (_collider == null)
+        {
+            Debug.LogWarning("Collider was destroyed during the delay!");
+            return;
+        }
 
         _collider.enabled = false;
+
         await base.OnUpdate(agent);
     }
 

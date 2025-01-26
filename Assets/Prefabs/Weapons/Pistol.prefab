@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  description: pistooooooooool
-  tier1Description: wdEFWEFDQEF
-  tier2Description: DFDADFGGFVAD
+  description: Pew Pew Pew
+  tier1Description: Damage +5; Fire  Rate +50%
+  tier2Description: Double Shoot :)
   sprite: {fileID: 448484585768131267, guid: 1f54ae05c48450f4fb392744ab00428f, type: 3}
   playerHandler: {fileID: 0}
   _weaponClass: 0

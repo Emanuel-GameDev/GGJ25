@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 public enum WeaponClass
@@ -18,7 +19,10 @@ public enum WeaponType
 public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootClip;
 
+    [Header("Generics")]
     public string weaponName;
     public string description;
     public string tier1Description;
@@ -32,12 +36,21 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public int tierCounter = 0;
 
+   
+
     #endregion
 
 
     public virtual void Shoot()
     {
         //Debug.Log("Sparo un colpo dal BaseWeapon");
+
+
+        //AUDIO
+        if (shootClip != null)
+        {
+            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+        }
     }
 
     public virtual void UpgradeTier()
