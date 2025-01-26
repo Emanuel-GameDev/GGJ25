@@ -55,7 +55,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        else 
+        else
             Destroy(gameObject);
     }
 
@@ -105,27 +105,27 @@ public class WeaponManager : MonoBehaviour
 
     private void SetUpChooseWeaponCanvas(int level, PlayerLevelManager levelManager)
     {
-        if(ControllerPlayersManager.Instance.Players.Count == 1 && level%5 == 0)
+        if (ControllerPlayersManager.Instance.Players.Count == 1 && level % 5 == 0)
             return;
-        else if(ControllerPlayersManager.Instance.Players.Count == 2 )
+        else if (ControllerPlayersManager.Instance.Players.Count == 2)
         {
-            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level 
+            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level
             + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponent<PlayerLevelManager>().Level;
 
-            if(levelSomma%5 == 0)
+            if (levelSomma % 5 == 0)
                 return;
-        } 
+        }
 
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
         var pauseManager = FindAnyObjectByType<PauseManager>();
-        
-        if(pauseManager != null)
+
+        if (pauseManager != null)
         {
             pauseManager.pauseAction.Disable();
             pauseManager.PauseAll();
         }
 
-        if(canvas.Length > 0)
+        if (canvas.Length > 0)
         {
             var canvasScript = canvas[0].GetComponent<Canvas>();
             canvasScript.enabled = true;
@@ -151,12 +151,30 @@ public class WeaponManager : MonoBehaviour
 
 
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-                passivesPool.gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.gameObject.GetComponent<Image>().enabled = true;
+
+                for (int i = 0; i < passivesPool.transform.childCount; i++)
+                {
+                    passivesPool.transform.GetChild(i).gameObject.GetComponent<Image>().enabled = true;
+
+                    for (int j = 0; j < passivesPool.transform.GetChild(i).childCount; j++)
+                    {
+                        passivesPool.transform.GetChild(i).GetChild(j).gameObject.SetActive(true);
+                    }
+                }
 
                 // Carico dati su UI PASSIVE
+
+                textNome1Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveName;
+                textNome2Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveName;
+                textNome3Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveName;
+                textDesc1Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveDescription;
+                textDesc2Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveDescription;
+                textDesc3Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveDescription;
+                sprite1Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveSprite;
+                sprite2Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveSprite;
+                sprite3Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveSprite;
+
 
                 ActualLevelingPlayer1 = levelManager;
                 for (int i = 0; i < 3; i++)
@@ -196,13 +214,36 @@ public class WeaponManager : MonoBehaviour
                 }
 
 
+                // PASSIVE ------------------------
+
+
                 var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-                passivesPool.gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
-                passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
+                passivesPool.gameObject.GetComponent<Image>().enabled = true;
+
+                for (int i = 0; i < passivesPool.transform.childCount; i++)
+                {
+                    passivesPool.transform.GetChild(i).gameObject.GetComponent<Image>().enabled = true;
+
+                    for (int j = 0; j < passivesPool.transform.GetChild(i).childCount; j++)
+                    {
+                        passivesPool.transform.GetChild(i).GetChild(j).gameObject.SetActive(true);
+                    }
+                }
 
                 // Carico dati su UI PASSIVE
+
+                textNome1Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveName;
+                textNome2Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveName;
+                textNome3Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveName;
+                textDesc1Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveDescription;
+                textDesc2Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveDescription;
+                textDesc3Passive.text = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveDescription;
+                sprite1Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[0].passiveSprite;
+                sprite2Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[1].passiveSprite;
+                sprite3Passive.sprite = PassiveManager.Instance._passiveDatabase.passiveList[2].passiveSprite;
+
+
+                // PASSIVE ------------------------
 
                 ActualLevelingPlayer2 = levelManager;
 
@@ -214,7 +255,22 @@ public class WeaponManager : MonoBehaviour
                 }
 
                 // carico dati delle armi su UI
-                textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
+                
+                if (ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>() == null)
+                    textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
+
+                if (ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>() == null)
+                    textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
+                
+                if (ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>() == null)
+                    textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponentInChildren<BaseWeapon>().name;
+                else
+                    textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
+
                 textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
                 textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
 
@@ -227,95 +283,6 @@ public class WeaponManager : MonoBehaviour
                 sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
             }
 
-            //var playerControllerRef = levelManager.gameObject.GetComponentInParent<PlayerController>();
-            //// Debug.Log("PlayerID: " + playerControllerRef.PlayerID);
-            //if(playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[0].gameObject)
-            //{
-            //    var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
-                
-            //    weaponPoolPanel1.gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel1.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel1.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel1.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel1.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
-
-
-
-            //    var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-            //    passivesPool.gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
-
-            //    // Carico dati su UI PASSIVE
-
-            //    ActualLevelingPlayer1 = levelManager;
-            //    for(int i = 0; i < 3; i++)
-            //    {
-            //        int randomIndex = Random.Range(0, database.weaponDatabase.Count);
-            //        GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
-            //        ActualWeaponPoolPlayer1[i] = randomWeaponPrefab;
-            //    }
-
-            //    // carico dati delle armi su UI
-            //    textNome1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().name;
-            //    textNome2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().name;
-            //    textNome3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().name;
-
-            //    textDesc1P1.text = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().description;
-            //    textDesc2P1.text = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().description;
-            //    textDesc3P1.text = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().description;
-
-            //    sprite1P1.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
-            //    sprite2P1.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
-            //    sprite3P1.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
-
-            //}
-            //else if(ControllerPlayersManager.Instance.Players.Count > 1 
-            //        && playerControllerRef.gameObject == ControllerPlayersManager.Instance.Players[1].gameObject)
-            //{
-            //    var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player2WeaponPool")[0];
-
-            //    weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel2.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel2.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel2.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = true;
-            //    weaponPoolPanel2.gameObject.GetComponent<WeaponPoolSelector>().enabled = true;
-
-                
-
-            //    var passivesPool = GameObject.FindGameObjectsWithTag("PassivePool")[0];
-            //    passivesPool.gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
-            //    passivesPool.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
-
-            //    // Carico dati su UI PASSIVE
-
-            //    ActualLevelingPlayer2 = levelManager;
-
-            //    for(int i = 0; i < 3; i++)
-            //    {
-            //        int randomIndex = Random.Range(0, database.weaponDatabase.Count);
-            //        GameObject randomWeaponPrefab = database.weaponDatabase[randomIndex];
-            //        ActualWeaponPoolPlayer2[i] = randomWeaponPrefab;
-            //    }
-
-            //    // carico dati delle armi su UI
-            //    textNome1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().name;
-            //    textNome2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().name;
-            //    textNome3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().name;
-
-            //    textDesc1P2.text = ActualWeaponPoolPlayer2[0].GetComponent<BaseWeapon>().description;
-            //    textDesc2P2.text = ActualWeaponPoolPlayer2[1].GetComponent<BaseWeapon>().description;
-            //    textDesc3P2.text = ActualWeaponPoolPlayer2[2].GetComponent<BaseWeapon>().description;
-
-            //    sprite1P2.sprite = ActualWeaponPoolPlayer1[0].GetComponent<BaseWeapon>().sprite;
-            //    sprite2P2.sprite = ActualWeaponPoolPlayer1[1].GetComponent<BaseWeapon>().sprite;
-            //    sprite3P2.sprite = ActualWeaponPoolPlayer1[2].GetComponent<BaseWeapon>().sprite;
-
-            //}
-            
         }
     }
 
@@ -342,7 +309,7 @@ public class WeaponManager : MonoBehaviour
             Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
         }
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             ActualWeaponPoolPlayer1[i] = null;
         }
@@ -350,7 +317,7 @@ public class WeaponManager : MonoBehaviour
         ActualLevelingPlayer1 = null;
 
         var weaponPoolPanel1 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
-                
+
         weaponPoolPanel1.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
         weaponPoolPanel1.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
         weaponPoolPanel1.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
@@ -394,7 +361,7 @@ public class WeaponManager : MonoBehaviour
             Debug.Log($"{instantiatedWeapon.name} � stata equipaggiata!");
         }
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             ActualWeaponPoolPlayer2[i] = null;
         }
@@ -402,12 +369,12 @@ public class WeaponManager : MonoBehaviour
         ActualLevelingPlayer2 = null;
 
         var weaponPoolPanel2 = GameObject.FindGameObjectsWithTag("Player1WeaponPool")[0];
-                
+
         weaponPoolPanel2.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
         weaponPoolPanel2.transform.GetChild(1).gameObject.GetComponent<Image>().enabled = false;
         weaponPoolPanel2.transform.GetChild(2).gameObject.GetComponent<Image>().enabled = false;
         weaponPoolPanel2.gameObject.GetComponent<Image>().enabled = false;
-        weaponPoolPanel2.gameObject.GetComponent<WeaponPoolSelector>().enabled = false;  
+        weaponPoolPanel2.gameObject.GetComponent<WeaponPoolSelector>().enabled = false;
 
 
         var canvas = GameObject.FindGameObjectsWithTag("ChooseWeaponCanvas");
@@ -416,8 +383,8 @@ public class WeaponManager : MonoBehaviour
 
         var pauseManager = FindAnyObjectByType<PauseManager>();
 
-        
-        if(pauseManager != null
+
+        if (pauseManager != null
         && ActualLevelingPlayer1 == null)
         {
             pauseManager.pauseAction.Disable();

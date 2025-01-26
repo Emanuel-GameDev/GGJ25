@@ -5,9 +5,20 @@ using UnityEngine.UI;
 public class PassiveManager : MonoBehaviour
 {
     [SerializeField] private List<BasePassive> _equippedPassives = new List<BasePassive>();
-    [SerializeField] private PassiveDatabase _passiveDatabase;
+    public PassiveDatabase _passiveDatabase;
 
     [SerializeField] GameObject passiveSlot;
+    [SerializeField] List<Outline> outlines;
+
+    public static PassiveManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -31,16 +42,16 @@ public class PassiveManager : MonoBehaviour
 
     private void EquipPassive(int level, PlayerLevelManager playerLevelManager)
     {
-        if(ControllerPlayersManager.Instance.Players.Count == 1 && level%5 != 0)
+        if (ControllerPlayersManager.Instance.Players.Count == 1 && level % 5 != 0)
             return;
-        else if(ControllerPlayersManager.Instance.Players.Count == 2 )
+        else if (ControllerPlayersManager.Instance.Players.Count == 2)
         {
-            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level 
+            var levelSomma = ControllerPlayersManager.Instance.Players[0].gameObject.GetComponent<PlayerLevelManager>().Level
             + ControllerPlayersManager.Instance.Players[1].gameObject.GetComponent<PlayerLevelManager>().Level;
 
-            if(levelSomma%5 != 0)
+            if (levelSomma % 5 != 0)
                 return;
-        } 
+        }
 
         Debug.Log("IS EQUIPPING Passive level: " + level);
 
@@ -49,7 +60,7 @@ public class PassiveManager : MonoBehaviour
 
         Debug.Log("EQUIPPED PASSIVE: " + passive.name);
 
-        if(_equippedPassives.Contains(passive))
+        if (_equippedPassives.Contains(passive))
         {
             _equippedPassives[_equippedPassives.IndexOf(passive)].UpgradeTier();
             _equippedPassives[_equippedPassives.IndexOf(passive)].ApplyEffect();
@@ -67,6 +78,15 @@ public class PassiveManager : MonoBehaviour
             {
                 passiveSlot.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = passive.passiveSprite;
                 passiveSlot.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
+        }
+
+        //COntrollo outline
+        for (int i = 0; i < _equippedPassives.Count; i++)
+        {
+            if (!outlines[i].enabled)
+            {
+
             }
         }
     }
