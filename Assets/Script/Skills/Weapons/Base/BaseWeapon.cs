@@ -20,7 +20,7 @@ public abstract class BaseWeapon : MonoBehaviour
 {
     #region vars
     [Header("Audio")]
-    [SerializeField] private AudioClip shootClip;
+    [SerializeField] protected AudioClip shootClip;
 
     [Header("Generics")]
     public string weaponName;
@@ -46,11 +46,7 @@ public abstract class BaseWeapon : MonoBehaviour
         //Debug.Log("Sparo un colpo dal BaseWeapon");
 
 
-        //AUDIO
-        if (shootClip != null)
-        {
-            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
-        }
+       
     }
 
     public virtual void UpgradeTier()

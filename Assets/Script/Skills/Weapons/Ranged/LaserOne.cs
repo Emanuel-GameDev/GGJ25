@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -48,6 +49,12 @@ public class LaserOne : BaseWeapon
         base.Shoot();
 
         if (!canShoot) return;
+
+        //AUDIO
+        if (shootClip != null)
+        {
+            AudioManager.instance.PlayAudioClipWithPosition(shootClip, transform.position);
+        }
 
         Vector2 distance = playerHandler.sight.transform.GetChild(0).position - transform.position;
         distance.Normalize();
